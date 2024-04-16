@@ -1,8 +1,6 @@
 import chess 
 import pandas as pd
 
-games = pd.read_csv('./games.csv')
-
 board = chess.Board()
 san_mainline = "d4 Nc6 e4 e5 f4 f6 dxe5 fxe5"
 
