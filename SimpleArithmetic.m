@@ -6,7 +6,8 @@ ChessState::usage  = "ChessState[Association] returns a chess object.";
 ChessPlot::usage   = "ChessPlot[ChessState] returns the graphical representation of chess state";
 ChessEvolve::usage = "ChessEvolve[ChessState, Move] returns an updated ChessState according to Move (e.g. {\"b1\" -> \[EmptySquare], \"a3\" -> \[WhiteKnight]})";
 KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible moves. Each move is a list of actions/rules.";
-InitializedChessState::usage = "Starting position."
+InitializedChessState::usage = "Starting position.";
+
 
 
 
