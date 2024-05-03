@@ -1,0 +1,155 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6201,        147]
+NotebookOptionsPosition[      5013,        119]
+NotebookOutlinePosition[      5409,        135]
+CellTagsIndexPosition[      5366,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lettore di scacchi inclusivo", "Title",
+ CellChangeTimes->{{3.92355611814858*^9, 3.9235561612579803`*^9}, 
+   3.923556419691618*^9},ExpressionUUID->"9efd01ae-b283-4b46-8eef-\
+32040df8e2f5"],
+
+Cell[CellGroupData[{
+
+Cell["Obiettivo:", "Section",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, 
+   3.923556400213561*^9, {3.923556432326078*^9, 
+   3.923556459933106*^9}},ExpressionUUID->"3b2c8ad9-2cf0-43f4-9594-\
+8fefa52c74af"],
+
+Cell["\<\
+Il nostro obiettivo \[EGrave] quello di offrire a tutti la \
+possibilit\[AGrave] di leggere una partita di scacchi. Il software permette \
+alle persone cieche di ascoltare lo svolgimento di una partita di scacchi. A \
+display verranno inoltre mostrate tutte le mosse effettuate anche per chi non \
+\[EGrave] affetto da questa disabilit\[AGrave].  
+Questo software \[EGrave] pensato per essere utilizzato durante le lezioni di \
+scacchi, per includere ogni tipologia di alunno.\
+\>", "Text",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, 
+   3.923556400213561*^9, {3.923556432326078*^9, 3.923556495024325*^9}, {
+   3.92355654718286*^9, 3.923556590859737*^9}, {3.923556630635168*^9, 
+   3.9235566316424522`*^9}, {3.923556668904901*^9, 3.923556823036854*^9}, {
+   3.923557068666148*^9, 
+   3.923557075470928*^9}},ExpressionUUID->"c26bef7f-083f-4d36-9694-\
+fffab3e8ef41"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Istruzioni d\[CloseCurlyQuote]uso:", "Section",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, 
+   3.923556400213561*^9, {3.923556432326078*^9, 3.923556495024325*^9}, {
+   3.92355654718286*^9, 3.923556590859737*^9}, {3.923556630635168*^9, 
+   3.9235566316424522`*^9}, {3.923556668904901*^9, 3.923556858165999*^9}, {
+   3.923556957474187*^9, 
+   3.923557014583177*^9}},ExpressionUUID->"3e7f7044-bbb0-4fa2-afb4-\
+b39d2602a796"],
+
+Cell["\<\
+All\[CloseCurlyQuote]avvio l\[CloseCurlyQuote]interfaccia appare molto \
+semplice. L\[CloseCurlyQuote]utente pu\[OGrave] filtrare la partita da \
+leggere in base al tipo di apertura e filtrare il database in base alla \
+tipologia di vittoria. Una volta effettuata la selezione si pu\[OGrave] \
+cliccare filtra per avviare la ricerca. 
+Il bottone \[OpenCurlyDoubleQuote]leggi partita\[CloseCurlyDoubleQuote] \
+permette di avviare la lettura vocale. 
+L\[CloseCurlyQuote]utilizzo del software da parte delle persone non vedenti \
+deve essere parzialmente guidato se il dispositivo su cui viene eseguito non \
+presenta un hardware adatto all\[CloseCurlyQuote]utilizzo da parte di una \
+persona cieca. \
+\>", "Text",
+ CellChangeTimes->{{3.9235570417702417`*^9, 3.9235570631715727`*^9}, {
+  3.923557102365142*^9, 3.923557218552371*^9}, {3.9235579589055758`*^9, 
+  3.9235581039266167`*^9}},ExpressionUUID->"c68d7d16-65a9-4abe-b2fd-\
+825edc7837fd"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.923557025335649*^9, 
+  3.923557037792995*^9}},ExpressionUUID->"a7783fe8-c3a0-4e90-a80d-\
+8c2ae06a2f62"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, 
+   3.923556400213561*^9, {3.923556432326078*^9, 3.923556495024325*^9}, {
+   3.92355654718286*^9, 3.923556590859737*^9}, {3.923556630635168*^9, 
+   3.9235566316424522`*^9}, {3.923556668904901*^9, 3.923556858165999*^9}, {
+   3.923556957474187*^9, 
+   3.9235570125836163`*^9}},ExpressionUUID->"112fedb9-9fc1-40f1-ade1-\
+e494158639f8"]
+}, Open  ]],
+
+Cell["\[LineSeparator]", "Chapter",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, 
+   3.923556400213561*^9, {3.923556432326078*^9, 3.923556495024325*^9}, {
+   3.92355654718286*^9, 3.923556590859737*^9}, {3.923556630635168*^9, 
+   3.9235566316424522`*^9}, {3.923556668904901*^9, 3.923556858165999*^9}, {
+   3.923556957474187*^9, 
+   3.923556967540962*^9}},ExpressionUUID->"c90aea40-ea21-43b9-886a-\
+3cfa54256f0f"]
+}, Open  ]],
+
+Cell["", "Title",
+ CellChangeTimes->{{3.923556169797811*^9, 3.923556197491152*^9}, {
+   3.923556268784287*^9, 3.92355628825933*^9}, 3.923556346238763*^9, {
+   3.923556402016775*^9, 
+   3.923556408718388*^9}},ExpressionUUID->"3479dc1e-8def-443c-a20e-\
+a582b7df02b2"]
+},
+WindowSize->{1440, 785},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.0 for Mac OS X x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8d37e478-0f3f-4360-a6bd-671279bbaa0b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 195, 3, 98, "Title",ExpressionUUID->"9efd01ae-b283-4b46-8eef-32040df8e2f5"],
+Cell[CellGroupData[{
+Cell[800, 29, 299, 5, 67, "Section",ExpressionUUID->"3b2c8ad9-2cf0-43f4-9594-8fefa52c74af"],
+Cell[1102, 36, 967, 16, 81, "Text",ExpressionUUID->"c26bef7f-083f-4d36-9694-fffab3e8ef41"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2106, 57, 520, 8, 67, "Section",ExpressionUUID->"3e7f7044-bbb0-4fa2-afb4-b39d2602a796"],
+Cell[2629, 67, 950, 16, 104, "Text",ExpressionUUID->"c68d7d16-65a9-4abe-b2fd-825edc7837fd"],
+Cell[3582, 85, 142, 3, 35, "Text",ExpressionUUID->"a7783fe8-c3a0-4e90-a80d-8c2ae06a2f62"],
+Cell[3727, 90, 485, 8, 35, "Text",ExpressionUUID->"112fedb9-9fc1-40f1-ade1-e494158639f8"]
+}, Open  ]],
+Cell[4227, 101, 502, 8, 117, "Chapter",ExpressionUUID->"c90aea40-ea21-43b9-886a-3cfa54256f0f"]
+}, Open  ]],
+Cell[4744, 112, 265, 5, 98, "Title",ExpressionUUID->"3479dc1e-8def-443c-a20e-a582b7df02b2"]
+}
+]
+*)
+
