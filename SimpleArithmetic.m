@@ -7,8 +7,8 @@ ChessPlot::usage   = "ChessPlot[ChessState] returns the graphical representation
 ChessEvolve::usage = "ChessEvolve[ChessState, Move] returns an updated ChessState according to Move (e.g. {\"b1\" -> \[EmptySquare], \"a3\" -> \[WhiteKnight]})";
 KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible moves. Each move is a list of actions/rules.";
 InitializedChessState::usage = "Starting position.";
-
-
+randomGame::usage = "";
+selectedGame::usage = "";
 
 
 Begin["`Private`"]
@@ -18,6 +18,8 @@ Print["\tChessPlot"];
 Print["\tChessEvolve"];
 Print["\tKnightMoves"];
 Print["\tInitializedChessState"];
+Print["\trandomGame"];
+Print["\tselectedGame"]
 
 
 packageDir = $InputFileName;
@@ -464,6 +466,89 @@ ChessEvolve[chessHistory_, actions:{__Rule}] :=
 		Return[chessHistory ~Join~ {ChessState[S]}];
 	]
 InitializedChessState;
+
+
+cs0 = InitializedChessState;
+(*Dichiarazione ChessMove*)
+ChessMove[cm : __Rule][str_?StringQ] := 
+	Switch[str,
+		"From",
+			cm[[1]]
+		,
+		"To",
+			cm[[2]]
+		,
+		_,
+			Print["Try \"From\" or \"To\"."]; Return[$Failed];
+	]
+
+ChessMove /: MakeBoxes[cm : ChessMove[__Rule], StandardForm] := 
+	Module[{icon},
+		icon = 
+			ToBoxes[
+				ImageResize[
+					pieceObj[\[BlackBishop]]["Image"]
+					, 
+					150
+				]
+		];
+			
+		InterpretationBox @@ 
+			{
+				RowBox[{"ChessMove", "[", icon, "]"}],
+			cm
+			}
+	]
+
+
+ChessPlay[chessHistory_, ChessMoves:{__ChessMove}] := 
+	Module[{history = chessHistory, state, piece1, piece2},
+		Do[
+			state   = First[history[[-1]]];
+		
+			piece1  = state[move["From"]];
+			piece2  = state[move["To"]];
+			
+			If[MemberQ[{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn]}, piece2], AppendTo[state["WhiteCemetery"], piece2]];
+			If[MemberQ[{\[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn]}, piece2], AppendTo[state["BlackCemetery"], piece2]];
+			
+			state[move["From"]] = \[EmptySquare];
+			state[move["To"]] = piece1;
+			
+			AppendTo[history, ChessState[state]];
+			,
+			{move, ChessMoves}
+		];
+		history
+	]
+
+
+(* Function for game names extraction *)
+getIndicesWithNamesNormalized[openingSelectedValue_,victorySelectedValue_]:=Module[{indicesWithNames,strings},indicesWithNames=Select[data,#["opening_name"]==openingSelectedValue&&#["victory_status"]==victorySelectedValue&][All,"index"];
+strings=ToString[#]<>" ---- "<>data[[#]][openingNameColumn]&/@indicesWithNames;
+indicesWithNamesNormalized=Normal[strings];
+indicesWithNamesNormalized];
+
+
+(* Method for random game selection *)
+randomGame[data_,dimensioneData_]:= Module[{index,coordmoves,pgnmoves, chessHistory, pgnMovesArray},index=RandomInteger[{1,dimensioneData}];
+	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];
+	pgnmoves=data[[index,"moves"]];
+	pgnMovesArray = StringSplit[pgnmoves, " "];
+convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];
+moves = ChessMove/@convertToRules[coordmoves];
+chessHistory = ChessPlay[{cs0}, moves];
+	{chessHistory, pgnMovesArray,pgnmoves}]
+	
+(* Method for given game with id "index" selection *)
+selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray},
+	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];
+	pgnmoves=data[[index,"moves"]];
+	pgnMovesArray = StringSplit[pgnmoves, " "];
+convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];
+moves = ChessMove/@convertToRules[coordmoves];
+chessHistory = ChessPlay[{cs0}, moves];
+	{chessHistory, pgnMovesArray,pgnmoves}]
 
 End[]
 EndPackage[]
