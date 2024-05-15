@@ -468,22 +468,23 @@ ChessEvolve[chessHistory_, actions:{__Rule}] :=
 InitializedChessState;
 
 
-cs0 = InitializedChessState;
-(*Dichiarazione ChessMove*)
+(* Definition of ChessMove function *)
 ChessMove[cm : __Rule][str_?StringQ] := 
 	Switch[str,
-		"From",
+		"From", (* If str is "From", return the first element of cm (source square of the move) *)
 			cm[[1]]
 		,
-		"To",
+		"To", (* If str is "To", return the second element of cm (destination square of the move) *)
 			cm[[2]]
 		,
-		_,
+		_, (* If str is neither "From" nor "To", print an error message and return $Failed *)
 			Print["Try \"From\" or \"To\"."]; Return[$Failed];
 	]
 
+(* Define the display format for ChessMove objects *)
 ChessMove /: MakeBoxes[cm : ChessMove[__Rule], StandardForm] := 
 	Module[{icon},
+		(* Create an icon representing the ChessMove object using a black bishop *)
 		icon = 
 			ToBoxes[
 				ImageResize[
@@ -492,55 +493,62 @@ ChessMove /: MakeBoxes[cm : ChessMove[__Rule], StandardForm] :=
 					150
 				]
 		];
-			
+		
+		(* Define the display format as an InterpretationBox containing the icon *)	
 		InterpretationBox @@ 
 			{
-				RowBox[{"ChessMove", "[", icon, "]"}],
-			cm
+				RowBox[{"ChessMove", "[", icon, "]"}], 
+			cm (* Interpretation is the original ChessMove object *)
 			}
 	]
 
 
+(* Definition of ChessPlay function *)
 ChessPlay[chessHistory_, ChessMoves:{__ChessMove}] := 
 	Module[{history = chessHistory, state, piece1, piece2},
 		Do[
+			(* Get the current state of the game *)
 			state   = First[history[[-1]]];
 		
+			(* Get the piece at the 'From' square and the piece at the 'To' square of the move *)
 			piece1  = state[move["From"]];
 			piece2  = state[move["To"]];
 			
+			(* Check if the piece at 'To' square is a white piece and move it to WhiteCemetery if true *)
 			If[MemberQ[{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn]}, piece2], AppendTo[state["WhiteCemetery"], piece2]];
+			(* Same for black *)
 			If[MemberQ[{\[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn]}, piece2], AppendTo[state["BlackCemetery"], piece2]];
-			
+						
+			(* Update the 'From' square to be an empty square and move the piece to the 'To' square *)
 			state[move["From"]] = \[EmptySquare];
 			state[move["To"]] = piece1;
 			
+			(* Append the updated state to the history *)
 			AppendTo[history, ChessState[state]];
 			,
-			{move, ChessMoves}
+			{move, ChessMoves} (* Iterate through each move in ChessMoves *)
 		];
-		history
+		history (* Return the updated game history *)
 	]
 
 
-(* Function for game names extraction *)
-getIndicesWithNamesNormalized[openingSelectedValue_,victorySelectedValue_]:=Module[{indicesWithNames,strings},indicesWithNames=Select[data,#["opening_name"]==openingSelectedValue&&#["victory_status"]==victorySelectedValue&][All,"index"];
-strings=ToString[#]<>" ---- "<>data[[#]][openingNameColumn]&/@indicesWithNames;
-indicesWithNamesNormalized=Normal[strings];
-indicesWithNamesNormalized];
-
-
+cs0 = InitializedChessState;
 (* Method for random game selection *)
-randomGame[data_,dimensioneData_]:= Module[{index,coordmoves,pgnmoves, chessHistory, pgnMovesArray},index=RandomInteger[{1,dimensioneData}];
-	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];
+randomGame[data_,dimensioneData_]:= Module[
+{index,coordmoves,pgnmoves, chessHistory, pgnMovesArray},
+index=RandomInteger[{1,dimensioneData}]; (* Randomly select an index *)
+	(* Extract coordinate moves and PGN notation moves from data *)
+	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
 	pgnmoves=data[[index,"moves"]];
-	pgnMovesArray = StringSplit[pgnmoves, " "];
-convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];
-moves = ChessMove/@convertToRules[coordmoves];
-chessHistory = ChessPlay[{cs0}, moves];
-	{chessHistory, pgnMovesArray,pgnmoves}]
+	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
+convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];   (* Convert coordinate moves to rules for ChessMove *)
+moves = ChessMove/@convertToRules[coordmoves]; (* Create ChessMove objects *)
+chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial state cs0 (Initialized board) and the extracted moves *)
+	{chessHistory, pgnMovesArray, pgnmoves}  (* Return game history, PGN move array, and PGN moves *)
+	]
 	
 (* Method for given game with id "index" selection *)
+(* This method does the same thing as random game, just using the index recieved as input*)
 selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray},
 	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];
 	pgnmoves=data[[index,"moves"]];
@@ -548,7 +556,8 @@ selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMove
 convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];
 moves = ChessMove/@convertToRules[coordmoves];
 chessHistory = ChessPlay[{cs0}, moves];
-	{chessHistory, pgnMovesArray,pgnmoves}]
-
+	{chessHistory, pgnMovesArray,pgnmoves}
+	]
+(* We close the package *)
 End[]
 EndPackage[]
