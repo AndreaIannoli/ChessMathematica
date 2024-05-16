@@ -22,27 +22,29 @@ Print["\trandomGame"];
 Print["\tselectedGame"]
 
 
-packageDir = $InputFileName;
+packageDir = $InputFileName; (*Package directory declaration*)
 
 
-pieceNamesShort = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-wpn = Table["White" <> pieceName, {pieceName, pieceNamesShort}];
-bpn = Table["Black" <> pieceName, {pieceName, pieceNamesShort}];
-pieceNames = wpn ~Join~ bpn;
-AppendTo[pieceNames, "EmptySquare"];
+pieceNamesShort = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};(*chess pieces name declaration*)
+wpn = Table["White" <> pieceName, {pieceName, pieceNamesShort}]; (*declaring chess white pieces*)
+bpn = Table["Black" <> pieceName, {pieceName, pieceNamesShort}]; (*declaring chess black pieces*)
+pieceNames = wpn ~Join~ bpn; (*joining the black and white pieces names array*)
+AppendTo[pieceNames, "EmptySquare"]; 
 
-whitePieces = {"\[WhiteKing]", "\[WhiteQueen]", "\[WhiteRook]", "\[WhiteBishop]", "\[WhiteKnight]", "\[WhitePawn]"};
-blackPieces = {"\[BlackKing]", "\[BlackQueen]", "\[BlackRook]", "\[BlackBishop]", "\[BlackKnight]", "\[BlackPawn]"} ;
-pieceSymbols = whitePieces ~Join~ blackPieces ~Join~ {"\[EmptySquare]"};
-{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceSymbols;
+whitePieces = {"\[WhiteKing]", "\[WhiteQueen]", "\[WhiteRook]", "\[WhiteBishop]", "\[WhiteKnight]", "\[WhitePawn]"}; (*declaring the white piece symbols*)
+blackPieces = {"\[BlackKing]", "\[BlackQueen]", "\[BlackRook]", "\[BlackBishop]", "\[BlackKnight]", "\[BlackPawn]"} ; (*declaring the black piece symbols*)
+pieceSymbols = whitePieces ~Join~ blackPieces ~Join~ {"\[EmptySquare]"}; (*declaring the black piece symbols*)
+{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceSymbols; (*joining the black and white piece symbols array*)
 (*{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceNames;*)
 
+(*Please Note! there is a .mx file used to contain the piece images*)
 If[
-	FileExistsQ[packageDir <> "pieceImages.mx"]
+	FileExistsQ[packageDir <> "pieceImages.mx"] (*checking if the mx file exists, if not start the download of the images*)
 	,
-	pieceImages = Import[packageDir <> "pieceImages.mx"];
-	Print["Chess piece images were loaded."];
+	pieceImages = Import[packageDir <> "pieceImages.mx"]; (*it joins the packagedir string with the standard mx file name string and import it*)
+	Print["Chess piece images were loaded."]; (**)
 	,
+	(*create an array with the links of the piece images from wikimedia*)
 	piecePicLinksWiki =
 		{
 		"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt45.svg/75px-Chess_klt45.svg.png",
@@ -65,10 +67,10 @@ If[
 	piecePicLinks = Table["https://marcelk.net/chess/pieces/merida/320/" <> pieceName <> ".png", {pieceName, Most @ pieceNames}];
 
 	pieceImages = 
-		Import /@ piecePicLinksWiki;
-	AppendTo[pieceImages, Graphics[{Hue[0, 0, 1, 0], Rectangle[]}, ImageSize -> ImageDimensions @ First @ pieceImages]];
-	Export[packageDir <> "pieceImages.mx",pieceImages];
-	Print["Chess piece images were downloaded."];
+		Import /@ piecePicLinksWiki;(*Import the piece images downloading them from the links*)
+	AppendTo[pieceImages, Graphics[{Hue[0, 0, 1, 0], Rectangle[]}, ImageSize -> ImageDimensions @ First @ pieceImages]]; (*Append to the piece images array an empty rectangle to show when the chess box is free*)
+	Export[packageDir <> "pieceImages.mx",pieceImages]; (*once the images are downloaded it exports them in the mx file so they can be loaded instead of downloaded the next time*)
+	Print["Chess piece images were downloaded."]; (*Print a message to say that the images have been downloaded*)
 ]
 
 
