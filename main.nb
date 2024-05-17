@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     50779,        986]
-NotebookOptionsPosition[     50149,        967]
-NotebookOutlinePosition[     50592,        984]
-CellTagsIndexPosition[     50549,        981]
+NotebookDataLength[     55217,       1100]
+NotebookOptionsPosition[     53688,       1068]
+NotebookOutlinePosition[     54117,       1085]
+CellTagsIndexPosition[     54074,       1082]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", 
@@ -35,12 +37,13 @@ Cell[BoxData[
           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
           "\"\<gamesProcessed.csv\>\""}], "}"}], "]"}], ",", 
        "\"\<Dataset\>\"", ",", 
-       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}]}], "]"}]}], ";"}], "\n", 
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Load", " ", "the", " ", "external", " ", "package", " ", 
      "SimpleArithmetic", " ", "from", " ", "file", " ", 
-     RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\n", 
    RowBox[{
     RowBox[{"Needs", "[", 
      RowBox[{"\"\<ChessPackage`\>\"", ",", 
@@ -57,13 +60,13 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"dimensioneData", "=", 
-     RowBox[{"Length", "[", "data", "]"}]}], ";"}], "\n", 
+     RowBox[{"Length", "[", "data", "]"}]}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "We", " ", "use", " ", "the", " ", "function", " ", "randomGame", " ", 
      "to", " ", "extract", " ", "a", " ", "random", " ", "initial", " ", 
-     "game"}], " ", "*)"}], "\[IndentingNewLine]", 
+     "game"}], " ", "*)"}], "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"{", 
@@ -72,11 +75,12 @@ Cell[BoxData[
        "name"}], "}"}], "=", 
      RowBox[{"randomGame", "[", 
       RowBox[{"data", ",", "dimensioneData"}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Define", " ", "a", " ", "function", " ", "chessAnimate", " ", "to", " ", 
-     "animate", " ", "the", " ", "chess", " ", "game"}], "*)"}], "\n", 
+     "animate", " ", "the", " ", "chess", " ", "game"}], "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"chessAnimate", "[", 
@@ -282,9 +286,67 @@ Cell[BoxData[
    3.9246845337306747`*^9, 3.924684543819456*^9}, {3.924712706710655*^9, 
    3.924712907721649*^9}, {3.924712962551571*^9, 3.924713085802717*^9}, {
    3.924929198676409*^9, 3.9249292303200455`*^9}, {3.924932842034959*^9, 
-   3.9249328455988626`*^9}, {3.9249345897970905`*^9, 3.924934592078579*^9}, 
-   3.9249346345825233`*^9, {3.92493887670113*^9, 3.924938877660452*^9}},
- CellLabel->"In[77]:=",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+   3.9249328455988626`*^9}, {3.924934589797091*^9, 3.924934592078579*^9}, 
+   3.924934634582524*^9, {3.92493887670113*^9, 3.924938877660452*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"List of Functions\"\>"], "Print",
+ CellChangeTimes->{3.924941910651594*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"f06bbcd0-3c85-4630-8739-1a5605bb5e27"],
+
+Cell[BoxData["\<\"\\tChessState\"\>"], "Print",
+ CellChangeTimes->{3.92494191065347*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"fb40c357-fec7-4db8-a50a-9d786845a24f"],
+
+Cell[BoxData["\<\"\\tChessPlot\"\>"], "Print",
+ CellChangeTimes->{3.9249419106542*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e782262e-0763-4d8c-99dd-068c2e53f144"],
+
+Cell[BoxData["\<\"\\tChessEvolve\"\>"], "Print",
+ CellChangeTimes->{3.9249419106546993`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"36d854d1-8240-4b00-942a-4684d7ef429d"],
+
+Cell[BoxData["\<\"\\tKnightMoves\"\>"], "Print",
+ CellChangeTimes->{3.9249419106552*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4b393e1c-8899-48e8-b771-30e785880656"],
+
+Cell[BoxData["\<\"\\tInitializedChessState\"\>"], "Print",
+ CellChangeTimes->{3.92494191065569*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"bad52610-d7be-4521-aa0c-b77bdef8ffb6"],
+
+Cell[BoxData["\<\"\\trandomGame\"\>"], "Print",
+ CellChangeTimes->{3.924941910656185*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"6bc96e72-6a7b-4905-aeb9-e6a22a11d974"],
+
+Cell[BoxData["\<\"\\tselectedGame\"\>"], "Print",
+ CellChangeTimes->{3.924941910656664*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"82fb2cdb-0443-40d0-92d2-a367b0f6ad62"],
+
+Cell[BoxData["\<\"Chess piece images were loaded.\"\>"], "Print",
+ CellChangeTimes->{3.924941910677033*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"254dbe60-82ba-4fe7-8893-b13f8ba80291"]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -309,13 +371,13 @@ Cell[BoxData[
            RowBox[{"\"\<|\>\"", ",", "\"\<:\>\""}], "}"}]}], "]"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"StringTrim", "[", 
-        RowBox[{"First", "[", "parts", "]"}], "]"}]}]}], "]"}]}], "\n", 
-   "\[IndentingNewLine]", 
+        RowBox[{"First", "[", "parts", "]"}], "]"}]}]}], "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "Function", " ", "to", " ", "get", " ", "indices", " ", "of", " ", 
      "games", " ", "with", " ", "specific", " ", "opening", " ", "and", " ", 
-     "victory", " ", "status"}], " ", "*)"}], "\[IndentingNewLine]", 
+     "victory", " ", "status"}], " ", "*)"}], "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"getIndicesWithNamesNormalized", "[", 
@@ -382,12 +444,11 @@ Cell[BoxData[
         RowBox[{"Normal", "[", 
          RowBox[{"data", "[", 
           RowBox[{"All", ",", "\"\<opening_name\>\""}], "]"}], "]"}]}], ",", 
-       "SameQ"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+       "SameQ"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Extract", " ", "unique", " ", "victory", " ", "statuses", " ", "from", 
-     " ", "the", " ", "dataset"}], "*)"}], "\n", 
+     " ", "the", " ", "dataset"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"winTypes", "=", 
      RowBox[{"Normal", "[", 
@@ -395,7 +456,7 @@ Cell[BoxData[
        RowBox[{
         RowBox[{"data", "[", 
          RowBox[{"All", ",", "\"\<victory_status\>\""}], "]"}], ",", 
-        "SameQ"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+        "SameQ"}], "]"}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Define", " ", "columns", " ", "for", " ", "opening", " ", "name", " ", 
@@ -404,7 +465,7 @@ Cell[BoxData[
     RowBox[{"openingNameColumn", "=", "\"\<opening_name\>\""}], ";"}], "\n", 
    RowBox[{
     RowBox[{"victoryStatusColumn", "=", "\"\<victory_status\>\""}], ";"}], 
-   "\[IndentingNewLine]", "\n", 
+   "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Set", " ", "default", " ", "values", " ", "for", " ", "opening", " ", 
@@ -414,12 +475,12 @@ Cell[BoxData[
    "\n", 
    RowBox[{
     RowBox[{"victorySelectedValue", "=", "\"\<resign\>\""}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Get", " ", "indices", " ", "of", " ", "games", " ", "with", " ", 
      "specified", " ", "opening", " ", "and", " ", "victory", " ", "status"}],
-     "*)"}], "\n", 
+     "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"indicesWithNames", "=", 
      RowBox[{
@@ -434,11 +495,12 @@ Cell[BoxData[
            RowBox[{"#", "[", "\"\<victory_status\>\"", "]"}], "==", 
            "victorySelectedValue"}]}], "&"}]}], "]"}], "[", 
       RowBox[{"All", ",", "\"\<index\>\""}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", " ", 
     RowBox[{
     "Create", " ", "strings", " ", "representing", " ", "games", " ", "with", 
-     " ", "their", " ", "opening", " ", "names"}], " ", "*)"}], "\n", 
+     " ", "their", " ", "opening", " ", "names"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"strings", "=", 
      RowBox[{
@@ -451,24 +513,23 @@ Cell[BoxData[
        "&"}], "/@", "indicesWithNames"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"indicesWithNamesNormalized", "=", 
-     RowBox[{"Normal", "[", "strings", "]"}]}], ";"}], "\n", 
+     RowBox[{"Normal", "[", "strings", "]"}]}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Call", " ", "the", " ", "function", " ", "to", " ", "retrieve", " ", 
      "indices", " ", "of", " ", "games", " ", "based", " ", "on", " ", 
-     "default", " ", "opening", " ", "and", " ", "victory"}], "*)"}], 
-   "\[IndentingNewLine]", 
+     "default", " ", "opening", " ", "and", " ", "victory"}], "*)"}], "\n", 
    RowBox[{
     RowBox[{"getIndicesWithNamesNormalized", "[", 
      RowBox[{"openingSelectedValue", ",", "victorySelectedValue"}], "]"}], 
-    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Create", " ", "the", " ", "graphical", " ", "user", " ", "interface", 
      " ", 
      RowBox[{"(", "GUI", ")"}], " ", "for", " ", "the", " ", "application"}], 
-    "*)"}], "\n", 
+    "*)"}], "\[IndentingNewLine]", 
    RowBox[{"gui", "=", 
     RowBox[{"Panel", "[", "\[IndentingNewLine]", 
      RowBox[{"Column", "[", 
@@ -484,6 +545,7 @@ Cell[BoxData[
             RowBox[{"Style", "[", 
              RowBox[{
              "\"\<Chess Player\>\"", ",", "Bold", ",", "40", ",", "Red", ",", 
+              
               RowBox[{"FontFamily", "->", "\"\<Brush Script MT\>\""}]}], 
              "]"}], "]"}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
          "\[IndentingNewLine]", 
@@ -498,6 +560,7 @@ Cell[BoxData[
              RowBox[{"Style", "[", 
               RowBox[{
               "\"\<Opening: \>\"", ",", "Bold", ",", "20", ",", "Green", ",", 
+               
                RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
               "]"}], "]"}], ",", 
             RowBox[{"PopupMenu", "[", 
@@ -523,6 +586,28 @@ Cell[BoxData[
                RowBox[{"openingSelectedValue", ",", "victorySelectedValue"}], 
                "]"}]}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
          "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"InputField", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "indexOfSelectedGame", "]"}], ",", 
+              "Number", ",", 
+              RowBox[{
+              "FieldHint", "->", "\"\<Type the game index here\>\""}]}], 
+             "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<Play\>\"", ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                "chessHistory", ",", "pgnMovesArray", ",", "pgnmoves"}], 
+                "}"}], "=", 
+               RowBox[{"selectedGame", "[", 
+                RowBox[{"data", ",", 
+                 RowBox[{"ToExpression", "@", "indexOfSelectedGame"}]}], 
+                "]"}]}]}], "]"}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         
          RowBox[{"(*", 
           RowBox[{
           "Row", " ", "for", " ", "displaying", " ", "chess", " ", 
@@ -565,7 +650,7 @@ Cell[BoxData[
                   RowBox[{"{", 
                    RowBox[{"#1", ",", 
                     RowBox[{"Button", "[", 
-                    RowBox[{"\"\<Play\>\"", ",", " ", 
+                    RowBox[{"\"\<\[FilledRightTriangle]\>\"", ",", " ", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{
@@ -603,23 +688,24 @@ Cell[BoxData[
            " ", "format"}], " ", "*)"}], "\[IndentingNewLine]", 
          RowBox[{"Row", "[", 
           RowBox[{"{", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"Dynamic", "[", 
-             RowBox[{"Text", "[", 
-              RowBox[{"Style", "[", 
-               RowBox[{"name", ",", " ", "Bold", ",", " ", "15", ",", " ", 
-                RowBox[{"Darker", "@", "Gray"}], ",", 
-                RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
-               "]"}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"Spacer", "[", "3", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"Dynamic", "[", 
-             RowBox[{"Text", "[", 
-              RowBox[{"Style", "[", 
-               RowBox[{
-               "pgnmoves", ",", " ", "Bold", ",", " ", "10", ",", " ", "Gray",
-                 ",", 
-                RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
-               "]"}], "]"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"Text", "[", 
+             RowBox[{"Style", "[", 
+              RowBox[{"name", ",", " ", "Bold", ",", " ", "15", ",", " ", 
+               RowBox[{"Darker", "@", "Gray"}], ",", 
+               RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
+              "]"}], "]"}], "]"}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"Text", "[", 
+             RowBox[{"Style", "[", 
+              RowBox[{
+              "pgnmoves", ",", " ", "Bold", ",", " ", "10", ",", " ", "Gray", 
+               ",", 
+               RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
+              "]"}], "]"}], "]"}], "\[IndentingNewLine]", "}"}], "]"}]}], 
         "\[IndentingNewLine]", "}"}], ",", 
        RowBox[{"Alignment", "->", "Center"}]}], " ", 
       RowBox[{"(*", 
@@ -656,7 +742,7 @@ Cell[BoxData[
    3.923733107590584*^9}, {3.923733146695006*^9, 3.923733159885803*^9}, {
    3.923733207818062*^9, 3.923733247137888*^9}, {3.923733502016823*^9, 
    3.923733601844593*^9}, {3.923733642900168*^9, 3.923733644112507*^9}, {
-   3.9237336926737003`*^9, 3.92373371150708*^9}, {3.9237337527908993`*^9, 
+   3.9237336926737003`*^9, 3.92373371150708*^9}, {3.9237337527909*^9, 
    3.923733908471651*^9}, {3.924677322927353*^9, 3.924677342992588*^9}, {
    3.924677466337345*^9, 3.924677510411955*^9}, {3.924677558335089*^9, 
    3.924677569390245*^9}, {3.924677648030319*^9, 3.924677648905773*^9}, {
@@ -674,14 +760,15 @@ Cell[BoxData[
    3.924685114333183*^9}, {3.9247132090812893`*^9, 3.924713451698614*^9}, {
    3.92471350322299*^9, 3.924713738339527*^9}, {3.924713768879759*^9, 
    3.924713831916924*^9}, {3.92471387665235*^9, 3.924713884061379*^9}, {
-   3.9247139390440903`*^9, 3.9247140238034897`*^9}, {3.9249347623365746`*^9, 
+   3.9247139390440903`*^9, 3.9247140238034897`*^9}, {3.9249347623365755`*^9, 
    3.924934765070553*^9}, 3.9249348038058605`*^9, {3.9249387835154552`*^9, 
    3.924938792339409*^9}, {3.92493906184342*^9, 3.924939064968607*^9}, {
-   3.924939130790695*^9, 3.924939150624052*^9}, {3.9249392055789127`*^9, 
-   3.924939207818697*^9}, {3.924939301060915*^9, 3.924939336344263*^9}},
+   3.924939130790695*^9, 3.924939150624052*^9}, {3.9249392055789137`*^9, 
+   3.924939207818697*^9}, {3.924939301060915*^9, 3.924939336344263*^9}, {
+   3.924941928349119*^9, 3.9249419288301497`*^9}, 3.9249420143704433`*^9, {
+   3.9249425398624067`*^9, 3.9249425653066072`*^9}},
  NumberMarks->False,
- CellLabel->
-  "In[108]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+ CellLabel->"In[58]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  PanelBox[
@@ -883,16 +970,27 @@ $CellContext`victorySelectedValue], Appearance -> Automatic, Evaluator ->
        "RowDefault"]},
      {
       TemplateBox[{
+        InputFieldBox[
+         Dynamic[$CellContext`indexOfSelectedGame], Number, FieldHint -> 
+         "Type the game index here"], 
+        ButtonBox[
+        "\"Play\"", 
+         ButtonFunction :> ({$CellContext`chessHistory, \
+$CellContext`pgnMovesArray, $CellContext`pgnmoves} = 
+          ChessPackage`selectedGame[$CellContext`data, 
+            ToExpression[$CellContext`indexOfSelectedGame]]), Appearance -> 
+         Automatic, Evaluator -> Automatic, Method -> "Preemptive"]},
+       "RowDefault"]},
+     {
+      TemplateBox[{
         TagBox[
          GridBox[{{
             DynamicBox[
              ToBoxes[
               $CellContext`chessAnimate[$CellContext`chessHistory, \
 $CellContext`pgnMovesArray], StandardForm], 
-             ImageSizeCache -> {
-              741., {190.05351567426698`, 192.94648432573302`}}]}}, 
-          DefaultBaseStyle -> "Column", 
-          GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+             ImageSizeCache -> {738., {295., 301.}}]}}, DefaultBaseStyle -> 
+          "Column", GridBoxAlignment -> {"Columns" -> {{Left}}}, 
           GridBoxItemSize -> {
            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
         TemplateBox[{1}, "Spacer1"], 
@@ -901,8 +999,8 @@ $CellContext`pgnMovesArray], StandardForm],
           Grid[
            MapThread[{#, 
              Button[
-             "Play", {$CellContext`chessHistory, $CellContext`pgnMovesArray, \
-$CellContext`pgnmoves, $CellContext`name} = 
+             "\[FilledRightTriangle]", {$CellContext`chessHistory, \
+$CellContext`pgnMovesArray, $CellContext`pgnmoves, $CellContext`name} = 
               ChessPackage`selectedGame[$CellContext`data, 
                 ToExpression[
                  First[
@@ -924,8 +1022,10 @@ $CellContext`dimensioneData]), Appearance -> Automatic, Evaluator ->
          ToBoxes[
           Text[
            Style[$CellContext`name, Bold, 15, 
-            Darker[Gray], FontFamily -> "Helvetica Neue"]], StandardForm]], 
-        TemplateBox[{3}, "Spacer1"], 
+            Darker[Gray], FontFamily -> "Helvetica Neue"]], StandardForm]]},
+       "RowDefault"]},
+     {
+      TemplateBox[{
         DynamicBox[
          ToBoxes[
           Text[
@@ -958,17 +1058,18 @@ $CellContext`dimensioneData]), Appearance -> Automatic, Evaluator ->
    3.924684372356531*^9, 3.924684572797634*^9, 3.9246846144415455`*^9, 
    3.924684744100544*^9, 3.924685005950289*^9, 3.9246850446741066`*^9, 
    3.924685121462288*^9, 3.924713126630108*^9, 3.924714033203997*^9, 
-   3.92492927888703*^9, 3.9249346939322033`*^9, {3.9249347699646873`*^9, 
-   3.9249348086292152`*^9}, 3.9249391539995193`*^9, 3.9249392341873856`*^9, 
-   3.924939309501957*^9, 3.9249393420288067`*^9},
- CellLabel->
-  "Out[120]=",ExpressionUUID->"6c5d4d21-476f-5541-818b-8de43472b95f"]
+   3.92492927888703*^9, 3.924934693932204*^9, {3.924934769964688*^9, 
+   3.9249348086292157`*^9}, 3.9249391539995193`*^9, 3.9249392341873856`*^9, 
+   3.924939309501957*^9, 3.924939342028807*^9, {3.92494191380271*^9, 
+   3.9249419330279427`*^9}, 3.924942016222238*^9, 3.924942475276869*^9, 
+   3.924942567864481*^9},
+ CellLabel->"Out[70]=",ExpressionUUID->"4dde8615-61e0-461a-9d62-3712c87698f2"]
 }, Open  ]]
 },
-WindowMargins->{{
-  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+WindowSize->{Full, Full},
+WindowMargins->{{Automatic, 16}, {Automatic, 16}},
 Magnification:>0.7 Inherited,
-FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"cb06454f-b928-46f3-badb-3b5bdbc51b01"
 ]
@@ -983,10 +1084,23 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 15461, 266, 313, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
 Cell[CellGroupData[{
-Cell[16044, 290, 18554, 393, 993, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[34601, 685, 15532, 279, 506, "Output",ExpressionUUID->"6c5d4d21-476f-5541-818b-8de43472b95f"]
+Cell[580, 22, 15464, 268, 538, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+Cell[CellGroupData[{
+Cell[16069, 294, 197, 4, 25, "Print",ExpressionUUID->"f06bbcd0-3c85-4630-8739-1a5605bb5e27"],
+Cell[16269, 300, 192, 4, 25, "Print",ExpressionUUID->"fb40c357-fec7-4db8-a50a-9d786845a24f"],
+Cell[16464, 306, 190, 4, 25, "Print",ExpressionUUID->"e782262e-0763-4d8c-99dd-068c2e53f144"],
+Cell[16657, 312, 196, 4, 25, "Print",ExpressionUUID->"36d854d1-8240-4b00-942a-4684d7ef429d"],
+Cell[16856, 318, 192, 4, 25, "Print",ExpressionUUID->"4b393e1c-8899-48e8-b771-30e785880656"],
+Cell[17051, 324, 203, 4, 25, "Print",ExpressionUUID->"bad52610-d7be-4521-aa0c-b77bdef8ffb6"],
+Cell[17257, 330, 193, 4, 25, "Print",ExpressionUUID->"6bc96e72-6a7b-4905-aeb9-e6a22a11d974"],
+Cell[17453, 336, 195, 4, 25, "Print",ExpressionUUID->"82fb2cdb-0443-40d0-92d2-a367b0f6ad62"],
+Cell[17651, 342, 211, 4, 25, "Print",ExpressionUUID->"254dbe60-82ba-4fe7-8893-b13f8ba80291"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17911, 352, 19600, 418, 1748, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[37514, 772, 16158, 293, 831, "Output",ExpressionUUID->"4dde8615-61e0-461a-9d62-3712c87698f2"]
 }, Open  ]]
 }
 ]
