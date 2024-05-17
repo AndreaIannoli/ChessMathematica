@@ -584,30 +584,32 @@ ChessPlay[chessHistory_, ChessMoves:{__ChessMove}] :=
 cs0 = InitializedChessState;
 (* Method for random game selection *)
 randomGame[data_,dimensioneData_]:= Module[
-{index,coordmoves,pgnmoves, chessHistory, pgnMovesArray, name},
+{index,coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
 index=RandomInteger[{1,dimensioneData}]; (* Randomly select an index *)
 	(* Extract coordinate moves and PGN notation moves from data *)
 	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
 	pgnmoves=data[[index,"moves"]];
 	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
 	name = data[[index,"opening_name"]];
+	typeofwin = data[[index,"victory_status"]];
 convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];   (* Convert coordinate moves to rules for ChessMove *)
 moves = ChessMove/@convertToRules[coordmoves]; (* Create ChessMove objects *)
 chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial state cs0 (Initialized board) and the extracted moves *)
-	{chessHistory, pgnMovesArray, pgnmoves, name}  (* Return game history, PGN move array, and PGN moves *)
+	{chessHistory, pgnMovesArray, pgnmoves, name, index, typeofwin}  (* Return game history, PGN move array, and PGN moves *)
 	]
 	
 (* Method for given game with id "index" selection *)
 (* This method does the same thing as random game, just using the index recieved as input*)
-selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name},
-	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];
+selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
+	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
 	pgnmoves=data[[index,"moves"]];
-	pgnMovesArray = StringSplit[pgnmoves, " "];
+	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
 	name = data[[index,"opening_name"]];
-convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];
-moves = ChessMove/@convertToRules[coordmoves];
-chessHistory = ChessPlay[{cs0}, moves];
-	{chessHistory, pgnMovesArray, pgnmoves, name}
+	typeofwin = data[[index,"victory_status"]];
+convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];   (* Convert coordinate moves to rules for ChessMove *)
+moves = ChessMove/@convertToRules[coordmoves]; (* Create ChessMove objects *)
+chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial state cs0 (Initialized board) and the extracted moves *)
+	{chessHistory, pgnMovesArray, pgnmoves, name, index, typeofwin}  (* Return game history, PGN move array, and PGN moves *)
 	]
 (* We close the package *)
 End[]
