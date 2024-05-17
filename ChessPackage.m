@@ -7,8 +7,8 @@ ChessPlot::usage   = "ChessPlot[ChessState] returns the graphical representation
 ChessEvolve::usage = "ChessEvolve[ChessState, Move] returns an updated ChessState according to Move (e.g. {\"b1\" -> \[EmptySquare], \"a3\" -> \[WhiteKnight]})";
 KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible moves. Each move is a list of actions/rules.";
 InitializedChessState::usage = "Starting position.";
-randomGame::usage = "";
-selectedGame::usage = "";
+randomGame::usage = "randomGame[data,dimensioneData] returns informations of a random game in data (chessHistory, pgnMovesArray, pgnmoves)";
+selectedGame::usage = "selectedGame[data,dimensioneData] do the same as random game but for the game with the given index";
 
 
 Begin["`Private`"]

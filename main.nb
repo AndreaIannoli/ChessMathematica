@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     55969,       1063]
-NotebookOptionsPosition[     55255,       1043]
-NotebookOutlinePosition[     55684,       1060]
-CellTagsIndexPosition[     55641,       1057]
+NotebookDataLength[     52302,       1038]
+NotebookOptionsPosition[     50773,       1006]
+NotebookOutlinePosition[     51202,       1023]
+CellTagsIndexPosition[     51159,       1020]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", 
@@ -35,13 +37,13 @@ Cell[BoxData[
           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
           "\"\<gamesProcessed.csv\>\""}], "}"}], "]"}], ",", 
        "\"\<Dataset\>\"", ",", 
-       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}]}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", 
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}]}], "]"}]}], ";"}], "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Load", " ", "the", " ", "external", " ", "package", " ", 
      "SimpleArithmetic", " ", "from", " ", "file", " ", 
-     RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\n", 
+     RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\[IndentingNewLine]", 
+   
    RowBox[{
     RowBox[{"Needs", "[", 
      RowBox[{"\"\<ChessPackage`\>\"", ",", 
@@ -58,26 +60,25 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"dimensioneData", "=", 
-     RowBox[{"Length", "[", "data", "]"}]}], ";"}], "\n", 
+     RowBox[{"Length", "[", "data", "]"}]}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "We", " ", "use", " ", "the", " ", "function", " ", "randomGame", " ", 
      "to", " ", "extract", " ", "a", " ", "random", " ", "initial", " ", 
-     "game"}], " ", "*)"}], "\[IndentingNewLine]", 
+     "game"}], " ", "*)"}], "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"{", 
       RowBox[{"chessHistory", ",", " ", "pgnMovesArray", ",", "pgnmoves"}], 
       "}"}], "=", 
      RowBox[{"randomGame", "[", 
-      RowBox[{"data", ",", "dimensioneData"}], "]"}]}], ";"}], "\n", 
-   "\[IndentingNewLine]", 
+      RowBox[{"data", ",", "dimensioneData"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Define", " ", "a", " ", "function", " ", "chessAnimate", " ", "to", " ", 
-     "animate", " ", "the", " ", "chess", " ", "game"}], "*)"}], 
-   "\[IndentingNewLine]", 
+     "animate", " ", "the", " ", "chess", " ", "game"}], "*)"}], "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"chessAnimate", "[", 
@@ -283,8 +284,66 @@ Cell[BoxData[
    3.9246845337306747`*^9, 3.924684543819456*^9}, {3.924712706710655*^9, 
    3.924712907721649*^9}, {3.924712962551571*^9, 3.924713085802717*^9}, {
    3.924929198676409*^9, 3.9249292303200455`*^9}, {3.924932842034959*^9, 
-   3.9249328455988626`*^9}},ExpressionUUID->"a3a5345a-2df2-4442-ba68-\
-737ead129f4a"],
+   3.9249328455988626`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"List of Functions\"\>"], "Print",
+ CellChangeTimes->{3.924934910407049*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"ffebea76-3416-4373-be34-a8ce4eae28c9"],
+
+Cell[BoxData["\<\"\\tChessState\"\>"], "Print",
+ CellChangeTimes->{3.924934910410894*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"34e95433-6147-4a89-b605-c14f42083bab"],
+
+Cell[BoxData["\<\"\\tChessPlot\"\>"], "Print",
+ CellChangeTimes->{3.924934910411673*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"70f416d2-bc8e-444e-bdf9-fe4ee47c2373"],
+
+Cell[BoxData["\<\"\\tChessEvolve\"\>"], "Print",
+ CellChangeTimes->{3.9249349104122334`*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"fb613f0f-3ff7-467e-bdb0-aec687ff7c63"],
+
+Cell[BoxData["\<\"\\tKnightMoves\"\>"], "Print",
+ CellChangeTimes->{3.924934910412757*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"ae831d70-ccfe-4573-a2af-dc6ca375130f"],
+
+Cell[BoxData["\<\"\\tInitializedChessState\"\>"], "Print",
+ CellChangeTimes->{3.92493491041327*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"cba5ee80-cd76-43f8-aa68-df37338ac78d"],
+
+Cell[BoxData["\<\"\\trandomGame\"\>"], "Print",
+ CellChangeTimes->{3.924934910413775*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"2194f9c3-44ae-43e5-9151-f3b8ab93ac4b"],
+
+Cell[BoxData["\<\"\\tselectedGame\"\>"], "Print",
+ CellChangeTimes->{3.924934910414296*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"a25e8257-3d9e-437c-88ed-ad6605de57e2"],
+
+Cell[BoxData["\<\"Chess piece images were downloaded.\"\>"], "Print",
+ CellChangeTimes->{3.9249349130227337`*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"ef346806-781c-40f2-9060-851b11e036cc"]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -309,8 +368,8 @@ Cell[BoxData[
            RowBox[{"\"\<|\>\"", ",", "\"\<:\>\""}], "}"}]}], "]"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"StringTrim", "[", 
-        RowBox[{"First", "[", "parts", "]"}], "]"}]}]}], "]"}]}], 
-   "\[IndentingNewLine]", "\n", 
+        RowBox[{"First", "[", "parts", "]"}], "]"}]}]}], "]"}]}], "\n", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "Function", " ", "to", " ", "get", " ", "indices", " ", "of", " ", 
@@ -382,11 +441,12 @@ Cell[BoxData[
         RowBox[{"Normal", "[", 
          RowBox[{"data", "[", 
           RowBox[{"All", ",", "\"\<opening_name\>\""}], "]"}], "]"}]}], ",", 
-       "SameQ"}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+       "SameQ"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Extract", " ", "unique", " ", "victory", " ", "statuses", " ", "from", 
-     " ", "the", " ", "dataset"}], "*)"}], "\[IndentingNewLine]", 
+     " ", "the", " ", "dataset"}], "*)"}], "\n", 
    RowBox[{
     RowBox[{"winTypes", "=", 
      RowBox[{"Normal", "[", 
@@ -394,32 +454,31 @@ Cell[BoxData[
        RowBox[{
         RowBox[{"data", "[", 
          RowBox[{"All", ",", "\"\<victory_status\>\""}], "]"}], ",", 
-        "SameQ"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+        "SameQ"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Define", " ", "columns", " ", "for", " ", "opening", " ", "name", " ", 
-     "and", " ", "victory", " ", "status"}], "*)"}], "\n", 
+     "and", " ", "victory", " ", "status"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"openingNameColumn", "=", "\"\<opening_name\>\""}], ";"}], "\n", 
    RowBox[{
     RowBox[{"victoryStatusColumn", "=", "\"\<victory_status\>\""}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Set", " ", "default", " ", "values", " ", "for", " ", "opening", " ", 
-     "and", " ", "victory", " ", "selection"}], "*)"}], "\n", 
+     "and", " ", "victory", " ", "selection"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"openingSelectedValue", "=", "\"\<Slav Defense\>\""}], ";"}], 
    "\n", 
    RowBox[{
-    RowBox[{"victorySelectedValue", "=", "\"\<resign\>\""}], ";"}], "\n", 
-   "\[IndentingNewLine]", 
+    RowBox[{"victorySelectedValue", "=", "\"\<resign\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Get", " ", "indices", " ", "of", " ", "games", " ", "with", " ", 
      "specified", " ", "opening", " ", "and", " ", "victory", " ", "status"}],
-     "*)"}], "\[IndentingNewLine]", 
+     "*)"}], "\n", 
    RowBox[{
     RowBox[{"indicesWithNames", "=", 
      RowBox[{
@@ -433,13 +492,12 @@ Cell[BoxData[
           RowBox[{
            RowBox[{"#", "[", "\"\<victory_status\>\"", "]"}], "==", 
            "victorySelectedValue"}]}], "&"}]}], "]"}], "[", 
-      RowBox[{"All", ",", "\"\<index\>\""}], "]"}]}], ";"}], "\n", 
-   "\[IndentingNewLine]", 
+      RowBox[{"All", ",", "\"\<index\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "Create", " ", "strings", " ", "representing", " ", "games", " ", "with", 
-     " ", "their", " ", "opening", " ", "names"}], " ", "*)"}], 
-   "\[IndentingNewLine]", 
+     " ", "their", " ", "opening", " ", "names"}], " ", "*)"}], "\n", 
    RowBox[{
     RowBox[{"strings", "=", 
      RowBox[{
@@ -452,8 +510,8 @@ Cell[BoxData[
        "&"}], "/@", "indicesWithNames"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"indicesWithNamesNormalized", "=", 
-     RowBox[{"Normal", "[", "strings", "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\n", 
+     RowBox[{"Normal", "[", "strings", "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Call", " ", "the", " ", "function", " ", "to", " ", "retrieve", " ", 
@@ -463,13 +521,13 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"getIndicesWithNamesNormalized", "[", 
      RowBox[{"openingSelectedValue", ",", "victorySelectedValue"}], "]"}], 
-    ";"}], "\n", "\[IndentingNewLine]", 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Create", " ", "the", " ", "graphical", " ", "user", " ", "interface", 
      " ", 
      RowBox[{"(", "GUI", ")"}], " ", "for", " ", "the", " ", "application"}], 
-    "*)"}], "\[IndentingNewLine]", 
+    "*)"}], "\n", 
    RowBox[{"gui", "=", 
     RowBox[{"Panel", "[", "\[IndentingNewLine]", 
      RowBox[{"Column", "[", 
@@ -485,6 +543,7 @@ Cell[BoxData[
             RowBox[{"Style", "[", 
              RowBox[{
              "\"\<Chess Player\>\"", ",", "Bold", ",", "40", ",", "Red", ",", 
+              
               RowBox[{"FontFamily", "->", "\"\<Brush Script MT\>\""}]}], 
              "]"}], "]"}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
          "\[IndentingNewLine]", 
@@ -499,6 +558,7 @@ Cell[BoxData[
              RowBox[{"Style", "[", 
               RowBox[{
               "\"\<Opening: \>\"", ",", "Bold", ",", "20", ",", "Green", ",", 
+               
                RowBox[{"FontFamily", "->", "\"\<Helvetica Neue\>\""}]}], 
               "]"}], "]"}], ",", 
             RowBox[{"PopupMenu", "[", 
@@ -650,7 +710,7 @@ Cell[BoxData[
    3.923733107590584*^9}, {3.923733146695006*^9, 3.923733159885803*^9}, {
    3.923733207818062*^9, 3.923733247137888*^9}, {3.923733502016823*^9, 
    3.923733601844593*^9}, {3.923733642900168*^9, 3.923733644112507*^9}, {
-   3.9237336926737003`*^9, 3.92373371150708*^9}, {3.9237337527908983`*^9, 
+   3.9237336926737003`*^9, 3.92373371150708*^9}, {3.9237337527908993`*^9, 
    3.923733908471651*^9}, {3.924677322927353*^9, 3.924677342992588*^9}, {
    3.924677466337345*^9, 3.924677510411955*^9}, {3.924677558335089*^9, 
    3.924677569390245*^9}, {3.924677648030319*^9, 3.924677648905773*^9}, {
@@ -670,7 +730,7 @@ Cell[BoxData[
    3.924713831916924*^9}, {3.92471387665235*^9, 3.924713884061379*^9}, {
    3.9247139390440903`*^9, 3.9247140238034897`*^9}},
  NumberMarks->False,
- CellLabel->"In[82]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+ CellLabel->"In[13]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  PanelBox[
@@ -878,10 +938,8 @@ $CellContext`victorySelectedValue], Appearance -> Automatic, Evaluator ->
              ToBoxes[
               $CellContext`chessAnimate[$CellContext`chessHistory, \
 $CellContext`pgnMovesArray], StandardForm], 
-             ImageSizeCache -> {
-              474., {199.05351561884163`, 201.94648438115837`}}]}}, 
-          DefaultBaseStyle -> "Column", 
-          GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+             ImageSizeCache -> {620., {248., 253.}}]}}, DefaultBaseStyle -> 
+          "Column", GridBoxAlignment -> {"Columns" -> {{Left}}}, 
           GridBoxItemSize -> {
            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
         TemplateBox[{1}, "Spacer1"], 
@@ -891,7 +949,7 @@ $CellContext`pgnMovesArray], StandardForm],
            MapThread[{#, 
              Button[
              "Play", {$CellContext`chessHistory, $CellContext`pgnMovesArray, \
-$CellContext`pgnmoves} = SimpleArithmetic`selectedGame[$CellContext`data, 
+$CellContext`pgnmoves} = ChessPackage`selectedGame[$CellContext`data, 
                 ToExpression[
                  First[
                   
@@ -902,7 +960,7 @@ $CellContext`pgnmoves} = SimpleArithmetic`selectedGame[$CellContext`data,
         "\"RANDOM\"", 
          ButtonFunction :> ({$CellContext`chessHistory, \
 $CellContext`pgnMovesArray, $CellContext`pgnmoves} = 
-          SimpleArithmetic`randomGame[$CellContext`data, \
+          ChessPackage`randomGame[$CellContext`data, \
 $CellContext`dimensioneData]), Appearance -> Automatic, Evaluator -> 
          Automatic, Method -> "Preemptive"]},
        "RowDefault"]},
@@ -914,7 +972,8 @@ $CellContext`dimensioneData]), Appearance -> Automatic, Evaluator ->
           Text[
            
            Style[$CellContext`pgnmoves, Bold, 10, Gray, FontFamily -> 
-            "Helvetica Neue"]], StandardForm]]},
+            "Helvetica Neue"]], StandardForm], 
+         ImageSizeCache -> {850., {18., 9.}}]},
        "RowDefault"]}
     },
     DefaultBaseStyle->"Column",
@@ -941,105 +1000,9 @@ $CellContext`dimensioneData]), Appearance -> Automatic, Evaluator ->
    3.924684372356531*^9, 3.924684572797634*^9, 3.9246846144415455`*^9, 
    3.924684744100544*^9, 3.924685005950289*^9, 3.9246850446741066`*^9, 
    3.924685121462288*^9, 3.924713126630108*^9, 3.924714033203997*^9, 
-   3.9249292788870296`*^9},
- CellLabel->"Out[94]=",ExpressionUUID->"d7784983-20e7-7545-808d-a7e48b3c6a6b"]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-  "\"\<Slav Defense\>\"", ",", "\"\<Nimzowitsch Defense\>\"", ",", 
-   "\"\<King's Pawn Game\>\"", ",", "\"\<Queen's Pawn Game\>\"", ",", 
-   "\"\<Philidor Defense\>\"", ",", "\"\<Sicilian Defense\>\"", ",", 
-   "\"\<Blackmar-Diemer Gambit\>\"", ",", "\"\<Italian Game\>\"", ",", 
-   "\"\<Scandinavian Defense\>\"", ",", "\"\<Van't Kruijs Opening\>\"", ",", 
-   "\"\<French Defense\>\"", ",", "\"\<French Defense #2\>\"", ",", 
-   "\"\<Four Knights Game\>\"", ",", "\"\<Philidor Defense #3\>\"", ",", 
-   "\"\<Horwitz Defense\>\"", ",", "\"\<English Opening\>\"", ",", 
-   "\"\<Scotch Game\>\"", ",", "\"\<Queen's Gambit Refused\>\"", ",", 
-   "\"\<Queen's Gambit Accepted\>\"", ",", 
-   "\"\<Robatsch (Modern) Defense\>\"", ",", "\"\<Indian Game\>\"", ",", 
-   "\"\<Dutch Defense\>\"", ",", "\"\<Zukertort Opening\>\"", ",", 
-   "\"\<Vienna Game\>\"", ",", "\"\<Modern Defense\>\"", ",", 
-   "\"\<Blumenfeld Countergambit #2\>\"", ",", "\"\<Queen's Pawn\>\"", ",", 
-   "\"\<Crab Opening\>\"", ",", "\"\<Queen's Indian Defense\>\"", ",", 
-   "\"\<Gruenfeld Defense\>\"", ",", "\"\<Queen's Gambit Declined\>\"", ",", 
-   "\"\<Yusupov-Rubinstein System\>\"", ",", "\"\<Ruy Lopez\>\"", ",", 
-   "\"\<Bishop's Opening\>\"", ",", "\"\<Benoni Defense\>\"", ",", 
-   "\"\<King's Indian Attack\>\"", ",", "\"\<Alekhine Defense #2\>\"", ",", 
-   "\"\<Alekhine Defense\>\"", ",", "\"\<Caro-Kann Defense\>\"", ",", 
-   "\"\<Queen's Pawn Game #2\>\"", ",", "\"\<Goldsmith Defense\>\"", ",", 
-   "\"\<Nimzo-Indian Defense\>\"", ",", "\"\<Bogo-Indian Defense\>\"", ",", 
-   "\"\<King's Knight Opening\>\"", ",", "\"\<Amar Opening\>\"", ",", 
-   "\"\<Paleface Attack\>\"", ",", "\"\<Hungarian Opening\>\"", ",", 
-   "\"\<Queen's Pawn Game #3\>\"", ",", "\"\<Center Game\>\"", ",", 
-   "\"\<Englund Gambit Declined\>\"", ",", "\"\<Giuoco Piano\>\"", ",", 
-   "\"\<Philidor Defense #4\>\"", ",", "\"\<Petrov's Defense\>\"", ",", 
-   "\"\<Russian Game\>\"", ",", "\"\<Pirc Defense #4\>\"", ",", 
-   "\"\<St. George Defense\>\"", ",", "\"\<Philidor Defense #2\>\"", ",", 
-   "\"\<Nimzo-Indian Defense #2\>\"", ",", "\"\<Bird Opening\>\"", ",", 
-   "\"\<Owen Defense\>\"", ",", "\"\<Semi-Slav Defense\>\"", ",", 
-   "\"\<English Defense #2\>\"", ",", "\"\<King's Gambit Accepted\>\"", ",", 
-   "\"\<Petrov's Defense #5\>\"", ",", "\"\<King's Pawn Opening\>\"", ",", 
-   "\"\<Polish Opening\>\"", ",", "\"\<Ponziani Opening\>\"", ",", 
-   "\"\<Petrov's Defense #2\>\"", ",", "\"\<East Indian Defense\>\"", ",", 
-   "\"\<Reti Opening\>\"", ",", "\"\<Nimzo-Larsen Attack\>\"", ",", 
-   "\"\<Center Game #2\>\"", ",", "\"\<Torre Attack #2\>\"", ",", 
-   "\"\<Creepy Crawly Formation\>\"", ",", "\"\<Elephant Gambit\>\"", ",", 
-   "\"\<Latvian Gambit\>\"", ",", "\"\<Global Opening\>\"", ",", 
-   "\"\<Trompowsky Attack\>\"", ",", "\"\<Englund Gambit\>\"", ",", 
-   "\"\<London System\>\"", ",", "\"\<Sicilian Defense #2\>\"", ",", 
-   "\"\<Pirc Defense\>\"", ",", "\"\<King's Gambit Declined\>\"", ",", 
-   "\"\<Danish Gambit Accepted\>\"", ",", "\"\<Mieses Opening\>\"", ",", 
-   "\"\<Carr Defense\>\"", ",", "\"\<King's Indian Defense\>\"", ",", 
-   "\"\<Three Knights Opening\>\"", ",", "\"\<Ware Opening\>\"", ",", 
-   "\"\<Budapest Defense\>\"", ",", "\"\<Richter-Veresov Attack\>\"", ",", 
-   "\"\<Slav Defense #2\>\"", ",", "\"\<Franco-Benoni Defense\>\"", ",", 
-   "\"\<Van Geet Opening\>\"", ",", "\"\<Polish Defense\>\"", ",", 
-   "\"\<Petrov's Defense #3\>\"", ",", "\"\<Old Benoni Defense\>\"", ",", 
-   "\"\<Kadas Opening\>\"", ",", "\"\<Vienna Game #2\>\"", ",", 
-   "\"\<Pirc Defense #2\>\"", ",", "\"\<System\>\"", ",", 
-   "\"\<Three Knights Opening #2\>\"", ",", "\"\<Pirc Defense #3\>\"", ",", 
-   "\"\<Blackmar-Diemer Gambit #2\>\"", ",", "\"\<Rat Defense\>\"", ",", 
-   "\"\<Englund Gambit Complex\>\"", ",", "\"\<Reti Opening #2\>\"", ",", 
-   "\"\<Gedult's Opening\>\"", ",", "\"\<Colle System\>\"", ",", 
-   "\"\<Nimzowitsch-Larsen Attack\>\"", ",", "\"\<Colle System #2\>\"", ",", 
-   "\"\<Neo-Gruenfeld Defense\>\"", ",", "\"\<King's Gambit\>\"", ",", 
-   "\"\<Latvian Gambit Accepted\>\"", ",", "\"\<English Defense\>\"", ",", 
-   "\"\<Grob Opening\>\"", ",", "\"\<Mikenas Defense\>\"", ",", 
-   "\"\<Tarrasch Defense\>\"", ",", "\"\<Old Indian Defense\>\"", ",", 
-   "\"\<Pirc Defense #5\>\"", ",", "\"\<Anderssen Opening\>\"", ",", 
-   "\"\<Caro-Kann Defense #2\>\"", ",", "\"\<Portuguese Opening\>\"", ",", 
-   "\"\<Queen's Gambit\>\"", ",", "\"\<Old Indian\>\"", ",", 
-   "\"\<King's Pawn\>\"", ",", "\"\<Irish Gambit\>\"", ",", 
-   "\"\<Queen's Pawn Opening\>\"", ",", "\"\<Clemenz Opening\>\"", ",", 
-   "\"\<Blackmar-Diemer Gambit Declined\>\"", ",", "\"\<Mexican Defense\>\"", 
-   ",", "\"\<Barnes Defense\>\"", ",", "\"\<Saragossa Opening\>\"", ",", 
-   "\"\<Duras Gambit\>\"", ",", "\"\<Gunderam Defense\>\"", ",", 
-   "\"\<Hippopotamus Defense #2\>\"", ",", "\"\<Catalan Opening\>\"", ",", 
-   "\"\<Torre Attack\>\"", ",", "\"\<Lion Defense\>\"", ",", 
-   "\"\<Guatemala Defense\>\"", ",", "\"\<Borg Defense\>\"", ",", 
-   "\"\<Sodium Attack\>\"", ",", "\"\<Doery Defense\>\"", ",", 
-   "\"\<Benko Gambit Accepted\>\"", ",", "\"\<Amazon Attack\>\"", ",", 
-   "\"\<Wade Defense\>\"", ",", "\"\<Kangaroo Defense\>\"", ",", 
-   "\"\<Semi-Bononi\>\"", ",", "\"\<Benko Gambit Declined\>\"", ",", 
-   "\"\<Slav Indian\>\"", ",", "\"\<Slav Defense #3\>\"", ",", 
-   "\"\<Benko Gambit\>\"", ",", "\"\<Petrov\>\"", ",", 
-   "\"\<Petrov's Defense #4\>\"", ",", "\"\<Danish Gambit\>\"", ",", 
-   "\"\<Englund Gambit Complex Declined\>\"", ",", 
-   "\"\<Blumenfeld Countergambit Accepted\>\"", ",", 
-   "\"\<Lemming Defense\>\"", ",", "\"\<Richter-Veresov Attack #2\>\"", ",", 
-   "\"\<Queen's Indian Accelerated\>\"", ",", "\"\<Australian Defense\>\"", 
-   ",", "\"\<Ware Defense\>\"", ",", "\"\<Valencia Opening\>\"", ",", 
-   "\"\<Scotch Gambit\>\"", ",", "\"\<Old Benoni Defense #2\>\"", ",", 
-   "\"\<Alekhine Defense #3\>\"", ",", "\"\<Czech Defense\>\"", ",", 
-   "\"\<King's Indian\>\"", ",", "\"\<Barnes Opening\>\"", ",", 
-   "\"\<Center Game Accepted\>\"", ",", "\"\<Danish Gambit Declined\>\"", 
-   ",", "\"\<Canard Opening\>\"", ",", "\"\<Pterodactyl Defense\>\"", ",", 
-   "\"\<Rubinstein Opening\>\""}], "}"}]], "Input",
- CellChangeTimes->{3.923554564928205*^9},
- CellLabel->
-  "In[468]:=",ExpressionUUID->"cb6b94e3-96e1-b945-bcf6-e8a9c7786cfb"]
+   3.92492927888703*^9, 3.9249349150443897`*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"917327db-3c1e-472f-b56c-8ec550a81740"]
+}, Open  ]]
 },
 WindowSize->{Full, Full},
 WindowMargins->{{Automatic, 17}, {Automatic, 16}},
@@ -1059,12 +1022,24 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 15300, 266, 423, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
 Cell[CellGroupData[{
-Cell[15883, 290, 17816, 382, 1323, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[33702, 674, 15132, 270, 527, "Output",ExpressionUUID->"d7784983-20e7-7545-808d-a7e48b3c6a6b"]
+Cell[580, 22, 15317, 265, 423, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+Cell[CellGroupData[{
+Cell[15922, 291, 197, 4, 22, "Print",ExpressionUUID->"ffebea76-3416-4373-be34-a8ce4eae28c9"],
+Cell[16122, 297, 193, 4, 22, "Print",ExpressionUUID->"34e95433-6147-4a89-b605-c14f42083bab"],
+Cell[16318, 303, 192, 4, 22, "Print",ExpressionUUID->"70f416d2-bc8e-444e-bdf9-fe4ee47c2373"],
+Cell[16513, 309, 196, 4, 22, "Print",ExpressionUUID->"fb613f0f-3ff7-467e-bdb0-aec687ff7c63"],
+Cell[16712, 315, 194, 4, 22, "Print",ExpressionUUID->"ae831d70-ccfe-4573-a2af-dc6ca375130f"],
+Cell[16909, 321, 203, 4, 22, "Print",ExpressionUUID->"cba5ee80-cd76-43f8-aa68-df37338ac78d"],
+Cell[17115, 327, 193, 4, 22, "Print",ExpressionUUID->"2194f9c3-44ae-43e5-9151-f3b8ab93ac4b"],
+Cell[17311, 333, 195, 4, 22, "Print",ExpressionUUID->"a25e8257-3d9e-437c-88ed-ad6605de57e2"],
+Cell[17509, 339, 217, 4, 22, "Print",ExpressionUUID->"ef346806-781c-40f2-9060-851b11e036cc"]
+}, Open  ]]
 }, Open  ]],
-Cell[48849, 947, 6402, 94, 460, "Input",ExpressionUUID->"cb6b94e3-96e1-b945-bcf6-e8a9c7786cfb"]
+Cell[CellGroupData[{
+Cell[17775, 349, 17843, 383, 1323, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[35621, 734, 15136, 269, 739, "Output",ExpressionUUID->"917327db-3c1e-472f-b56c-8ec550a81740"]
+}, Open  ]]
 }
 ]
 *)
