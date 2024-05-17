@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     55957,       1062]
-NotebookOptionsPosition[     55233,       1042]
-NotebookOutlinePosition[     55672,       1059]
-CellTagsIndexPosition[     55629,       1056]
+NotebookDataLength[     55969,       1063]
+NotebookOptionsPosition[     55255,       1043]
+NotebookOutlinePosition[     55684,       1060]
+CellTagsIndexPosition[     55641,       1057]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,12 +44,12 @@ Cell[BoxData[
      RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\n", 
    RowBox[{
     RowBox[{"Needs", "[", 
-     RowBox[{"\"\<SimpleArithmetic`\>\"", ",", 
+     RowBox[{"\"\<ChessPackage`\>\"", ",", 
       RowBox[{"FileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{
          RowBox[{"NotebookDirectory", "[", "]"}], ",", 
-         "\"\<SimpleArithmetic.m\>\""}], "}"}], "]"}]}], "]"}], ";"}], 
+         "\"\<ChessPackage.m\>\""}], "}"}], "]"}]}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
@@ -282,8 +282,9 @@ Cell[BoxData[
    3.92468430712998*^9, 3.924684316452057*^9}, 3.924684410509468*^9, {
    3.9246845337306747`*^9, 3.924684543819456*^9}, {3.924712706710655*^9, 
    3.924712907721649*^9}, {3.924712962551571*^9, 3.924713085802717*^9}, {
-   3.924929198676409*^9, 3.9249292303200455`*^9}},
- CellLabel->"In[77]:=",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+   3.924929198676409*^9, 3.9249292303200455`*^9}, {3.924932842034959*^9, 
+   3.9249328455988626`*^9}},ExpressionUUID->"a3a5345a-2df2-4442-ba68-\
+737ead129f4a"],
 
 Cell[CellGroupData[{
 
@@ -1040,10 +1041,10 @@ Cell[BoxData[
  CellLabel->
   "In[468]:=",ExpressionUUID->"cb6b94e3-96e1-b945-bcf6-e8a9c7786cfb"]
 },
-WindowSize->{718.5, 729.75},
-WindowMargins->{{Automatic, -1440}, {Automatic, 0}},
+WindowSize->{Full, Full},
+WindowMargins->{{Automatic, 17}, {Automatic, 16}},
 Magnification:>0.7 Inherited,
-FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"cb06454f-b928-46f3-badb-3b5bdbc51b01"
 ]
@@ -1058,12 +1059,12 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 15278, 265, 327, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
+Cell[558, 20, 15300, 266, 423, "Input",ExpressionUUID->"a3a5345a-2df2-4442-ba68-737ead129f4a"],
 Cell[CellGroupData[{
-Cell[15861, 289, 17816, 382, 1086, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[33680, 673, 15132, 270, 527, "Output",ExpressionUUID->"d7784983-20e7-7545-808d-a7e48b3c6a6b"]
+Cell[15883, 290, 17816, 382, 1323, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[33702, 674, 15132, 270, 527, "Output",ExpressionUUID->"d7784983-20e7-7545-808d-a7e48b3c6a6b"]
 }, Open  ]],
-Cell[48827, 946, 6402, 94, 460, "Input",ExpressionUUID->"cb6b94e3-96e1-b945-bcf6-e8a9c7786cfb"]
+Cell[48849, 947, 6402, 94, 460, "Input",ExpressionUUID->"cb6b94e3-96e1-b945-bcf6-e8a9c7786cfb"]
 }
 ]
 *)

@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-BeginPackage["SimpleArithmetic`"]
+BeginPackage["ChessPackage`"]
 
 ChessState::usage  = "ChessState[Association] returns a chess object.";
 ChessPlot::usage   = "ChessPlot[ChessState] returns the graphical representation of chess state";
