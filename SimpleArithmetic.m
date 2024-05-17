@@ -74,6 +74,7 @@ If[
 ]
 
 
+(* Define an association `pieceObj` that maps each piece symbol to its corresponding name, symbol, and image. *)
 pieceObj = 
 	MapThread[
 		#1 -> <|"Name" -> #2, "Symbol" -> #3, "Image" -> #4|>&,
@@ -82,16 +83,18 @@ pieceObj =
 	
 pieceObj = Association @ pieceObj;
 
-files = {"a", "b", "c", "d", "e", "f", "g", "h"};
-fileSize = Length @ files;
-ranks = {"1", "2", "3", "4", "5", "6", "7", "8"};
-rankSize = Length @ ranks;
+(* Define the columns and rows of the chessboard. *)
+files = {"a", "b", "c", "d", "e", "f", "g", "h"};  (* Chessboard columns. *)
+fileSize = Length @ files; (* Number of columns. *)
+ranks = {"1", "2", "3", "4", "5", "6", "7", "8"}; (* Chessboard rows. *)
+rankSize = Length @ ranks; (* Number of rows. *)
 
+(* Generate chessboard pattern *)
 emptyBoard = Table[Mod[i + j, 2], {i, 8}, {j, 8}];
 bottomLeftBlackBoard = Table[Mod[i + j    , 2], {i, 8}, {j, 8}];
 bottomLeftWhiteBoard = Table[Mod[i + j + 1, 2], {i, 8}, {j, 8}];
 
-(* Black Coordinate Matrix *)
+(* Define the Black Coordinate Matrix (BCM) which maps chessboard positions from Black's perspective. *)
 bcm = \!\(\*
 TagBox[
 RowBox[{"(", GridBox[{
@@ -107,10 +110,10 @@ RowBox[{"(", GridBox[{
 GridBoxAlignment->{"Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, "ItemsIndexed" -> {}},
 GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.7]}, Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, "ItemsIndexed" -> {}}], ")"}],
 Function[BoxForm`e$, MatrixForm[BoxForm`e$]]]\);
-(* White Coordinate Matrix *)
+(* Define the White Coordinate Matrix (WCM) by reversing BCM, so it's from White's perspective. *)
 wcm = Reverse[bcm];
-(* Usage: Position[wcm, "e1"]//First; *)
 
+(* Initial state of the chessboard with Unicode characters representing pieces and empty squares. *)
 stateMatrix0 = \!\(\*
 TagBox[
 RowBox[{"(", GridBox[{
@@ -128,30 +131,46 @@ GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.7]}, Off
 Function[BoxForm`e$, MatrixForm[BoxForm`e$]]]\);
 
 
+(* Create an initial chess state list that maps each position on the board to its initial state (piece or empty square). *)
 initialChessStateList = Thread[Flatten[bcm] -> Flatten[stateMatrix0]];
-initialChessStateList = initialChessStateList ~Join~ {"\[WhiteRook]\[WhiteKing]" -> True, "\[WhiteKing]\[WhiteRook]" -> True, "\[BlackRook]\[BlackKing]" -> True, "\[BlackKing]\[BlackRook]" -> True, "EnPassant" -> None};
-AppendTo[initialChessStateList, "WhiteCemetery" -> {}];
+
+(* Add special chess state properties to the initial state list. *)
+initialChessStateList = initialChessStateList ~Join~ {"\[WhiteRook]\[WhiteKing]" -> True, "\[WhiteKing]\[WhiteRook]" -> True, "\[BlackRook]\[BlackKing]" -> True, "\[BlackKing]\[BlackRook]" -> True, "EnPassant" -> None}; (* Castling rights. And no en passant target square initially.*)
+
+(* Append additional state properties to the initial state list. *)
+AppendTo[initialChessStateList, "WhiteCemetery" -> {}]; (* List of captured white pieces. *)
 AppendTo[initialChessStateList, "BlackCemetery" -> {}];
-AppendTo[initialChessStateList, "Turn" -> "White"];
-AppendTo[initialChessStateList, "Result" -> {}];
+AppendTo[initialChessStateList, "Turn" -> "White"]; (* White's turn initially. *)
+AppendTo[initialChessStateList, "Result" -> {}]; (* No game result initially. *)
+(* Display the initial chess state list. *)
 initialChessStateList;
 
-ChessState[a_?AssociationQ][pos_?StringQ] /; StringMatchQ[pos, files ~~ ranks] := Lookup[a, pos, \[EmptySquare]]
-ChessState[a_?AssociationQ][i_Integer, j_Integer] := ChessState[a][files[[i]] <> ranks[[j]]]
-ChessState[a_?AssociationQ][{i_Integer, j_Integer}] := ChessState[a][i, j]
-(*ChessState /: ChessState[a_?AssociationQ][pos_?StringQ] /; StringMatchQ[pos, files ~~ ranks] = v_ := ChessState*)
+(* Define a function to get the state of a position on the chessboard. *)
+ChessState[a_?AssociationQ][pos_?StringQ] /; StringMatchQ[pos, files ~~ ranks] := 
+	Lookup[a, pos, \[EmptySquare]] (* Return the piece at the position, or empty square if none. *)
+
+(* Define a function to get the state using row and column indices. *)	
+ChessState[a_?AssociationQ][i_Integer, j_Integer] := 
+	ChessState[a][files[[i]] <> ranks[[j]]] (* Convert indices to position string and get state. *)
+	
+(* Define a function to get the state using a list of row and column indices. *)
+ChessState[a_?AssociationQ][{i_Integer, j_Integer}] := 
+	ChessState[a][i, j] (* Delegate to the previous function. *)
+
+(* Define a custom display format for a ChessState object. *)
 ChessState /: MakeBoxes[cs_ChessState, StandardForm] := 
 	Module[{icon},
 		icon = 
 			ToBoxes[
 				ImageResize[
-					(*pieceObj[\[BlackKnight]]["Image"]*)
+					 (* Use Rasterize to create an image of the chessboard. *)
 					Rasterize[ChessPlot[cs, "MatrixForm"-> True]]
 					, 
 					300
 				]
 		];
-			
+		
+		(* Create an interpretation box for the ChessState object. *)	
 		InterpretationBox @@ 
 			{
 				RowBox[{"ChessState", "[", icon, "]"}],
@@ -159,66 +178,71 @@ ChessState /: MakeBoxes[cs_ChessState, StandardForm] :=
 			}
 	]
 	
+(* Initialize the chess state using the initial chess state list. *)
 InitializedChessState = ChessState[Association@initialChessStateList];
 
+(* Define a function to create a table of piece images on the chessboard. *)
 tabulatePieceInset[insetToAlgFunc_, chessState_] :=
 	Table[
 		Inset[
+			(* Get the image of the piece at the given position. *)
 			pieceObj[chessState[insetToAlgFunc[i, j]]]["Image"], 
-			{i, j} - {1, 1}, 
-			{i, j} - {1, 1}, 
-			1
-		]
-		,
-		{i, 8}
-		, 
-		{j, 8}
+			{i, j} - {1, 1}, (* Position to place the piece image on the board. *)
+			{i, j} - {1, 1}, (* Alignment of the piece image. *)
+			1 (* Scale factor for the piece image. *)
+		],
+		{i, 8},  (* Loop over columns (1 to 8). *)
+		{j, 8} (* Loop over rows (1 to 8). *)
 	];
-			
+	
+(* Define a function to create a table of coordinate labels on the chessboard. *)		
 tabulateCoordInset[insetToAlgFunc_] := 
 	Table[
 		Inset[
+			(* Create a text label for the coordinate. *)
 			Text[Style[insetToAlgFunc[i, j], 7]], 
-			{i, j} + {-0.12, -0.09},
-			Automatic,
-			1
-		]
-		,
-		{i, 8}
-		,
+			{i, j} + {-0.12, -0.09}, (* Position to place the text label. *)
+			Automatic, (* Automatic alignment *)
+			1 (* Scale factor for the text label. *)
+		], (* Iterate over rows and columns *)
+		{i, 8},
 		{j, 8}
 	];
 		
 
-(* White \[Rule] Down, Origin is a1 *)
+(* Coordinates when White is at the bottom (default orientation). *)
 whiteDownCoordTable = 
 	tabulateCoordInset[{i, j} |-> files[[i]] <> ranks[[j]]];
-(* White \[Rule] Up, Origin is h8 *)
+(* Coordinates when White is at the top. *)
 whiteUpCoordTable = 
 	tabulateCoordInset[{i, j} |-> files[[9 - i]] <> ranks[[9 - j]]];
-(* White \[Rule] Left, Origin is h1 *)
+(* Coordinates when White is on the left. *)
 whiteLeftCoordTable = 
 	tabulateCoordInset[{i, j} |-> files[[9 - j]] <> ranks[[i]]];
-(* White \[Rule] right, Origin is a8 *)
+(* Coordinates when White is on the right. *)
 whiteRightCoordTable =
 	tabulateCoordInset[{i, j} |-> files[[j]] <> ranks[[9 - i]]];
-		
+(* We only used default orientation in our project. *)
+				
+(* Define options for the ChessPlot function, combining default options with those of ArrayPlot. *)
 Options[ChessPlot] = Join[
 	{"WhiteOrientation" -> Automatic, "BoardColorSet" -> Automatic, "ShowCoordinates" -> True, "MatrixForm" -> False},
 	Options[ArrayPlot]
 ];
 
-ChessPlot[chessState_, opts: OptionsPattern[]] :=
-	
-	Module[{cs = First[chessState], pieceInset, coordInset, insetList, emptyBoard, plot, LightSquareColor, DarkSquareColor},
-		(* Matrix Form *)
+(* Define the ChessPlot function to visualize the chess state. *)
+ChessPlot[chessState_, opts: OptionsPattern[]] :=	
+	Module[
+		{cs = First[chessState], pieceInset, coordInset, insetList, emptyBoard, plot, LightSquareColor, DarkSquareColor},
+		
+		(* Handle the "MatrixForm" option. *)
 		If[OptionValue["MatrixForm"], 
 			Return[
 				MatrixForm[Partition[Values[cs[[ ;; rankSize fileSize]]], Length[files]]]
 			]
 		];
 		
-		(* Board Orientation *)
+		(* Set up piece and coordinate insets based on the "WhiteOrientation" option. *)
 		Switch[
 			OptionValue["WhiteOrientation"],
 			Automatic | "Down",
@@ -245,7 +269,7 @@ ChessPlot[chessState_, opts: OptionsPattern[]] :=
 				Print["Wrong \"WhiteOrientation\" option was provided. Try \"Up\" for instance."]; Return[$Failed];
 		];
 		
-		(* Board Color *)
+		(* Set up the board colors based on the "BoardColorSet" option. *)
 		Switch[
 			OptionValue["BoardColorSet"],
 			Automatic,
@@ -259,6 +283,7 @@ ChessPlot[chessState_, opts: OptionsPattern[]] :=
 				Print["Wrong \"BoardColorSet\" Sepcified. Try {White, Gray} for instance."]; Return[$Failed];
 		];
 		
+		(* Set up the insets list based on the "ShowCoordinates" option. *)
 		Switch[
 			OptionValue["ShowCoordinates"],
 			True,
@@ -271,6 +296,7 @@ ChessPlot[chessState_, opts: OptionsPattern[]] :=
 				Print["\"ShowCoordinates\" can either be True or False."]; Return[$Failed];
 		];
 		
+		(* Create the chessboard plot using ArrayPlot. *)
 		plot = 		
 			ArrayPlot[
 				emptyBoard,
@@ -282,46 +308,54 @@ ChessPlot[chessState_, opts: OptionsPattern[]] :=
 		plot
 	]
 	
-(* Shortcuts *)
+(* Define the map functions shortcuts for ChessPlot with different options*)
 mp = ChessPlot[#, "MatrixForm" -> True]&;
 fp = ChessPlot[#, "MatrixForm" -> False]&;
 
+(* Function to check if a position is within the valid range of the chessboard *)
 inRangeQ[pos_] :=
 	Module[{cond1, cond2},
-	cond1 = (1 <= pos[[1]] <= rankSize);
-	cond2 = (1 <= pos[[2]] <= fileSize);
-	Return[(cond1 \[And] cond2)];
+	cond1 = (1 <= pos[[1]] <= rankSize); (* Check row index *)
+	cond2 = (1 <= pos[[2]] <= fileSize); (* Check column index *)
+	Return[(cond1 \[And] cond2)]; (* Return True if both conditions are met, otherwise False *)
 	]
 
+(* Define function B1 to calculate possible moves for pawns *)
 B1[ch_] :=
 	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, coordMatrix, pos1, pos2, pos3, coord2, cond1, cond2, act1, act2},
-		actions = {};
-		(* Whose turn is it? *)
-		turn = Mod[Length@ch + 1, 2] + 1;
-		piece = Part[{\[WhitePawn], \[BlackPawn]}, turn];
-		coordMatrix = Part[{wcm, bcm}, turn];
+		actions = {}; (* Initialize the list of actions *)
 		
+		(* Determine whose turn it is *)
+		turn = Mod[Length@ch + 1, 2] + 1; (* 1 for White, 2 for Black *)
+		piece = Part[{\[WhitePawn], \[BlackPawn]}, turn]; (* Select the correct pawn based on the turn *)
+		coordMatrix = Part[{wcm, bcm}, turn]; (* Select the correct coordinate matrix based on the turn *)
+		
+		(* Find the positions of all pawns of the current player *)
 		pos1List = Position[S, piece][[All, 1, 1]];
 		
+		(* Iterate over all pawn positions *)
 		Do[
-			pos1 = Position[coordMatrix, coord1]//First;
+			pos1 = Position[coordMatrix, coord1]//First; (* Find the position of the current pawn in the coordinate matrix *)
 			
-			pos2  = pos1 + {1, 0};
-			If[!inRangeQ[pos2], Break[];];
-			coord2 = Extract[coordMatrix, pos2];
+			pos2  = pos1 + {1, 0}; (* Calculate the position in front of the pawn *)
+			If[!inRangeQ[pos2], Break[];]; (* If the position is out of range, exit the loop *)
+			coord2 = Extract[coordMatrix, pos2]; (* Get the coordinate string for the position in front *)
 			
-			(* The case for going to the last rank *)
+			(* Check if the pawn is at the last rank *)
 			cond1 = pos1[[1]] == rankSize;
-			(* The square in front of it must be empty *)
+			(* Check if the square in front is empty *)
 			cond2 = S[coord2] == \[EmptySquare];
-			(* Move from coord1 to coord2 *)
-			act1 = (coord1 -> \[EmptySquare]);
-			act2 = (coord2 -> piece);
 			
+			(* Define the move actions *)
+			act1 = (coord1 -> \[EmptySquare]); (* Move pawn from current position *)
+			act2 = (coord2 -> piece); (* Move pawn to the new position *)
+			
+			(* Add actions if the pawnconditions are satisfied *)
 			If[!cond1 \[And] cond2, 
 				AppendTo[actions, {act1, act2}];
 			];
-						
+			
+			(* Handle pawn promotion if the pawn is at the last rank *)		
 			If[cond1 \[And] cond2, 
 				AppendTo[actions, {coord1 -> \[EmptySquare], coord1 -> Part[{\[WhiteQueen], \[BlackQueen]}, turn]}];
 				AppendTo[actions, {coord1 -> \[EmptySquare], coord1 -> Part[{\[WhiteRook], \[BlackRook]}, turn]}];
@@ -329,13 +363,14 @@ B1[ch_] :=
 				AppendTo[actions, {coord1 -> \[EmptySquare], coord1 -> Part[{\[WhiteKnight], \[BlackKnight]}, turn]}];
 			];
 			,
-			{coord1, pos1List}
+			{coord1, pos1List} (* Iterate over each pawn position *)
 		];
+		(* Remove duplicate actions *)
 		actions = DeleteDuplicates @ actions;
-		Return[actions];
+		Return[actions]; (* Return the list of possible actions *)
 	]
 
-(* May move from pos1 to pos2 = pos1 + {+2, 0} if pos1 \[Equal] {2, \[ForAll]} & S(pos1 + {+1, 0} )\[Equal] \[EmptySquare] & S(pos2)\[Equal] \[EmptySquare]. *)
+(* Same as B1 but for pawn's double step *)
 B2[ch_] :=
 	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, coordMatrix, pos1, pos2, pos3, coord2, coord3, cond1, cond2, cond3, act1, act2},
 		actions = {};
@@ -374,35 +409,41 @@ B2[ch_] :=
 		Return[actions];
 	]
 
+(* Same but pawn is eating *)
 B3[ch_] :=
 	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, steps, coordMatrix, pos1, pos2, pos3, coord2, coord3, cond1, cond2, opponentCemetery, opponentPieces},
 		actions = {};
 		(* Whose turn is it? *)
 		turn = Mod[Length@ch + 1, 2] + 1;
 		piece = Part[{\[WhitePawn], \[BlackPawn]}, turn];
-		(* Rest is to remove the king *)
+		
+		(* Extract opponent's pieces and cemetery *)
 		opponentPieces = Part[{Rest @ blackPieces, Rest @ whitePieces}, turn];
 		opponentCemetery =  Part[{"blackCemetery", "whiteCemetery"}, turn];
-		coordMatrix = Part[{wcm, bcm}, turn];
+		coordMatrix = Part[{wcm, bcm}, turn]; (* Select the correct coordinate matrix based on the turn *)
 		
 		pos1List = Position[S, piece][[All, 1, 1]];
-		steps = {{1, -1}, {1, +1}};
+		steps = {{1, -1}, {1, +1}}; (* Possible step directions for capturing *)
 		
 		Do[
 			pos1 = Position[coordMatrix, coord1]//First;
 			Do[
 				pos2  = pos1 + step;
 				If[!inRangeQ[pos2], Continue[];];
-				coord2 = Extract[coordMatrix, pos2];
+				coord2 = Extract[coordMatrix, pos2]; (* Get the coordinate string for the potential capture position *)
 				
-				(* Must be at rank 2 *)
+				(* Check if the potential capture position is at the last rank *)
 				cond1 = pos2[[1]] == rankSize;
-				(* The two squares in front of it must be empty *)
+				
+				(* Check if the piece at the potential capture position is an opponent's piece *)
 				cond2 = MemberQ[opponentPieces, S[coord2]];
+				
+				(* Add the en passant capture action if only condition2 is met *)
 				If[!cond1 \[And] cond2, 
 					AppendTo[actions, {coord1 -> \[EmptySquare], S[coord2] -> opponentCemetery, coord2 -> piece}];
 				];
-							
+				
+				(* Handle pawn promotion for en passant captures at the last rank *)			
 				If[cond1 \[And] cond2, 
 					AppendTo[actions, {coord1 -> \[EmptySquare], S[coord2] -> opponentCemetery, coord2 -> Part[{\[WhiteQueen], \[BlackQueen]}, turn]}];
 					AppendTo[actions, {coord1 -> \[EmptySquare], S[coord2] -> opponentCemetery, coord2 -> Part[{\[WhiteRook], \[BlackRook]}, turn]}];
@@ -419,32 +460,39 @@ B3[ch_] :=
 		Return[actions];
 	]
 
+(* Define function KnightMoves to calculate possible moves for knights *)
 KnightMoves[ch_] :=
-	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, steps, coordMatrix, pos1, pos2, pos3, coord2, coord3, cond1, cond2, opponentCemetery, opponentPieces},
+	Module[
+		{S = First[Last[ch]], actions, turn, piece, pos1List, steps, coordMatrix, pos1, pos2, pos3, coord2, coord3, cond1, cond2, opponentCemetery, opponentPieces},
 		actions = {};
-		(* Whose turn is it? *)
+		
 		turn = Mod[Length@ch + 1, 2] + 1;
 		piece = Part[{\[WhiteKnight], \[BlackKnight]}, turn];
-		(* Rest is to remove the kings *)
+				
 		opponentPieces = Part[{Rest @ blackPieces, Rest @ whitePieces}, turn];
 		opponentCemetery =  Part[{"blackCemetery", "whiteCemetery"}, turn];
 		coordMatrix = Part[{wcm, bcm}, turn];
 		
+		(* Find the positions of all knights of the current player *)
 		pos1List = Position[S, piece][[All, 1, 1]];
+		(* All possible knight moves *)
 		steps = {{-2, -1}, {-2, +1}, {-1, -2}, {-1, +2}, {+1, -2}, {+1, +2}, {+2, -1}, {+2, +1}};
 		
 		Do[
 			pos1 = Position[coordMatrix, coord1]//First;
 			Do[
 				pos2  = pos1 + step;
-				If[!inRangeQ[pos2], Continue[];];
+				If[!inRangeQ[pos2], Continue[];]; (* Skip if the position is out of range *)
 				coord2 = Extract[coordMatrix, pos2];
-				(* The two squares in front of it must be empty *)
+				
+				(* Check if the potential move position is either empty or contains an opponent's piece *)
 				cond1 = MemberQ[opponentPieces ~Join~ {\[EmptySquare]}, S[coord2]];
 
+				(* Add the action for moving to an empty square *)
 				If[cond1 \[And] S[coord2] == \[EmptySquare], 
 					AppendTo[actions, {coord1 -> \[EmptySquare], coord2 -> piece}];
 				];
+				(* Add the action for capturing an opponent's piece *)
 				If[cond1 \[And] S[coord2] != \[EmptySquare],
 					AppendTo[actions, {coord1 -> \[EmptySquare], S[coord2] -> opponentCemetery, coord2 -> piece}];
 				]
@@ -459,15 +507,14 @@ KnightMoves[ch_] :=
 	]
 
 ChessEvolve[chessHistory_, actions:{__Rule}] := 
-	Module[{S = First[Last[chessHistory]]},
+	Module[{S = First[Last[chessHistory]]}, (* Extract the latest state *)
 		Do[
-			S[action[[1]]] = action[[2]];
+			S[action[[1]]] = action[[2]]; (* Apply each action to the state *)
 			,
-			{action, actions}
+			{action, actions} (* Iterate over each action *)
 		];
-		Return[chessHistory ~Join~ {ChessState[S]}];
+		Return[chessHistory ~Join~ {ChessState[S]}]; (* Append the updated state to the history *)
 	]
-InitializedChessState;
 
 
 (* Definition of ChessMove function *)
