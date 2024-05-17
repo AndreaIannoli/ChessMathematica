@@ -9,6 +9,8 @@ KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible mov
 InitializedChessState::usage = "Starting position.";
 randomGame::usage = "randomGame[data,dimensioneData] returns informations of a random game in data (chessHistory, pgnMovesArray, pgnmoves)";
 selectedGame::usage = "selectedGame[data,dimensioneData] do the same as random game but for the game with the given index";
+plotGui::usage = "";
+i::usage ="";
 
 
 Begin["`Private`"]
@@ -600,7 +602,7 @@ chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial stat
 	
 (* Method for given game with id "index" selection *)
 (* This method does the same thing as random game, just using the index recieved as input*)
-selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
+selectedGame[data_, index_]:= DynamicModule[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
 	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
 	pgnmoves=data[[index,"moves"]];
 	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
@@ -612,5 +614,106 @@ chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial stat
 	{chessHistory, pgnMovesArray, pgnmoves, name, index, typeofwin}  (* Return game history, PGN move array, and PGN moves *)
 	]
 (* We close the package *)
+
+(*Import games dataset from the CSV file*)
+data=Import[FileNameJoin[{NotebookDirectory[],"gamesProcessed.csv"}],"Dataset","HeaderLines"->1];
+(*Determine the number of rows in the imported dataset*)
+dimensioneData=Length[data];
+
+(* We use the function randomGame to extract a random initial game *)
+{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData];
+
+(*Define a function chessAnimate to animate the chess game*)
+chessAnimate[chessHistory_, pgnMovesArray_]:=
+Animate[
+	Speak[ToString[pgnMovesArray[[i-1]]]]; (* Text to speech on the current move in the PGN notation *)
+	(* Display the chessboard and its matrix representation with a grid *)
+	Grid[{
+	{ChessPlot[chessHistory[[i]],"WhiteOrientation"->"Down","BoardColorSet"->{White,Darker@Gray},"ShowCoordinates"->True,ImageSize->500],ChessPlot[chessHistory[[i]],"MatrixForm"->True]}
+	} ],
+	{i,1,Length[chessHistory],1}, (* Animate from move 1 to the end of the game *)
+	AnimationRate->.5, (* Set animation rate to one move every 2 seconds *)
+	 AnimationRunning->False, (* Animation is initially not running, and has to be started by the user *)
+	SaveDefinitions->False  
+]; 
+
+(* Define a function to extract the opening name from the string in the dataset *)
+extractOpeningName[s_String]:=Module[{parts},parts=StringSplit[s,{"|",":"}];
+StringTrim[First[parts]]]
+
+(* Function to get indices of games with specific opening and victory status *)
+getIndicesWithNamesNormalized[openingSelectedValue_,victorySelectedValue_]:=Module[{indicesWithNames,strings},
+	(*Filter dataset to find games with specified parameters*)indicesWithNames=Select[data,#["opening_name"]==openingSelectedValue&&#["victory_status"]==victorySelectedValue&][All,"index"];
+	(*Create strings for display,combining indices and opening names*)
+	strings=ToString[#]<>" ---- "<>data[[#]][openingNameColumn]&/@indicesWithNames;
+	(*Convert list of strings to normal form*)
+	indicesWithNamesNormalized=Normal[strings];
+	indicesWithNamesNormalized
+];
+
+(* Extract unique opening names from the dataset *)
+openings=DeleteDuplicates[extractOpeningName/@Normal[data[All,"opening_name"]],SameQ];
+
+(*Extract unique victory statuses from the dataset*)
+winTypes=Normal[DeleteDuplicates[data[All,"victory_status"],SameQ]];
+
+(*Define columns for opening name and victory status*)
+openingNameColumn="opening_name";
+victoryStatusColumn="victory_status";
+
+(*Set default values for opening and victory selection*)
+openingSelectedValue="Slav Defense";
+victorySelectedValue="resign";
+
+(*Get indices of games with specified opening and victory status*)
+indicesWithNames=Select[data,#["opening_name"]==openingSelectedValue&&#["victory_status"]==victorySelectedValue&][All,"index"];
+
+(* Create strings representing games with their opening names *)
+strings=ToString[#]<>" ---- "<>data[[#]][openingNameColumn]&/@indicesWithNames;
+indicesWithNamesNormalized=Normal[strings];
+
+(*Call the function to retrieve indices of games based on default opening and victory*)
+getIndicesWithNamesNormalized[openingSelectedValue,victorySelectedValue];
+
+
+plotGui[]:= DynamicModule[{}, gui=Panel[
+	Column[{
+		(*Title of the application*)
+		Row[{
+		Text[Style["Chess Player",Bold,40,Red,FontFamily->"Brush Script MT"]]
+		}],
+		(*Row for selecting opening and victory status*)
+		Row[{
+		Text[Style["Opening: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[openingSelectedValue],openings],Spacer[100],Text[Style["Type of win: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[victorySelectedValue],winTypes],Spacer[100],Button["Filter",getIndicesWithNamesNormalized[openingSelectedValue,victorySelectedValue]]
+		}],
+		Row[{InputField[Dynamic[indexOfSelectedGame],Number,FieldHint->"Type the game index here"],Button["Play",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data,ToExpression@indexOfSelectedGame]]}],
+		(*Row for displaying chess animation and game selection*)
+		Row[{
+		Column[{
+		Dynamic[chessAnimate[chessHistory,pgnMovesArray]] (*Display chess game animation*)
+		}],
+		Spacer[1],
+		Dynamic[
+		(* Grid containing filtered games *)
+		Grid[
+		(* Every row contains the game name (id and opening) and a play button to set it as current game *)
+		MapThread[{#1,Button["\[FilledRightTriangle]", {chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data, ToExpression@First[StringSplit[#1, " "]]] ]}&,{indicesWithNamesNormalized}],Frame->All]],
+		(*Button for random game selection*)
+		Button["RANDOM",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData]] 
+		}],
+		(* Row for displaying current game's moves in PGN format *)
+		Row[{
+		Dynamic[Text[Style[selectedId, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]],Spacer[3],Dynamic[Text[Style[name, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]], Spacer[3],Dynamic[Text[Style[typeofwin, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]]
+		}],
+		Row[{
+		Dynamic[Text[Style[pgnmoves, Bold, 10, Gray,FontFamily->"Helvetica Neue"]]]
+		}]
+		},Alignment->Center (*Align the GUI components to the center*)
+	]
+	]
+]
+
+
+
 End[]
 EndPackage[]
