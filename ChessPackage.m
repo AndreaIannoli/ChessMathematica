@@ -14,14 +14,14 @@ i::usage ="";
 
 
 Begin["`Private`"]
-Print["List of Functions"];
+(*Print["List of Functions"];
 Print["\tChessState"];
 Print["\tChessPlot"];
 Print["\tChessEvolve"];
 Print["\tKnightMoves"];
 Print["\tInitializedChessState"];
 Print["\trandomGame"];
-Print["\tselectedGame"]
+Print["\tselectedGame"]*)
 
 
 packageDir = $InputFileName; (*Package directory declaration*)
@@ -44,7 +44,7 @@ If[
 	FileExistsQ[packageDir <> "pieceImages.mx"] (*checking if the mx file exists, if not start the download of the images*)
 	,
 	pieceImages = Import[packageDir <> "pieceImages.mx"]; (*it joins the packagedir string with the standard mx file name string and import it*)
-	Print["Chess piece images were loaded."]; (**)
+	(*Print["Chess piece images were loaded."]; *)
 	,
 	(*create an array with the links of the piece images from wikimedia*)
 	piecePicLinksWiki =
