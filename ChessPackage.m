@@ -1,5 +1,20 @@
 (* ::Package:: *)
 
+(* :Title: ChessMathematica *)
+(* :Context: ChessPackage` *)
+(* :Author: A. Iannoli, V. Rossetto, G. Centonze *)
+(* :Summary: an inclusive chess player *)
+(* :Copyright: Iannoli Rossetto Centonze 2024 *)
+(* :Package Version: 1.5 *)
+(* :Mathematica Version: 14 *)
+(* :History: last modified 20/5/2024 *)
+(* :Keywords: programming style, local variables, chess, mathematica, inclusive, accessability *)
+(* :Sources: biblio *)
+(* :Limitations: this is for educational purposes only. *)
+(* :Discussion: *)
+(* :Requirements: *)
+(* :Warning: package Context is not defined *)
+
 BeginPackage["ChessPackage`"]
 
 ChessState::usage  = "ChessState[Association] returns a chess object.";
