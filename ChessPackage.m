@@ -23,12 +23,12 @@ ChessEvolve::usage = "ChessEvolve[ChessState, Move] returns an updated ChessStat
 KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible moves. Each move is a list of actions/rules.";
 InitializedChessState::usage = "Starting position.";
 randomGame::usage = "randomGame[data,dimensioneData] returns informations of a random game in data (chessHistory, pgnMovesArray, pgnmoves)";
-selectedGame::usage = "selectedGame[data,dimensioneData] do the same as random game but for the game with the given index";
-plotGui::usage = "";
-i::usage ="";
+selectedGame::usage = "selectedGame[selectedIndex,dimensioneData] do the same as random game but for the game with the given index";
+plotGui::usage = "plotGui[] plot the gui";
+i::usage ="the index of the manipulate";
 
 
-Begin["`Private`"]
+Begin["`Public`"]
 (*Print["List of Functions"];
 Print["\tChessState"];
 Print["\tChessPlot"];
@@ -617,7 +617,7 @@ chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial stat
 	
 (* Method for given game with id "index" selection *)
 (* This method does the same thing as random game, just using the index recieved as input*)
-selectedGame[data_, index_]:= DynamicModule[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
+selectedGame[data_, index_]:= Module[{coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
 	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
 	pgnmoves=data[[index,"moves"]];
 	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
@@ -690,6 +690,13 @@ indicesWithNamesNormalized=Normal[strings];
 (*Call the function to retrieve indices of games based on default opening and victory*)
 getIndicesWithNamesNormalized[openingSelectedValue,victorySelectedValue];
 
+gamemode = False;
+Dynamic[gamemode];
+answerResult = "";
+Dynamic[answerResult];
+reveal = False;
+Dynamic[reveal];
+
 
 plotGui[]:= DynamicModule[{}, gui=Panel[
 	Column[{
@@ -697,32 +704,45 @@ plotGui[]:= DynamicModule[{}, gui=Panel[
 		Row[{
 		Text[Style["Chess Player",Bold,40,Red,FontFamily->"Brush Script MT"]]
 		}],
+		Dynamic[If[gamemode == False,
 		(*Row for selecting opening and victory status*)
-		Row[{
-		Text[Style["Opening: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[openingSelectedValue],openings],Spacer[100],Text[Style["Type of win: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[victorySelectedValue],winTypes],Spacer[100],Button["Filter",getIndicesWithNamesNormalized[openingSelectedValue,victorySelectedValue]]
-		}],
-		Row[{InputField[Dynamic[indexOfSelectedGame],Number,FieldHint->"Type the game index here"],Button["Play",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data,ToExpression@indexOfSelectedGame]]}],
+		Column[{Row[{
+			Text[Style["Opening: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[openingSelectedValue],openings],Spacer[100],Text[Style["Type of win: ",Bold,20,Green,FontFamily->"Helvetica Neue"]],PopupMenu[Dynamic[victorySelectedValue],winTypes],Spacer[100],Button["Filter",getIndicesWithNamesNormalized[openingSelectedValue,victorySelectedValue]]
+			}],
+			Row[{InputField[Dynamic[indexOfSelectedGame],Number,FieldHint->"Type the game index here"],Button["Play",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data,ToExpression@indexOfSelectedGame]]}]}, Alignment->Center], ""
+		]],
 		(*Row for displaying chess animation and game selection*)
 		Row[{
 		Column[{
 		Dynamic[chessAnimate[chessHistory,pgnMovesArray]] (*Display chess game animation*)
 		}],
 		Spacer[1],
-		Dynamic[
+		Dynamic[If[gamemode == False,
 		(* Grid containing filtered games *)
 		Grid[
 		(* Every row contains the game name (id and opening) and a play button to set it as current game *)
-		MapThread[{#1,Button["\[FilledRightTriangle]", {chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data, ToExpression@First[StringSplit[#1, " "]]] ]}&,{indicesWithNamesNormalized}],Frame->All]],
+		MapThread[{#1,Button["\[FilledRightTriangle]", {{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data, ToExpression@First[StringSplit[#1, " "]]], Print[ToExpression@First[StringSplit[#1, " "]]]} ]}&,{indicesWithNamesNormalized}],Frame->All], ""]],
 		(*Button for random game selection*)
-		Button["RANDOM",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData]] 
+		Dynamic[If[gamemode == False, Button["RANDOM",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData]], ""]] 
 		}],
 		(* Row for displaying current game's moves in PGN format *)
+		Dynamic[If[gamemode == False || reveal == True,
 		Row[{
 		Dynamic[Text[Style[selectedId, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]],Spacer[3],Dynamic[Text[Style[name, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]], Spacer[3],Dynamic[Text[Style[typeofwin, Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]]
-		}],
+		}], Text[Style["?", Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]]]],
 		Row[{
 		Dynamic[Text[Style[pgnmoves, Bold, 10, Gray,FontFamily->"Helvetica Neue"]]]
-		}]
+		}],
+		Dynamic[If[gamemode == True,
+			Column[{
+				Text[Style["What's the opening?", Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]],
+				InputField[Dynamic[answer], String, FieldHint-> "Type your answer here"], Button["Submit", If[answer == name, answerResult = "Correct answer!", answerResult = "Wrong answer!"]],
+				Text[Style[Dynamic[answerResult], Bold, 15, Darker@Gray,FontFamily->"Helvetica Neue"]],
+				Button["Next question \[RightArrow]",{{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData], reveal = False, answerResult = ""}],
+				Button["Reveal the opening", reveal = !reveal]
+			}, Alignment->Center], ""
+		]],
+		Button[Dynamic["Gamemode: " <> ToString[gamemode]], {{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData], gamemode = !gamemode, reveal = False, answerResult = ""}]
 		},Alignment->Center (*Align the GUI components to the center*)
 	]
 	]

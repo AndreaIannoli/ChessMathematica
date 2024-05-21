@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     25559,        471]
-NotebookOptionsPosition[     24844,        451]
-NotebookOutlinePosition[     25287,        468]
-CellTagsIndexPosition[     25244,        465]
+NotebookDataLength[     32671,        629]
+NotebookOptionsPosition[     31983,        609]
+NotebookOutlinePosition[     32397,        626]
+CellTagsIndexPosition[     32354,        623]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -101,9 +101,27 @@ Cell[BoxData[
    3.924947272723714*^9, 3.9249472730083838`*^9}, {3.924947390703413*^9, 
    3.924947411495285*^9}, {3.924947445297775*^9, 3.924947471258255*^9}, {
    3.924947668576523*^9, 3.924947671377178*^9}, {3.924947903350089*^9, 
-   3.9249479105926647`*^9}, {3.924947956299526*^9, 3.924947962635264*^9}},
+   3.9249479105926647`*^9}, {3.924947956299526*^9, 3.924947962635264*^9}, {
+   3.9253064918406467`*^9, 3.925306498905051*^9}, {3.92530714681171*^9, 
+   3.925307152942024*^9}, {3.9253074510155582`*^9, 3.925307457993877*^9}, {
+   3.9253075094621687`*^9, 3.925307516134666*^9}, {3.9253075880203667`*^9, 
+   3.925307593368318*^9}, {3.9253077071192493`*^9, 3.925307715632927*^9}, {
+   3.9253077910510483`*^9, 3.9253077967596817`*^9}, {3.92530782696589*^9, 
+   3.925307835856222*^9}, {3.925307881486044*^9, 3.9253078875159616`*^9}, {
+   3.92530794957292*^9, 3.9253079566101418`*^9}, {3.925308024106187*^9, 
+   3.925308030451933*^9}, {3.9253080904795837`*^9, 3.925308127460701*^9}, {
+   3.925308216038828*^9, 3.925308225485043*^9}, {3.9253083608278646`*^9, 
+   3.92530837032057*^9}, {3.925308514053176*^9, 3.925308521066593*^9}, {
+   3.925309427381542*^9, 3.925309432866897*^9}, {3.9253094711267157`*^9, 
+   3.925309477042451*^9}, {3.925309544471838*^9, 3.9253095519150877`*^9}, {
+   3.925309604499136*^9, 3.9253096137416153`*^9}, {3.925310127259944*^9, 
+   3.925310140491789*^9}, {3.925310964766386*^9, 3.925310970799457*^9}, {
+   3.9253110383850603`*^9, 3.925311044135592*^9}, {3.925311113837983*^9, 
+   3.925311119970602*^9}, {3.9253114217399883`*^9, 3.9253114304072742`*^9}, {
+   3.9253118891670933`*^9, 3.925311895619164*^9}, {3.925312491082549*^9, 
+   3.925312503449362*^9}},
  NumberMarks->False,
- CellLabel->"In[90]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+ CellLabel->"In[1]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  DynamicModuleBox[{}, 
@@ -333,12 +351,11 @@ Cell[BoxData[
                ChessPackage`Private`chessAnimate[
                ChessPackage`Private`chessHistory, 
                 ChessPackage`Private`pgnMovesArray], StandardForm], 
-              ImageSizeCache -> {
-               741., {190.05351567426698`, 192.94648432573302`}}]}}, 
-           DefaultBaseStyle -> "Column", 
-           GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+              ImageSizeCache -> {738., {295., 301.}}]}}, DefaultBaseStyle -> 
+           "Column", GridBoxAlignment -> {"Columns" -> {{Left}}}, 
            GridBoxItemSize -> {
             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
+         
          TemplateBox[{1}, "Spacer1"], 
          DynamicBox[
           ToBoxes[
@@ -370,25 +387,30 @@ Cell[BoxData[
           "Preemptive"]},
         "RowDefault"]},
       {
-       TemplateBox[{
-         DynamicBox[
-          ToBoxes[
-           Text[
-            Style[ChessPackage`Private`selectedId, Bold, 15, 
-             Darker[Gray], FontFamily -> "Helvetica Neue"]], StandardForm]], 
-         TemplateBox[{3}, "Spacer1"], 
-         DynamicBox[
-          ToBoxes[
-           Text[
-            Style[ChessPackage`Private`name, Bold, 15, 
-             Darker[Gray], FontFamily -> "Helvetica Neue"]], StandardForm]], 
-         TemplateBox[{3}, "Spacer1"], 
-         DynamicBox[
-          ToBoxes[
-           Text[
-            Style[ChessPackage`Private`typeofwin, Bold, 15, 
-             Darker[Gray], FontFamily -> "Helvetica Neue"]], StandardForm]]},
-        "RowDefault"]},
+       DynamicBox[ToBoxes[
+         If[
+          Or[
+          ChessPackage`Private`gamemode == False, ChessPackage`Private`reveal == 
+           True], 
+          Row[{
+            Dynamic[
+             Text[
+              Style[ChessPackage`Private`selectedId, Bold, 15, 
+               Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
+            Spacer[3], 
+            Dynamic[
+             Text[
+              Style[ChessPackage`Private`name, Bold, 15, 
+               Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
+            Spacer[3], 
+            Dynamic[
+             Text[
+              Style[ChessPackage`Private`typeofwin, Bold, 15, 
+               Darker[Gray], FontFamily -> "Helvetica Neue"]]]}], 
+          Text[
+           Style["?", Bold, 15, 
+            Darker[Gray], FontFamily -> "Helvetica Neue"]]], StandardForm],
+        ImageSizeCache->{239., {5., 15.}}]},
       {
        TemplateBox[{
          DynamicBox[
@@ -396,8 +418,133 @@ Cell[BoxData[
            Text[
             Style[
             ChessPackage`Private`pgnmoves, Bold, 10, Gray, FontFamily -> 
-             "Helvetica Neue"]], StandardForm]]},
-        "RowDefault"]}
+             "Helvetica Neue"]], StandardForm], 
+          ImageSizeCache -> {1202., {21., 10.}}]},
+        "RowDefault"]},
+      {
+       InterpretationBox[Cell[BoxData[
+         FormBox[
+          StyleBox["\<\"What's the opening?\"\>",
+           StripOnInput->False,
+           
+           LineColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           FrontFaceColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           BackFaceColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           GraphicsColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           FontFamily->"Helvetica Neue",
+           FontSize->15,
+           FontWeight->Bold,
+           
+           FontColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
+           TextForm]], "InlineText",ExpressionUUID->
+         "22cf9e31-1707-4379-8c0e-8a91c507131c"],
+        Text[
+         Style["What's the opening?", Bold, 15, 
+          RGBColor[
+          0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`], 
+          FontFamily -> "Helvetica Neue"]]]},
+      {
+       InputFieldBox[Dynamic[ChessPackage`Private`answer], String,
+        FieldHint->"Type your answer here"]},
+      {
+       ButtonBox["\<\"Submit\"\>",
+        Appearance->Automatic,
+        ButtonFunction:>If[
+         ChessPackage`Private`answer == ChessPackage`Private`name, 
+          ChessPackage`Private`answerResult = "Correct answer!", 
+          ChessPackage`Private`answerResult = "Wrong answer!"],
+        Evaluator->Automatic,
+        Method->"Preemptive"]},
+      {
+       InterpretationBox[Cell[BoxData[
+         FormBox[
+          StyleBox[
+           DynamicBox[ToBoxes[ChessPackage`Private`answerResult, StandardForm],
+            ImageSizeCache->{0., {0., 8.142749999999998}}],
+           StripOnInput->False,
+           
+           LineColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           FrontFaceColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           BackFaceColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           
+           GraphicsColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
+           
+           FontFamily->"Helvetica Neue",
+           FontSize->15,
+           FontWeight->Bold,
+           
+           FontColor->RGBColor[
+            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
+           TextForm]], "InlineText",ExpressionUUID->
+         "096924a2-e570-4f6c-b55d-8e7417065d36"],
+        Text[
+         Style[
+          Dynamic[ChessPackage`Private`answerResult], Bold, 15, 
+          RGBColor[
+          0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`], 
+          FontFamily -> "Helvetica Neue"]]]},
+      {
+       ButtonBox["\<\"Next question \[RightArrow]\"\>",
+        Appearance->Automatic,
+        ButtonFunction:>{{
+           ChessPackage`Private`chessHistory, 
+            ChessPackage`Private`pgnMovesArray, ChessPackage`Private`pgnmoves,
+             ChessPackage`Private`name, ChessPackage`Private`selectedId, 
+            ChessPackage`Private`typeofwin} = 
+          ChessPackage`randomGame[
+           ChessPackage`Private`data, ChessPackage`Private`dimensioneData], 
+          ChessPackage`Private`reveal = False, 
+          ChessPackage`Private`answerResult = ""},
+        Evaluator->Automatic,
+        Method->"Preemptive"]},
+      {
+       ButtonBox["\<\"Reveal the opening\"\>",
+        Appearance->Automatic,
+        ButtonFunction:>(ChessPackage`Private`reveal = 
+         Not[ChessPackage`Private`reveal]),
+        Evaluator->Automatic,
+        Method->"Preemptive"]},
+      {
+       ButtonBox[
+        DynamicBox[ToBoxes[
+         "Gamemode: " <> ToString[ChessPackage`Private`gamemode], 
+          StandardForm],
+         ImageSizeCache->{114., {0.22661132812499998`, 10.037548828124999`}}],
+        
+        Appearance->Automatic,
+        ButtonFunction:>{{
+           ChessPackage`Private`chessHistory, 
+            ChessPackage`Private`pgnMovesArray, ChessPackage`Private`pgnmoves,
+             ChessPackage`Private`name, ChessPackage`Private`selectedId, 
+            ChessPackage`Private`typeofwin} = 
+          ChessPackage`randomGame[
+           ChessPackage`Private`data, ChessPackage`Private`dimensioneData], 
+          ChessPackage`Private`gamemode = Not[ChessPackage`Private`gamemode], 
+          ChessPackage`Private`reveal = False, 
+          ChessPackage`Private`answerResult = ""},
+        Evaluator->Automatic,
+        Method->"Preemptive"]}
      },
      DefaultBaseStyle->"Column",
      GridBoxAlignment->{"Columns" -> {{Center}}},
@@ -432,13 +579,24 @@ Cell[BoxData[
    3.924943841258637*^9, 3.924944097736025*^9, 3.924944587303928*^9, 
    3.924944660569275*^9, 3.924944819171809*^9, 3.924945020243752*^9, {
    3.924945185250484*^9, 3.924945200547707*^9}, 3.924945246207563*^9, 
-   3.924945363523527*^9, 3.924945480772291*^9, 3.9249465969972777`*^9, 
+   3.924945363523527*^9, 3.924945480772291*^9, 3.924946596997278*^9, 
    3.924946634913679*^9, 3.9249471902717323`*^9, 3.924947276305322*^9, 
    3.924947311696352*^9, 3.924947413677062*^9, {3.924947447802054*^9, 
    3.924947473811917*^9}, 3.924947576887327*^9, 3.924947677133548*^9, {
    3.924947891925602*^9, 3.9249479137511*^9}, 3.924947965622197*^9, 
-   3.9252077654013367`*^9, 3.925208648110647*^9, 3.9252090969873714`*^9},
- CellLabel->"Out[91]=",ExpressionUUID->"0c95560d-25d8-c34e-8f0d-408b9d41e5b0"]
+   3.9252077654013376`*^9, 3.925208648110647*^9, 3.9252090969873714`*^9, 
+   3.925306270082049*^9, {3.9253064804157677`*^9, 3.925306503657838*^9}, {
+   3.925307077363945*^9, 3.925307084787488*^9}, {3.9253071567986097`*^9, 
+   3.925307173924054*^9}, 3.9253074619487534`*^9, {3.925307520425336*^9, 
+   3.925307533357861*^9}, 3.925307597582555*^9, 3.925307717821403*^9, 
+   3.925307800270249*^9, 3.925307838086624*^9, 3.925307890538484*^9, 
+   3.9253079596991177`*^9, 3.925308033544077*^9, {3.925308100448999*^9, 
+   3.925308130008195*^9}, 3.9253082279801817`*^9, 3.925308372186008*^9, 
+   3.925308524147805*^9, {3.925309436441983*^9, 3.925309480181161*^9}, 
+   3.925309554529635*^9, 3.925309615534669*^9, 3.925310144002336*^9, 
+   3.9253109741098347`*^9, 3.92531104728786*^9, 3.925311122761408*^9, 
+   3.925311432053399*^9, 3.925311898594246*^9, 3.925312505306621*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"abbf65e8-c9cb-4b26-9d4d-80da94a74a17"]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -449,10 +607,10 @@ Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.9252086146882534`*^9, 3.9252086254698124`*^9}},
  CellLabel->"In[93]:=",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
 },
-WindowMargins->{{
-  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+WindowSize->{Full, Full},
+WindowMargins->{{4, 628}, {96, 4}},
 Magnification:>0.7 Inherited,
-FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"cb06454f-b928-46f3-badb-3b5bdbc51b01"
 ]
@@ -468,11 +626,11 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 5480, 83, 60, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[6063, 107, 18411, 333, 514, "Output",ExpressionUUID->"0c95560d-25d8-c34e-8f0d-408b9d41e5b0"]
+Cell[580, 22, 6779, 101, 98, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[7362, 125, 24251, 473, 1050, "Output",ExpressionUUID->"abbf65e8-c9cb-4b26-9d4d-80da94a74a17"]
 }, Open  ]],
-Cell[24489, 443, 173, 2, 21, "Input",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
-Cell[24665, 447, 175, 2, 21, "Input",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
+Cell[31628, 601, 173, 2, 31, "Input",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
+Cell[31804, 605, 175, 2, 31, "Input",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
 }
 ]
 *)
