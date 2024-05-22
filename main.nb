@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     32671,        629]
-NotebookOptionsPosition[     31983,        609]
-NotebookOutlinePosition[     32397,        626]
-CellTagsIndexPosition[     32354,        623]
+NotebookDataLength[     20223,        408]
+NotebookOptionsPosition[     19507,        388]
+NotebookOutlinePosition[     19950,        405]
+CellTagsIndexPosition[     19907,        402]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,9 +24,9 @@ Cell[BoxData[
  RowBox[{"\n", 
   RowBox[{"(*", 
    RowBox[{
-   "Load", " ", "the", " ", "external", " ", "package", " ", 
-    "SimpleArithmetic", " ", "from", " ", "file", " ", 
-    RowBox[{"SimpleArithmetic", ".", "m"}]}], "*)"}], "\[IndentingNewLine]", 
+   "Load", " ", "the", " ", "external", " ", "package", " ", "ChessPackage", 
+    " ", "from", " ", "file", " ", 
+    RowBox[{"ChessPackage", ".", "m"}]}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
     RowBox[{"Needs", "[", 
@@ -104,24 +104,23 @@ Cell[BoxData[
    3.9249479105926647`*^9}, {3.924947956299526*^9, 3.924947962635264*^9}, {
    3.9253064918406467`*^9, 3.925306498905051*^9}, {3.92530714681171*^9, 
    3.925307152942024*^9}, {3.9253074510155582`*^9, 3.925307457993877*^9}, {
-   3.9253075094621687`*^9, 3.925307516134666*^9}, {3.9253075880203667`*^9, 
+   3.925307509462169*^9, 3.925307516134666*^9}, {3.9253075880203676`*^9, 
    3.925307593368318*^9}, {3.9253077071192493`*^9, 3.925307715632927*^9}, {
-   3.9253077910510483`*^9, 3.9253077967596817`*^9}, {3.92530782696589*^9, 
+   3.9253077910510488`*^9, 3.9253077967596817`*^9}, {3.92530782696589*^9, 
    3.925307835856222*^9}, {3.925307881486044*^9, 3.9253078875159616`*^9}, {
    3.92530794957292*^9, 3.9253079566101418`*^9}, {3.925308024106187*^9, 
    3.925308030451933*^9}, {3.9253080904795837`*^9, 3.925308127460701*^9}, {
-   3.925308216038828*^9, 3.925308225485043*^9}, {3.9253083608278646`*^9, 
+   3.925308216038828*^9, 3.925308225485043*^9}, {3.925308360827864*^9, 
    3.92530837032057*^9}, {3.925308514053176*^9, 3.925308521066593*^9}, {
    3.925309427381542*^9, 3.925309432866897*^9}, {3.9253094711267157`*^9, 
-   3.925309477042451*^9}, {3.925309544471838*^9, 3.9253095519150877`*^9}, {
+   3.925309477042451*^9}, {3.925309544471838*^9, 3.925309551915088*^9}, {
    3.925309604499136*^9, 3.9253096137416153`*^9}, {3.925310127259944*^9, 
    3.925310140491789*^9}, {3.925310964766386*^9, 3.925310970799457*^9}, {
-   3.9253110383850603`*^9, 3.925311044135592*^9}, {3.925311113837983*^9, 
+   3.925311038385061*^9, 3.925311044135592*^9}, {3.925311113837983*^9, 
    3.925311119970602*^9}, {3.9253114217399883`*^9, 3.9253114304072742`*^9}, {
-   3.9253118891670933`*^9, 3.925311895619164*^9}, {3.925312491082549*^9, 
-   3.925312503449362*^9}},
- NumberMarks->False,
- CellLabel->"In[1]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+   3.9253118891670938`*^9, 3.925311895619164*^9}, {3.925312491082549*^9, 
+   3.925312503449362*^9}, {3.9254020578451576`*^9, 3.925402061783287*^9}},
+ NumberMarks->False,ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  DynamicModuleBox[{}, 
@@ -141,408 +140,187 @@ Cell[BoxData[
             RGBColor[1, 0, 0], FontFamily -> "Brush Script MT"]]]},
         "RowDefault"]},
       {
-       TemplateBox[{
-         InterpretationBox[
-          Cell[
-           BoxData[
-            FormBox[
-             StyleBox["\"Opening: \"", Bold, 20, 
-              RGBColor[0, 1, 0], FontFamily -> "Helvetica Neue", StripOnInput -> 
-              False], TextForm]], "InlineText"], 
-          Text[
-           Style["Opening: ", Bold, 20, 
-            RGBColor[0, 1, 0], FontFamily -> "Helvetica Neue"]]], 
-         PopupMenuBox[
-          Dynamic[ChessPackage`Private`openingSelectedValue], {
-          "Slav Defense" -> "\"Slav Defense\"", "Nimzowitsch Defense" -> 
-           "\"Nimzowitsch Defense\"", "King's Pawn Game" -> 
-           "\"King's Pawn Game\"", "Queen's Pawn Game" -> 
-           "\"Queen's Pawn Game\"", "Philidor Defense" -> 
-           "\"Philidor Defense\"", "Sicilian Defense" -> 
-           "\"Sicilian Defense\"", "Blackmar-Diemer Gambit" -> 
-           "\"Blackmar-Diemer Gambit\"", "Italian Game" -> "\"Italian Game\"",
-            "Scandinavian Defense" -> "\"Scandinavian Defense\"", 
-           "Van't Kruijs Opening" -> "\"Van't Kruijs Opening\"", 
-           "French Defense" -> "\"French Defense\"", "French Defense #2" -> 
-           "\"French Defense #2\"", "Four Knights Game" -> 
-           "\"Four Knights Game\"", "Philidor Defense #3" -> 
-           "\"Philidor Defense #3\"", "Horwitz Defense" -> 
-           "\"Horwitz Defense\"", "English Opening" -> "\"English Opening\"", 
-           "Scotch Game" -> "\"Scotch Game\"", "Queen's Gambit Refused" -> 
-           "\"Queen's Gambit Refused\"", "Queen's Gambit Accepted" -> 
-           "\"Queen's Gambit Accepted\"", "Robatsch (Modern) Defense" -> 
-           "\"Robatsch (Modern) Defense\"", "Indian Game" -> 
-           "\"Indian Game\"", "Dutch Defense" -> "\"Dutch Defense\"", 
-           "Zukertort Opening" -> "\"Zukertort Opening\"", "Vienna Game" -> 
-           "\"Vienna Game\"", "Modern Defense" -> "\"Modern Defense\"", 
-           "Blumenfeld Countergambit #2" -> "\"Blumenfeld Countergambit #2\"",
-            "Queen's Pawn" -> "\"Queen's Pawn\"", "Crab Opening" -> 
-           "\"Crab Opening\"", "Queen's Indian Defense" -> 
-           "\"Queen's Indian Defense\"", "Gruenfeld Defense" -> 
-           "\"Gruenfeld Defense\"", "Queen's Gambit Declined" -> 
-           "\"Queen's Gambit Declined\"", "Yusupov-Rubinstein System" -> 
-           "\"Yusupov-Rubinstein System\"", "Ruy Lopez" -> "\"Ruy Lopez\"", 
-           "Bishop's Opening" -> "\"Bishop's Opening\"", "Benoni Defense" -> 
-           "\"Benoni Defense\"", "King's Indian Attack" -> 
-           "\"King's Indian Attack\"", "Alekhine Defense #2" -> 
-           "\"Alekhine Defense #2\"", "Alekhine Defense" -> 
-           "\"Alekhine Defense\"", "Caro-Kann Defense" -> 
-           "\"Caro-Kann Defense\"", "Queen's Pawn Game #2" -> 
-           "\"Queen's Pawn Game #2\"", "Goldsmith Defense" -> 
-           "\"Goldsmith Defense\"", "Nimzo-Indian Defense" -> 
-           "\"Nimzo-Indian Defense\"", "Bogo-Indian Defense" -> 
-           "\"Bogo-Indian Defense\"", "King's Knight Opening" -> 
-           "\"King's Knight Opening\"", "Amar Opening" -> "\"Amar Opening\"", 
-           "Paleface Attack" -> "\"Paleface Attack\"", "Hungarian Opening" -> 
-           "\"Hungarian Opening\"", "Queen's Pawn Game #3" -> 
-           "\"Queen's Pawn Game #3\"", "Center Game" -> "\"Center Game\"", 
-           "Englund Gambit Declined" -> "\"Englund Gambit Declined\"", 
-           "Giuoco Piano" -> "\"Giuoco Piano\"", "Philidor Defense #4" -> 
-           "\"Philidor Defense #4\"", "Petrov's Defense" -> 
-           "\"Petrov's Defense\"", "Russian Game" -> "\"Russian Game\"", 
-           "Pirc Defense #4" -> "\"Pirc Defense #4\"", "St. George Defense" -> 
-           "\"St. George Defense\"", "Philidor Defense #2" -> 
-           "\"Philidor Defense #2\"", "Nimzo-Indian Defense #2" -> 
-           "\"Nimzo-Indian Defense #2\"", "Bird Opening" -> 
-           "\"Bird Opening\"", "Owen Defense" -> "\"Owen Defense\"", 
-           "Semi-Slav Defense" -> "\"Semi-Slav Defense\"", 
-           "English Defense #2" -> "\"English Defense #2\"", 
-           "King's Gambit Accepted" -> "\"King's Gambit Accepted\"", 
-           "Petrov's Defense #5" -> "\"Petrov's Defense #5\"", 
-           "King's Pawn Opening" -> "\"King's Pawn Opening\"", 
-           "Polish Opening" -> "\"Polish Opening\"", "Ponziani Opening" -> 
-           "\"Ponziani Opening\"", "Petrov's Defense #2" -> 
-           "\"Petrov's Defense #2\"", "East Indian Defense" -> 
-           "\"East Indian Defense\"", "Reti Opening" -> "\"Reti Opening\"", 
-           "Nimzo-Larsen Attack" -> "\"Nimzo-Larsen Attack\"", 
-           "Center Game #2" -> "\"Center Game #2\"", "Torre Attack #2" -> 
-           "\"Torre Attack #2\"", "Creepy Crawly Formation" -> 
-           "\"Creepy Crawly Formation\"", "Elephant Gambit" -> 
-           "\"Elephant Gambit\"", "Latvian Gambit" -> "\"Latvian Gambit\"", 
-           "Global Opening" -> "\"Global Opening\"", "Trompowsky Attack" -> 
-           "\"Trompowsky Attack\"", "Englund Gambit" -> "\"Englund Gambit\"", 
-           "London System" -> "\"London System\"", "Sicilian Defense #2" -> 
-           "\"Sicilian Defense #2\"", "Pirc Defense" -> "\"Pirc Defense\"", 
-           "King's Gambit Declined" -> "\"King's Gambit Declined\"", 
-           "Danish Gambit Accepted" -> "\"Danish Gambit Accepted\"", 
-           "Mieses Opening" -> "\"Mieses Opening\"", "Carr Defense" -> 
-           "\"Carr Defense\"", "King's Indian Defense" -> 
-           "\"King's Indian Defense\"", "Three Knights Opening" -> 
-           "\"Three Knights Opening\"", "Ware Opening" -> "\"Ware Opening\"", 
-           "Budapest Defense" -> "\"Budapest Defense\"", 
-           "Richter-Veresov Attack" -> "\"Richter-Veresov Attack\"", 
-           "Slav Defense #2" -> "\"Slav Defense #2\"", 
-           "Franco-Benoni Defense" -> "\"Franco-Benoni Defense\"", 
-           "Van Geet Opening" -> "\"Van Geet Opening\"", "Polish Defense" -> 
-           "\"Polish Defense\"", "Petrov's Defense #3" -> 
-           "\"Petrov's Defense #3\"", "Old Benoni Defense" -> 
-           "\"Old Benoni Defense\"", "Kadas Opening" -> "\"Kadas Opening\"", 
-           "Vienna Game #2" -> "\"Vienna Game #2\"", "Pirc Defense #2" -> 
-           "\"Pirc Defense #2\"", "System" -> "\"System\"", 
-           "Three Knights Opening #2" -> "\"Three Knights Opening #2\"", 
-           "Pirc Defense #3" -> "\"Pirc Defense #3\"", 
-           "Blackmar-Diemer Gambit #2" -> "\"Blackmar-Diemer Gambit #2\"", 
-           "Rat Defense" -> "\"Rat Defense\"", "Englund Gambit Complex" -> 
-           "\"Englund Gambit Complex\"", "Reti Opening #2" -> 
-           "\"Reti Opening #2\"", "Gedult's Opening" -> 
-           "\"Gedult's Opening\"", "Colle System" -> "\"Colle System\"", 
-           "Nimzowitsch-Larsen Attack" -> "\"Nimzowitsch-Larsen Attack\"", 
-           "Colle System #2" -> "\"Colle System #2\"", 
-           "Neo-Gruenfeld Defense" -> "\"Neo-Gruenfeld Defense\"", 
-           "King's Gambit" -> "\"King's Gambit\"", "Latvian Gambit Accepted" -> 
-           "\"Latvian Gambit Accepted\"", "English Defense" -> 
-           "\"English Defense\"", "Grob Opening" -> "\"Grob Opening\"", 
-           "Mikenas Defense" -> "\"Mikenas Defense\"", "Tarrasch Defense" -> 
-           "\"Tarrasch Defense\"", "Old Indian Defense" -> 
-           "\"Old Indian Defense\"", "Pirc Defense #5" -> 
-           "\"Pirc Defense #5\"", "Anderssen Opening" -> 
-           "\"Anderssen Opening\"", "Caro-Kann Defense #2" -> 
-           "\"Caro-Kann Defense #2\"", "Portuguese Opening" -> 
-           "\"Portuguese Opening\"", "Queen's Gambit" -> "\"Queen's Gambit\"",
-            "Old Indian" -> "\"Old Indian\"", "King's Pawn" -> 
-           "\"King's Pawn\"", "Irish Gambit" -> "\"Irish Gambit\"", 
-           "Queen's Pawn Opening" -> "\"Queen's Pawn Opening\"", 
-           "Clemenz Opening" -> "\"Clemenz Opening\"", 
-           "Blackmar-Diemer Gambit Declined" -> 
-           "\"Blackmar-Diemer Gambit Declined\"", "Mexican Defense" -> 
-           "\"Mexican Defense\"", "Barnes Defense" -> "\"Barnes Defense\"", 
-           "Saragossa Opening" -> "\"Saragossa Opening\"", "Duras Gambit" -> 
-           "\"Duras Gambit\"", "Gunderam Defense" -> "\"Gunderam Defense\"", 
-           "Hippopotamus Defense #2" -> "\"Hippopotamus Defense #2\"", 
-           "Catalan Opening" -> "\"Catalan Opening\"", "Torre Attack" -> 
-           "\"Torre Attack\"", "Lion Defense" -> "\"Lion Defense\"", 
-           "Guatemala Defense" -> "\"Guatemala Defense\"", "Borg Defense" -> 
-           "\"Borg Defense\"", "Sodium Attack" -> "\"Sodium Attack\"", 
-           "Doery Defense" -> "\"Doery Defense\"", "Benko Gambit Accepted" -> 
-           "\"Benko Gambit Accepted\"", "Amazon Attack" -> 
-           "\"Amazon Attack\"", "Wade Defense" -> "\"Wade Defense\"", 
-           "Kangaroo Defense" -> "\"Kangaroo Defense\"", "Semi-Bononi" -> 
-           "\"Semi-Bononi\"", "Benko Gambit Declined" -> 
-           "\"Benko Gambit Declined\"", "Slav Indian" -> "\"Slav Indian\"", 
-           "Slav Defense #3" -> "\"Slav Defense #3\"", "Benko Gambit" -> 
-           "\"Benko Gambit\"", "Petrov" -> "\"Petrov\"", 
-           "Petrov's Defense #4" -> "\"Petrov's Defense #4\"", 
-           "Danish Gambit" -> "\"Danish Gambit\"", 
-           "Englund Gambit Complex Declined" -> 
-           "\"Englund Gambit Complex Declined\"", 
-           "Blumenfeld Countergambit Accepted" -> 
-           "\"Blumenfeld Countergambit Accepted\"", "Lemming Defense" -> 
-           "\"Lemming Defense\"", "Richter-Veresov Attack #2" -> 
-           "\"Richter-Veresov Attack #2\"", "Queen's Indian Accelerated" -> 
-           "\"Queen's Indian Accelerated\"", "Australian Defense" -> 
-           "\"Australian Defense\"", "Ware Defense" -> "\"Ware Defense\"", 
-           "Valencia Opening" -> "\"Valencia Opening\"", "Scotch Gambit" -> 
-           "\"Scotch Gambit\"", "Old Benoni Defense #2" -> 
-           "\"Old Benoni Defense #2\"", "Alekhine Defense #3" -> 
-           "\"Alekhine Defense #3\"", "Czech Defense" -> "\"Czech Defense\"", 
-           "King's Indian" -> "\"King's Indian\"", "Barnes Opening" -> 
-           "\"Barnes Opening\"", "Center Game Accepted" -> 
-           "\"Center Game Accepted\"", "Danish Gambit Declined" -> 
-           "\"Danish Gambit Declined\"", "Canard Opening" -> 
-           "\"Canard Opening\"", "Pterodactyl Defense" -> 
-           "\"Pterodactyl Defense\"", "Rubinstein Opening" -> 
-           "\"Rubinstein Opening\""}], 
-         TemplateBox[{100}, "Spacer1"], 
-         InterpretationBox[
-          Cell[
-           BoxData[
-            FormBox[
-             StyleBox["\"Type of win: \"", Bold, 20, 
-              RGBColor[0, 1, 0], FontFamily -> "Helvetica Neue", StripOnInput -> 
-              False], TextForm]], "InlineText"], 
-          Text[
-           Style["Type of win: ", Bold, 20, 
-            RGBColor[0, 1, 0], FontFamily -> "Helvetica Neue"]]], 
-         PopupMenuBox[
-          Dynamic[ChessPackage`Private`victorySelectedValue], {
-          "outoftime" -> "\"outoftime\"", "resign" -> "\"resign\"", "mate" -> 
-           "\"mate\"", "draw" -> "\"draw\""}], 
-         TemplateBox[{100}, "Spacer1"], 
-         ButtonBox[
-         "\"Filter\"", ButtonFunction :> 
-          ChessPackage`Private`getIndicesWithNamesNormalized[
-           ChessPackage`Private`openingSelectedValue, 
-            ChessPackage`Private`victorySelectedValue], Appearance -> 
-          Automatic, Evaluator -> Automatic, Method -> "Preemptive"]},
-        "RowDefault"]},
-      {
-       TemplateBox[{
-         InputFieldBox[
-          Dynamic[ChessPackage`Private`indexOfSelectedGame], Number, 
-          FieldHint -> "Type the game index here"], 
-         ButtonBox[
-         "\"Play\"", 
-          ButtonFunction :> ({
-            ChessPackage`Private`chessHistory, 
-             ChessPackage`Private`pgnMovesArray, 
-             ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
-             ChessPackage`Private`selectedId, ChessPackage`Private`typeofwin} = 
-           ChessPackage`selectedGame[ChessPackage`Private`data, 
-             ToExpression[ChessPackage`Private`indexOfSelectedGame]]), 
-          Appearance -> Automatic, Evaluator -> Automatic, Method -> 
-          "Preemptive"]},
-        "RowDefault"]},
+       DynamicBox[ToBoxes[
+         If[ChessPackage`Public`gamemode == False, 
+          Column[{
+            Row[{
+              Text[
+               Style[
+               "Opening: ", Bold, 20, Green, FontFamily -> "Helvetica Neue"]], 
+              PopupMenu[
+               Dynamic[ChessPackage`Public`openingSelectedValue], 
+               ChessPackage`Public`openings], 
+              Spacer[100], 
+              Text[
+               Style[
+               "Type of win: ", Bold, 20, Green, FontFamily -> 
+                "Helvetica Neue"]], 
+              PopupMenu[
+               Dynamic[ChessPackage`Public`victorySelectedValue], 
+               ChessPackage`Public`winTypes], 
+              Spacer[100], 
+              Button["Filter", 
+               ChessPackage`Public`getIndicesWithNamesNormalized[
+               ChessPackage`Public`openingSelectedValue, 
+                ChessPackage`Public`victorySelectedValue]]}], 
+            Row[{
+              InputField[
+               Dynamic[ChessPackage`Public`indexOfSelectedGame], Number, 
+               FieldHint -> "Type the game index here"], 
+              Button[
+              "Play", {
+                ChessPackage`Public`chessHistory, 
+                 ChessPackage`Public`pgnMovesArray, 
+                 ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
+                 ChessPackage`Public`selectedId, 
+                 ChessPackage`Public`typeofwin} = 
+               ChessPackage`selectedGame[ChessPackage`Public`data, 
+                 ToExpression[ChessPackage`Public`indexOfSelectedGame]]]}]}, 
+           Alignment -> Center], ""], StandardForm],
+        ImageSizeCache->{
+         492.83556776363537`, {17.875429736766602`, 20.768398388232672`}}]},
       {
        TemplateBox[{
          TagBox[
           GridBox[{{
              DynamicBox[
               ToBoxes[
-               ChessPackage`Private`chessAnimate[
-               ChessPackage`Private`chessHistory, 
-                ChessPackage`Private`pgnMovesArray], StandardForm], 
-              ImageSizeCache -> {738., {295., 301.}}]}}, DefaultBaseStyle -> 
-           "Column", GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+               ChessPackage`Public`chessAnimate[
+               ChessPackage`Public`chessHistory, 
+                ChessPackage`Public`pgnMovesArray], StandardForm], 
+              ImageSizeCache -> {
+               473., {198.05351567426698`, 200.94648432573302`}}]}}, 
+           DefaultBaseStyle -> "Column", 
+           GridBoxAlignment -> {"Columns" -> {{Left}}}, 
            GridBoxItemSize -> {
             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
-         
          TemplateBox[{1}, "Spacer1"], 
          DynamicBox[
           ToBoxes[
-           Grid[
-            MapThread[{#, 
-              Button[
-              "\[FilledRightTriangle]", {
-                ChessPackage`Private`chessHistory, 
-                 ChessPackage`Private`pgnMovesArray, 
-                 ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
-                 ChessPackage`Private`selectedId, 
-                 ChessPackage`Private`typeofwin} = 
-               ChessPackage`selectedGame[ChessPackage`Private`data, 
-                 ToExpression[
-                  First[
-                   StringSplit[#, " "]]]]]}& , {
-             ChessPackage`Private`indicesWithNamesNormalized}], Frame -> All],
-            StandardForm]], 
-         ButtonBox[
-         "\"RANDOM\"", 
-          ButtonFunction :> ({
-            ChessPackage`Private`chessHistory, 
-             ChessPackage`Private`pgnMovesArray, 
-             ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
-             ChessPackage`Private`selectedId, ChessPackage`Private`typeofwin} = 
-           ChessPackage`randomGame[
-            ChessPackage`Private`data, ChessPackage`Private`dimensioneData]), 
-          Appearance -> Automatic, Evaluator -> Automatic, Method -> 
-          "Preemptive"]},
+           If[ChessPackage`Public`gamemode == False, 
+            Grid[
+             MapThread[{#, 
+               Button[
+               "\[FilledRightTriangle]", {{
+                  ChessPackage`Public`chessHistory, 
+                   ChessPackage`Public`pgnMovesArray, 
+                   ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
+                   ChessPackage`Public`selectedId, 
+                   ChessPackage`Public`typeofwin} = 
+                 ChessPackage`selectedGame[ChessPackage`Public`data, 
+                   ToExpression[
+                    First[
+                    StringSplit[#, " "]]]], 
+                 Print[
+                  ToExpression[
+                   First[
+                    StringSplit[#, " "]]]]}]}& , {
+              ChessPackage`Public`indicesWithNamesNormalized}], Frame -> All],
+             ""], StandardForm], 
+          ImageSizeCache -> {
+           87.88609298706055, {190.043515674267, 192.93648432573306`}}], 
+         DynamicBox[
+          ToBoxes[
+           If[ChessPackage`Public`gamemode == False, 
+            Button[
+            "RANDOM", {
+              ChessPackage`Public`chessHistory, 
+               ChessPackage`Public`pgnMovesArray, 
+               ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
+               ChessPackage`Public`selectedId, ChessPackage`Public`typeofwin} = 
+             ChessPackage`randomGame[
+              ChessPackage`Public`data, ChessPackage`Public`dimensioneData]], 
+            ""], StandardForm], 
+          ImageSizeCache -> {35.9, {5.949999999999999, 10.95}}]},
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
          If[
           Or[
-          ChessPackage`Private`gamemode == False, ChessPackage`Private`reveal == 
+          ChessPackage`Public`gamemode == False, ChessPackage`Public`reveal == 
            True], 
           Row[{
             Dynamic[
              Text[
-              Style[ChessPackage`Private`selectedId, Bold, 15, 
+              Style[ChessPackage`Public`selectedId, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
             Spacer[3], 
             Dynamic[
              Text[
-              Style[ChessPackage`Private`name, Bold, 15, 
+              Style[ChessPackage`Public`name, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
             Spacer[3], 
             Dynamic[
              Text[
-              Style[ChessPackage`Private`typeofwin, Bold, 15, 
+              Style[ChessPackage`Public`typeofwin, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]]}], 
           Text[
            Style["?", Bold, 15, 
             Darker[Gray], FontFamily -> "Helvetica Neue"]]], StandardForm],
-        ImageSizeCache->{239., {5., 15.}}]},
+        ImageSizeCache->{215.3095013671875, {2.22509765625, 9.50537109375}}]},
       {
        TemplateBox[{
          DynamicBox[
           ToBoxes[
            Text[
             Style[
-            ChessPackage`Private`pgnmoves, Bold, 10, Gray, FontFamily -> 
+            ChessPackage`Public`pgnmoves, Bold, 10, Gray, FontFamily -> 
              "Helvetica Neue"]], StandardForm], 
-          ImageSizeCache -> {1202., {21., 10.}}]},
+          ImageSizeCache -> {
+           833.9384972572321, {12.2587890625, 6.3369140625}}]},
         "RowDefault"]},
       {
-       InterpretationBox[Cell[BoxData[
-         FormBox[
-          StyleBox["\<\"What's the opening?\"\>",
-           StripOnInput->False,
-           
-           LineColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           FrontFaceColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           BackFaceColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           GraphicsColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           FontFamily->"Helvetica Neue",
-           FontSize->15,
-           FontWeight->Bold,
-           
-           FontColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
-           TextForm]], "InlineText",ExpressionUUID->
-         "22cf9e31-1707-4379-8c0e-8a91c507131c"],
-        Text[
-         Style["What's the opening?", Bold, 15, 
-          RGBColor[
-          0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`], 
-          FontFamily -> "Helvetica Neue"]]]},
-      {
-       InputFieldBox[Dynamic[ChessPackage`Private`answer], String,
-        FieldHint->"Type your answer here"]},
-      {
-       ButtonBox["\<\"Submit\"\>",
-        Appearance->Automatic,
-        ButtonFunction:>If[
-         ChessPackage`Private`answer == ChessPackage`Private`name, 
-          ChessPackage`Private`answerResult = "Correct answer!", 
-          ChessPackage`Private`answerResult = "Wrong answer!"],
-        Evaluator->Automatic,
-        Method->"Preemptive"]},
-      {
-       InterpretationBox[Cell[BoxData[
-         FormBox[
-          StyleBox[
-           DynamicBox[ToBoxes[ChessPackage`Private`answerResult, StandardForm],
-            ImageSizeCache->{0., {0., 8.142749999999998}}],
-           StripOnInput->False,
-           
-           LineColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           FrontFaceColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           BackFaceColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           
-           GraphicsColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`],
-           
-           FontFamily->"Helvetica Neue",
-           FontSize->15,
-           FontWeight->Bold,
-           
-           FontColor->RGBColor[
-            0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
-           TextForm]], "InlineText",ExpressionUUID->
-         "096924a2-e570-4f6c-b55d-8e7417065d36"],
-        Text[
-         Style[
-          Dynamic[ChessPackage`Private`answerResult], Bold, 15, 
-          RGBColor[
-          0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`], 
-          FontFamily -> "Helvetica Neue"]]]},
-      {
-       ButtonBox["\<\"Next question \[RightArrow]\"\>",
-        Appearance->Automatic,
-        ButtonFunction:>{{
-           ChessPackage`Private`chessHistory, 
-            ChessPackage`Private`pgnMovesArray, ChessPackage`Private`pgnmoves,
-             ChessPackage`Private`name, ChessPackage`Private`selectedId, 
-            ChessPackage`Private`typeofwin} = 
-          ChessPackage`randomGame[
-           ChessPackage`Private`data, ChessPackage`Private`dimensioneData], 
-          ChessPackage`Private`reveal = False, 
-          ChessPackage`Private`answerResult = ""},
-        Evaluator->Automatic,
-        Method->"Preemptive"]},
-      {
-       ButtonBox["\<\"Reveal the opening\"\>",
-        Appearance->Automatic,
-        ButtonFunction:>(ChessPackage`Private`reveal = 
-         Not[ChessPackage`Private`reveal]),
-        Evaluator->Automatic,
-        Method->"Preemptive"]},
+       DynamicBox[ToBoxes[
+         If[ChessPackage`Public`gamemode == True, 
+          Column[{
+            Text[
+             Style["What's the opening?", Bold, 15, 
+              Darker[Gray], FontFamily -> "Helvetica Neue"]], 
+            InputField[
+             Dynamic[ChessPackage`Public`answer], String, FieldHint -> 
+             "Type your answer here"], 
+            Button["Submit", 
+             If[
+             ChessPackage`Public`answer == ChessPackage`Public`name, 
+              ChessPackage`Public`answerResult = "Correct answer!", 
+              ChessPackage`Public`answerResult = "Wrong answer!"]], 
+            Text[
+             Style[
+              Dynamic[ChessPackage`Public`answerResult], Bold, 15, 
+              Darker[Gray], FontFamily -> "Helvetica Neue"]], 
+            Button[
+            "Next question \[RightArrow]", {{
+               ChessPackage`Public`chessHistory, 
+                ChessPackage`Public`pgnMovesArray, 
+                ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
+                ChessPackage`Public`selectedId, 
+                ChessPackage`Public`typeofwin} = 
+              ChessPackage`randomGame[
+               ChessPackage`Public`data, ChessPackage`Public`dimensioneData], 
+              ChessPackage`Public`reveal = False, 
+              ChessPackage`Public`answerResult = ""}], 
+            Button[
+            "Reveal the opening", ChessPackage`Public`reveal = 
+             Not[ChessPackage`Public`reveal]]}, Alignment -> Center], ""], 
+         StandardForm],
+        ImageSizeCache->{0., {0., 3.15}}]},
       {
        ButtonBox[
         DynamicBox[ToBoxes[
-         "Gamemode: " <> ToString[ChessPackage`Private`gamemode], 
-          StandardForm],
-         ImageSizeCache->{114., {0.22661132812499998`, 10.037548828124999`}}],
-        
+         "Gamemode: " <> ToString[ChessPackage`Public`gamemode], StandardForm],
+         ImageSizeCache->{
+          49.237207031249994`, {0.07382812500000036, 4.6634765625}}],
         Appearance->Automatic,
         ButtonFunction:>{{
-           ChessPackage`Private`chessHistory, 
-            ChessPackage`Private`pgnMovesArray, ChessPackage`Private`pgnmoves,
-             ChessPackage`Private`name, ChessPackage`Private`selectedId, 
-            ChessPackage`Private`typeofwin} = 
+           ChessPackage`Public`chessHistory, 
+            ChessPackage`Public`pgnMovesArray, ChessPackage`Public`pgnmoves, 
+            ChessPackage`Public`name, ChessPackage`Public`selectedId, 
+            ChessPackage`Public`typeofwin} = 
           ChessPackage`randomGame[
-           ChessPackage`Private`data, ChessPackage`Private`dimensioneData], 
-          ChessPackage`Private`gamemode = Not[ChessPackage`Private`gamemode], 
-          ChessPackage`Private`reveal = False, 
-          ChessPackage`Private`answerResult = ""},
+           ChessPackage`Public`data, ChessPackage`Public`dimensioneData], 
+          ChessPackage`Public`gamemode = Not[ChessPackage`Public`gamemode], 
+          ChessPackage`Public`reveal = False, 
+          ChessPackage`Public`answerResult = ""},
         Evaluator->Automatic,
         Method->"Preemptive"]}
      },
@@ -584,33 +362,34 @@ Cell[BoxData[
    3.924947311696352*^9, 3.924947413677062*^9, {3.924947447802054*^9, 
    3.924947473811917*^9}, 3.924947576887327*^9, 3.924947677133548*^9, {
    3.924947891925602*^9, 3.9249479137511*^9}, 3.924947965622197*^9, 
-   3.9252077654013376`*^9, 3.925208648110647*^9, 3.9252090969873714`*^9, 
+   3.925207765401338*^9, 3.925208648110647*^9, 3.9252090969873714`*^9, 
    3.925306270082049*^9, {3.9253064804157677`*^9, 3.925306503657838*^9}, {
    3.925307077363945*^9, 3.925307084787488*^9}, {3.9253071567986097`*^9, 
    3.925307173924054*^9}, 3.9253074619487534`*^9, {3.925307520425336*^9, 
    3.925307533357861*^9}, 3.925307597582555*^9, 3.925307717821403*^9, 
    3.925307800270249*^9, 3.925307838086624*^9, 3.925307890538484*^9, 
-   3.9253079596991177`*^9, 3.925308033544077*^9, {3.925308100448999*^9, 
+   3.925307959699118*^9, 3.925308033544077*^9, {3.925308100448999*^9, 
    3.925308130008195*^9}, 3.9253082279801817`*^9, 3.925308372186008*^9, 
    3.925308524147805*^9, {3.925309436441983*^9, 3.925309480181161*^9}, 
    3.925309554529635*^9, 3.925309615534669*^9, 3.925310144002336*^9, 
    3.9253109741098347`*^9, 3.92531104728786*^9, 3.925311122761408*^9, 
-   3.925311432053399*^9, 3.925311898594246*^9, 3.925312505306621*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"abbf65e8-c9cb-4b26-9d4d-80da94a74a17"]
+   3.925311432053399*^9, 3.925311898594246*^9, 3.925312505306621*^9, 
+   3.92540192991696*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"59c51093-9830-0f41-9bce-00ab862cf4ff"]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.924943649465107*^9, 3.9249436603568344`*^9}},
- CellLabel->"In[92]:=",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
+ CellLabel->"In[3]:=",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.9252086146882534`*^9, 3.9252086254698124`*^9}},
- CellLabel->"In[93]:=",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
+ CellChangeTimes->{{3.925208614688253*^9, 3.925208625469812*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
 },
-WindowSize->{Full, Full},
-WindowMargins->{{4, 628}, {96, 4}},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
 Magnification:>0.7 Inherited,
-FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"cb06454f-b928-46f3-badb-3b5bdbc51b01"
 ]
@@ -626,11 +405,11 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 6779, 101, 98, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[7362, 125, 24251, 473, 1050, "Output",ExpressionUUID->"abbf65e8-c9cb-4b26-9d4d-80da94a74a17"]
+Cell[580, 22, 6788, 100, 60, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[7371, 124, 11772, 253, 570, "Output",ExpressionUUID->"59c51093-9830-0f41-9bce-00ab862cf4ff"]
 }, Open  ]],
-Cell[31628, 601, 173, 2, 31, "Input",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
-Cell[31804, 605, 175, 2, 31, "Input",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
+Cell[19158, 380, 172, 2, 21, "Input",ExpressionUUID->"40787d79-94bd-0d46-8624-5feb1a0e2795"],
+Cell[19333, 384, 170, 2, 21, "Input",ExpressionUUID->"ee0e0430-86c2-fa42-bc64-73b24f59f192"]
 }
 ]
 *)

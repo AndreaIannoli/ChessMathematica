@@ -29,6 +29,7 @@ i::usage ="the index of the manipulate";
 
 
 Begin["`Public`"]
+(* Decomment to print the list of imported functions on main*)
 (*Print["List of Functions"];
 Print["\tChessState"];
 Print["\tChessPlot"];
@@ -39,55 +40,81 @@ Print["\trandomGame"];
 Print["\tselectedGame"]*)
 
 
-packageDir = $InputFileName; (*Package directory declaration*)
+(* Define the package directory based on the full path of the file *)
+packageDir = $InputFileName; 
 
 
-pieceNamesShort = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};(*chess pieces name declaration*)
-wpn = Table["White" <> pieceName, {pieceName, pieceNamesShort}]; (*declaring chess white pieces*)
-bpn = Table["Black" <> pieceName, {pieceName, pieceNamesShort}]; (*declaring chess black pieces*)
-pieceNames = wpn ~Join~ bpn; (*joining the black and white pieces names array*)
-AppendTo[pieceNames, "EmptySquare"]; 
+(* Declare an array of chess piece names (short versions) *)
+pieceNamesShort = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
 
-whitePieces = {"\[WhiteKing]", "\[WhiteQueen]", "\[WhiteRook]", "\[WhiteBishop]", "\[WhiteKnight]", "\[WhitePawn]"}; (*declaring the white piece symbols*)
-blackPieces = {"\[BlackKing]", "\[BlackQueen]", "\[BlackRook]", "\[BlackBishop]", "\[BlackKnight]", "\[BlackPawn]"} ; (*declaring the black piece symbols*)
-pieceSymbols = whitePieces ~Join~ blackPieces ~Join~ {"\[EmptySquare]"}; (*declaring the black piece symbols*)
-{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceSymbols; (*joining the black and white piece symbols array*)
+(* Create a list of white chess piece names by prepending "White" to each piece name *)
+wpn = Table["White" <> pieceName, {pieceName, pieceNamesShort}];
+
+(* Create a list of black chess piece names by prepending "Black" to each piece name *)
+bpn = Table["Black" <> pieceName, {pieceName, pieceNamesShort}];
+
+(* Combine the lists of white and black piece names into a single list *)
+pieceNames = wpn ~Join~ bpn;
+
+(* Append "EmptySquare" to the combined list to represent an empty square on the chessboard *)
+AppendTo[pieceNames, "EmptySquare"];
+
+(* Declare the symbols for white chess pieces *)
+whitePieces = {"\[WhiteKing]", "\[WhiteQueen]", "\[WhiteRook]", "\[WhiteBishop]", "\[WhiteKnight]", "\[WhitePawn]"};
+
+(* Declare the symbols for black chess pieces *)
+blackPieces = {"\[BlackKing]", "\[BlackQueen]", "\[BlackRook]", "\[BlackBishop]", "\[BlackKnight]", "\[BlackPawn]"};
+
+(* Combine the symbols for white and black pieces and add the symbol for an empty square *)
+pieceSymbols = whitePieces ~Join~ blackPieces ~Join~ {"\[EmptySquare]"};
+
+(* Assign the symbols to individual variables for easy reference *)
+{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceSymbols;
+
+(* Note: The following line is commented out. If uncommented, it would assign the names to the symbols. *)
 (*{\[WhiteKing], \[WhiteQueen], \[WhiteRook], \[WhiteBishop], \[WhiteKnight], \[WhitePawn], \[BlackKing], \[BlackQueen], \[BlackRook], \[BlackBishop], \[BlackKnight], \[BlackPawn], \[EmptySquare]} = pieceNames;*)
 
-(*Please Note! there is a .mx file used to contain the piece images*)
+(* Check if the piece images file exists in the package directory *)
 If[
-	FileExistsQ[packageDir <> "pieceImages.mx"] (*checking if the mx file exists, if not start the download of the images*)
-	,
-	pieceImages = Import[packageDir <> "pieceImages.mx"]; (*it joins the packagedir string with the standard mx file name string and import it*)
-	(*Print["Chess piece images were loaded."]; *)
-	,
-	(*create an array with the links of the piece images from wikimedia*)
-	piecePicLinksWiki =
-		{
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt45.svg/75px-Chess_klt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt45.svg/75px-Chess_qlt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt45.svg/75px-Chess_rlt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt45.svg/75px-Chess_blt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt45.svg/75px-Chess_nlt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt45.svg/75px-Chess_plt45.svg.png"
-		} ~Join~
-		{
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Chess_kdt45.svg/75px-Chess_plt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Chess_qdt45.svg/75px-Chess_qdt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/75px-Chess_rdt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Chess_bdt45.svg/75px-Chess_bdt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chess_ndt45.svg/75px-Chess_ndt45.svg.png",
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Chess_pdt45.svg/75px-Chess_pdt45.svg.png"
-		};
+    FileExistsQ[packageDir <> "pieceImages.mx"], (* If the file exists *)
+    pieceImages = Import[packageDir <> "pieceImages.mx"]; (* Import the piece images from the file *)
+    (*Print["Chess piece images were loaded."]; Commented out print statement for loading message *)
+    ,
+    (* If the file does not exist, proceed to download the images *)
 
-	imagePicMotherLink = "https://marcelk.net/chess/pieces/merida/320/";
-	piecePicLinks = Table["https://marcelk.net/chess/pieces/merida/320/" <> pieceName <> ".png", {pieceName, Most @ pieceNames}];
+    (* Create an array with links to the piece images from Wikimedia *)
+    piecePicLinksWiki = {
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt45.svg/75px-Chess_klt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt45.svg/75px-Chess_qlt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt45.svg/75px-Chess_rlt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt45.svg/75px-Chess_blt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt45.svg/75px-Chess_nlt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt45.svg/75px-Chess_plt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Chess_kdt45.svg/75px-Chess_plt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Chess_qdt45.svg/75px-Chess_qdt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/75px-Chess_rdt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Chess_bdt45.svg/75px-Chess_bdt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chess_ndt45.svg/75px-Chess_ndt45.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Chess_pdt45.svg/75px-Chess_pdt45.svg.png"
+    };
 
-	pieceImages = 
-		Import /@ piecePicLinksWiki;(*Import the piece images downloading them from the links*)
-	AppendTo[pieceImages, Graphics[{Hue[0, 0, 1, 0], Rectangle[]}, ImageSize -> ImageDimensions @ First @ pieceImages]]; (*Append to the piece images array an empty rectangle to show when the chess box is free*)
-	Export[packageDir <> "pieceImages.mx",pieceImages]; (*once the images are downloaded it exports them in the mx file so they can be loaded instead of downloaded the next time*)
-	Print["Chess piece images were downloaded."]; (*Print a message to say that the images have been downloaded*)
+    (* Base URL for another set of chess piece images *)
+    imagePicMotherLink = "https://marcelk.net/chess/pieces/merida/320/";
+
+    (* Create an array of full URLs to the piece images *)
+    piecePicLinks = Table["https://marcelk.net/chess/pieces/merida/320/" <> pieceName <> ".png", {pieceName, Most @ pieceNames}];
+
+    (* Import the piece images from the Wikimedia links *)
+    pieceImages = Import /@ piecePicLinksWiki;
+
+    (* Append a graphical representation of an empty square to the piece images array *)
+    AppendTo[pieceImages, Graphics[{Hue[0, 0, 1, 0], Rectangle[]}, ImageSize -> ImageDimensions @ First @ pieceImages]];
+
+    (* Export the imported piece images to a .mx file for future use *)
+    Export[packageDir <> "pieceImages.mx", pieceImages];
+
+    (* Print a message indicating that the piece images have been downloaded *)
+    Print["Chess piece images were downloaded."]
 ]
 
 
@@ -97,7 +124,8 @@ pieceObj =
 		#1 -> <|"Name" -> #2, "Symbol" -> #3, "Image" -> #4|>&,
 		{pieceSymbols, pieceNames, pieceSymbols, pieceImages}
 	];
-	
+
+(* Convert the list of rules to an association for easy lookup *)	
 pieceObj = Association @ pieceObj;
 
 (* Define the columns and rows of the chessboard. *)
@@ -107,9 +135,9 @@ ranks = {"1", "2", "3", "4", "5", "6", "7", "8"}; (* Chessboard rows. *)
 rankSize = Length @ ranks; (* Number of rows. *)
 
 (* Generate chessboard pattern *)
-emptyBoard = Table[Mod[i + j, 2], {i, 8}, {j, 8}];
-bottomLeftBlackBoard = Table[Mod[i + j    , 2], {i, 8}, {j, 8}];
-bottomLeftWhiteBoard = Table[Mod[i + j + 1, 2], {i, 8}, {j, 8}];
+emptyBoard = Table[Mod[i + j, 2], {i, 8}, {j, 8}]; (* Standard empty chessboard pattern *)
+bottomLeftBlackBoard = Table[Mod[i + j    , 2], {i, 8}, {j, 8}]; (* Board with bottom-left square black *)
+bottomLeftWhiteBoard = Table[Mod[i + j + 1, 2], {i, 8}, {j, 8}]; (* Board with bottom-left square white *)
 
 (* Define the Black Coordinate Matrix (BCM) which maps chessboard positions from Black's perspective. *)
 bcm = \!\(\*
@@ -241,89 +269,97 @@ whiteRightCoordTable =
 	tabulateCoordInset[{i, j} |-> files[[j]] <> ranks[[9 - i]]];
 (* We only used default orientation in our project. *)
 				
-(* Define options for the ChessPlot function, combining default options with those of ArrayPlot. *)
+(* Define default options for the ChessPlot function. *)
 Options[ChessPlot] = Join[
-	{"WhiteOrientation" -> Automatic, "BoardColorSet" -> Automatic, "ShowCoordinates" -> True, "MatrixForm" -> False},
-	Options[ArrayPlot]
+    {
+        "WhiteOrientation" -> Automatic,  (* Orientation of the board, default is Automatic. *)
+        "BoardColorSet" -> Automatic,     (* Colors of the board squares, default is Automatic. *)
+        "ShowCoordinates" -> True,        (* Whether to show coordinates, default is True. *)
+        "MatrixForm" -> False             (* Whether to display the board as a matrix, default is False. *)
+    },
+    Options[ArrayPlot]                    (* Include options from ArrayPlot for customization. *)
 ];
 
 (* Define the ChessPlot function to visualize the chess state. *)
-ChessPlot[chessState_, opts: OptionsPattern[]] :=	
-	Module[
-		{cs = First[chessState], pieceInset, coordInset, insetList, emptyBoard, plot, LightSquareColor, DarkSquareColor},
-		
-		(* Handle the "MatrixForm" option. *)
-		If[OptionValue["MatrixForm"], 
-			Return[
-				MatrixForm[Partition[Values[cs[[ ;; rankSize fileSize]]], Length[files]]]
-			]
-		];
-		
-		(* Set up piece and coordinate insets based on the "WhiteOrientation" option. *)
-		Switch[
-			OptionValue["WhiteOrientation"],
-			Automatic | "Down",
-				pieceInset = tabulatePieceInset[{i, j} |-> files[[i]] <> ranks[[j]], cs];
-				coordInset = whiteDownCoordTable;
-				emptyBoard = bottomLeftBlackBoard;
-			,
-			"Up",
-				pieceInset = tabulatePieceInset[{i, j} |-> files[[9 - i]] <> ranks[[9 - j]], cs];
-				coordInset = whiteUpCoordTable;
-				emptyBoard = bottomLeftBlackBoard;
-			,
-			"Left",
-				pieceInset = tabulatePieceInset[{i, j} |-> files[[9 - j]] <> ranks[[i]], cs];
-				coordInset = whiteLeftCoordTable;
-				emptyBoard = bottomLeftWhiteBoard;
-			,
-			"Right",
-				pieceInset = tabulatePieceInset[{i, j} |-> files[[j]] <> ranks[[9 - i]], cs];
-				coordInset = whiteRightCoordTable;
-				emptyBoard = bottomLeftWhiteBoard;
-			,
-			_,
-				Print["Wrong \"WhiteOrientation\" option was provided. Try \"Up\" for instance."]; Return[$Failed];
-		];
-		
-		(* Set up the board colors based on the "BoardColorSet" option. *)
-		Switch[
-			OptionValue["BoardColorSet"],
-			Automatic,
-				LightSquareColor = RGBColor[1.0, 0.8, 0.6];
-				DarkSquareColor  = RGBColor[0.8, 0.5, 0.3];
-			,
-			{_?ColorQ, _?ColorQ},
-				{LightSquareColor, DarkSquareColor} = OptionValue["BoardColorSet"];
-			,
-			_,
-				Print["Wrong \"BoardColorSet\" Sepcified. Try {White, Gray} for instance."]; Return[$Failed];
-		];
-		
-		(* Set up the insets list based on the "ShowCoordinates" option. *)
-		Switch[
-			OptionValue["ShowCoordinates"],
-			True,
-				insetList = pieceInset ~Join~ coordInset;
-			,
-			False,
-				insetList = pieceInset ~Join~ {};
-			,
-			_,
-				Print["\"ShowCoordinates\" can either be True or False."]; Return[$Failed];
-		];
-		
-		(* Create the chessboard plot using ArrayPlot. *)
-		plot = 		
-			ArrayPlot[
-				emptyBoard,
-				ColorRules -> {0 -> LightSquareColor, 1 -> DarkSquareColor}, 
-				Epilog -> insetList,
-				FilterRules[{opts}, Options[ArrayPlot]]
-			];
-		
-		plot
-	]
+ChessPlot[chessState_, opts : OptionsPattern[]] :=    
+    Module[
+        {
+            cs = First[chessState], pieceInset, coordInset, insetList, emptyBoard, plot, LightSquareColor, DarkSquareColor
+        },
+        
+        (* Handle the "MatrixForm" option. If True, return a MatrixForm of the chess state. *)
+        If[OptionValue["MatrixForm"], 
+            Return[
+                MatrixForm[Partition[Values[cs[[ ;; rankSize fileSize]]], Length[files]]]
+            ]
+        ];
+        
+        (* Set up piece and coordinate insets based on the "WhiteOrientation" option. *)
+        Switch[
+            OptionValue["WhiteOrientation"],
+            Automatic | "Down",  (* Default orientation or White at the bottom. *)
+                pieceInset = tabulatePieceInset[{i, j} |-> files[[i]] <> ranks[[j]], cs];  (* Pieces placed normally. *)
+                coordInset = whiteDownCoordTable;  (* Coordinates shown with White at the bottom. *)
+                emptyBoard = bottomLeftBlackBoard;  (* Standard empty board pattern. *)
+            ,
+            "Up",  (* White at the top. *)
+                pieceInset = tabulatePieceInset[{i, j} |-> files[[9 - i]] <> ranks[[9 - j]], cs];  (* Pieces flipped vertically. *)
+                coordInset = whiteUpCoordTable;  (* Coordinates shown with White at the top. *)
+                emptyBoard = bottomLeftBlackBoard;  (* Standard empty board pattern. *)
+            ,
+            "Left",  (* White on the left. *)
+                pieceInset = tabulatePieceInset[{i, j} |-> files[[9 - j]] <> ranks[[i]], cs];  (* Pieces rotated 90 degrees counterclockwise. *)
+                coordInset = whiteLeftCoordTable;  (* Coordinates shown with White on the left. *)
+                emptyBoard = bottomLeftWhiteBoard;  (* Board pattern adjusted for left orientation. *)
+            ,
+            "Right",  (* White on the right. *)
+                pieceInset = tabulatePieceInset[{i, j} |-> files[[j]] <> ranks[[9 - i]], cs];  (* Pieces rotated 90 degrees clockwise. *)
+                coordInset = whiteRightCoordTable;  (* Coordinates shown with White on the right. *)
+                emptyBoard = bottomLeftWhiteBoard;  (* Board pattern adjusted for right orientation. *)
+            ,
+            _,  (* Handle invalid orientation options. *)
+                Print["Wrong \"WhiteOrientation\" option was provided. Try \"Up\" for instance."]; Return[$Failed];
+        ];
+        
+        (* Set up the board colors based on the "BoardColorSet" option. *)
+        Switch[
+            OptionValue["BoardColorSet"],
+            Automatic,  (* Default colors for the board. *)
+                LightSquareColor = RGBColor[1.0, 0.8, 0.6];  (* Light square color. *)
+                DarkSquareColor  = RGBColor[0.8, 0.5, 0.3];  (* Dark square color. *)
+            ,
+            {_?ColorQ, _?ColorQ},  (* Custom colors for the board. *)
+                {LightSquareColor, DarkSquareColor} = OptionValue["BoardColorSet"];
+            ,
+            _,  (* Handle invalid color options. *)
+                Print["Wrong \"BoardColorSet\" Specified. Try {White, Gray} for instance."]; Return[$Failed];
+        ];
+        
+        (* Set up the insets list based on the "ShowCoordinates" option. *)
+        Switch[
+            OptionValue["ShowCoordinates"],
+            True,  (* Show coordinates. *)
+                insetList = pieceInset ~Join~ coordInset;
+            ,
+            False,  (* Do not show coordinates. *)
+                insetList = pieceInset ~Join~ {};
+            ,
+            _,  (* Handle invalid options for showing coordinates. *)
+                Print["\"ShowCoordinates\" can either be True or False."]; Return[$Failed];
+        ];
+        
+        (* Create the chessboard plot using ArrayPlot. *)
+        plot =         
+            ArrayPlot[
+                emptyBoard,
+                ColorRules -> {0 -> LightSquareColor, 1 -> DarkSquareColor},  (* Assign colors to the squares. *)
+                Epilog -> insetList,  (* Add piece and coordinate insets. *)
+                FilterRules[{opts}, Options[ArrayPlot]]  (* Apply additional ArrayPlot options. *)
+            ];
+        
+        plot
+    ]
+
 	
 (* Define the map functions shortcuts for ChessPlot with different options*)
 mp = ChessPlot[#, "MatrixForm" -> True]&;
@@ -338,6 +374,8 @@ inRangeQ[pos_] :=
 	]
 
 (* Define function B1 to calculate possible moves for pawns *)
+(* This is the only piece moving function that is going to be commente deeply, 
+as the other functions for piece's movement work basically the same but with diffenrent conditions *)
 B1[ch_] :=
 	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, coordMatrix, pos1, pos2, pos3, coord2, cond1, cond2, act1, act2},
 		actions = {}; (* Initialize the list of actions *)
@@ -387,7 +425,7 @@ B1[ch_] :=
 		Return[actions]; (* Return the list of possible actions *)
 	]
 
-(* Same as B1 but for pawn's double step *)
+(* As B1 but for pawn's double step *)
 B2[ch_] :=
 	Module[{S = First[Last[ch]], actions, turn, piece, pos1List, coordMatrix, pos1, pos2, pos3, coord2, coord3, cond1, cond2, cond3, act1, act2},
 		actions = {};
@@ -523,6 +561,7 @@ KnightMoves[ch_] :=
 		Return[actions];
 	]
 
+(* Function to update the state of the board and append it to chessHistory, then returns chessHistory *)
 ChessEvolve[chessHistory_, actions:{__Rule}] := 
 	Module[{S = First[Last[chessHistory]]}, (* Extract the latest state *)
 		Do[
@@ -604,10 +643,11 @@ randomGame[data_,dimensioneData_]:= Module[
 {index,coordmoves,pgnmoves, chessHistory, pgnMovesArray, name, typeofwin},
 index=RandomInteger[{1,dimensioneData}]; (* Randomly select an index *)
 	(* Extract coordinate moves and PGN notation moves from data *)
-	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"];   
+	coordmoves=ImportString[data[[index,"processed_moves"]],"CSV"]; 
 	pgnmoves=data[[index,"moves"]];
 	pgnMovesArray = StringSplit[pgnmoves, " "];  (* Split PGN notation into an array of moves *)
-	name = data[[index,"opening_name"]];
+	(* Extract the opening name and the type of win from data *)
+	name = data[[index,"opening_name"]]; 
 	typeofwin = data[[index,"victory_status"]];
 convertToRules[coordmoves_]:=Thread[Rule@@@coordmoves];   (* Convert coordinate moves to rules for ChessMove *)
 moves = ChessMove/@convertToRules[coordmoves]; (* Create ChessMove objects *)
