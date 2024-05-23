@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     16299,        348]
-NotebookOptionsPosition[     15745,        329]
-NotebookOutlinePosition[     16215,        347]
-CellTagsIndexPosition[     16172,        344]
+NotebookDataLength[     16455,        350]
+NotebookOptionsPosition[     15936,        332]
+NotebookOutlinePosition[     16371,        349]
+CellTagsIndexPosition[     16328,        346]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -121,7 +121,7 @@ Cell[BoxData[
    3.925311889167094*^9, 3.925311895619164*^9}, {3.925312491082549*^9, 
    3.925312503449362*^9}, {3.9254020578451576`*^9, 3.925402061783287*^9}},
  NumberMarks->False,
- CellLabel->"In[94]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+ CellLabel->"In[1]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  DynamicModuleBox[{}, 
@@ -179,7 +179,7 @@ Cell[BoxData[
                  ToExpression[ChessPackage`Public`indexOfSelectedGame]]]}]}, 
            Alignment -> Center], ""], StandardForm],
         ImageSizeCache->{
-         492.835567763634, {17.875429736766602`, 20.768398388232672`}}]},
+         492.83556776363537`, {17.875429736766602`, 20.768398388232672`}}]},
       {
        TemplateBox[{
          TagBox[
@@ -213,7 +213,9 @@ Cell[BoxData[
                     First[
                     StringSplit[#, " "]]]]}]}& , {
               ChessPackage`Public`indicesWithNamesNormalized}], Frame -> All],
-             ""], StandardForm]], 
+             ""], StandardForm], 
+          ImageSizeCache -> {
+           87.88609298706055, {190.043515674267, 192.93648432573306`}}], 
          DynamicBox[
           ToBoxes[
            If[ChessPackage`Public`gamemode == False, 
@@ -225,7 +227,8 @@ Cell[BoxData[
                ChessPackage`Public`selectedId, ChessPackage`Public`typeofwin} = 
              ChessPackage`randomGame[
               ChessPackage`Public`data, ChessPackage`Public`dimensioneData]], 
-            ""], StandardForm]]},
+            ""], StandardForm], 
+          ImageSizeCache -> {35.9, {5.949999999999999, 10.95}}]},
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
@@ -251,7 +254,7 @@ Cell[BoxData[
           Text[
            Style["?", Bold, 15, 
             Darker[Gray], FontFamily -> "Helvetica Neue"]]], StandardForm],
-        ImageSizeCache->{136.7355267578125, {2.22509765625, 9.50537109375}}]},
+        ImageSizeCache->{129.4381634765625, {2.22509765625, 9.50537109375}}]},
       {
        TemplateBox[{
          DynamicBox[
@@ -261,7 +264,7 @@ Cell[BoxData[
             ChessPackage`Public`pgnmoves, Bold, 10, Gray, FontFamily -> 
              "Helvetica Neue"]], StandardForm], 
           ImageSizeCache -> {
-           303.27637567520145`, {1.4833984375, 6.3369140625}}]},
+           661.4316596031188, {1.4833984375, 6.3369140625}}]},
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
@@ -323,13 +326,12 @@ Cell[BoxData[
      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
     "Column"]],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.925462864384016*^9},
- CellLabel->"Out[95]=",ExpressionUUID->"382df614-bb73-e74b-867a-bf3be95bd08a"]
+ CellChangeTimes->{3.925462864384016*^9, 3.9254633753511314`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"68be8520-b005-df44-a6ff-f8bfa79df8b7"]
 }, Open  ]]
 },
-WindowSize->{1152, 579.6},
-WindowMargins->{{
-  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+WindowSize->{1141.2, 573.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 Magnification:>0.7 Inherited,
 FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
@@ -347,8 +349,8 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 6806, 101, 60, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[7389, 125, 8340, 201, 558, "Output",ExpressionUUID->"382df614-bb73-e74b-867a-bf3be95bd08a"]
+Cell[580, 22, 6805, 101, 60, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[7388, 125, 8532, 204, 558, "Output",ExpressionUUID->"68be8520-b005-df44-a6ff-f8bfa79df8b7"]
 }, Open  ]]
 }
 ]
