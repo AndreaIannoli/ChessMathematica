@@ -668,15 +668,14 @@ moves = ChessMove/@convertToRules[coordmoves]; (* Create ChessMove objects *)
 chessHistory = ChessPlay[{cs0}, moves];   (* Generate the game with initial state cs0 (Initialized board) and the extracted moves *)
 	{chessHistory, pgnMovesArray, pgnmoves, name, index, typeofwin}  (* Return game history, PGN move array, and PGN moves *)
 	]
-(* We close the package *)
 
 (*Import games dataset from the CSV file*)
 data=Import[FileNameJoin[{NotebookDirectory[],"gamesProcessed.csv"}],"Dataset","HeaderLines"->1];
 (*Determine the number of rows in the imported dataset*)
 dimensioneData=Length[data];
 
-(* We use the function randomGame to extract a random initial game *)
-{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData];
+(* We use the function selectedGame to extract an initial game *)
+{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data,29];
 
 (*Define a function chessAnimate to animate the chess game*)
 chessAnimate[chessHistory_, pgnMovesArray_]:=
@@ -738,6 +737,7 @@ reveal = False;
 Dynamic[reveal];
 
 
+(* We initialize a dynamic module for the interface rapresentation. *)
 plotGui[]:= DynamicModule[{}, gui=Panel[
 	Column[{
 		(*Title of the application*)
@@ -761,7 +761,7 @@ plotGui[]:= DynamicModule[{}, gui=Panel[
 		(* Grid containing filtered games *)
 		Grid[
 		(* Every row contains the game name (id and opening) and a play button to set it as current game *)
-		MapThread[{#1,Button["\[FilledRightTriangle]", {{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data, ToExpression@First[StringSplit[#1, " "]]], Print[ToExpression@First[StringSplit[#1, " "]]]} ]}&,{indicesWithNamesNormalized}],Frame->All], ""]],
+		MapThread[{#1,Button["\[FilledRightTriangle]", {{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=selectedGame[data, ToExpression@First[StringSplit[#1, " "]]](*, Print[ToExpression@First[StringSplit[#1, " "]]]*)} ]}&,{indicesWithNamesNormalized}],Frame->All], ""]],
 		(*Button for random game selection*)
 		Dynamic[If[gamemode == False, Button["RANDOM",{chessHistory, pgnMovesArray,pgnmoves, name, selectedId, typeofwin}=randomGame[data,dimensioneData]], ""]] 
 		}],
