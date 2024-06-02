@@ -17,32 +17,21 @@
 
 BeginPackage["ChessPackage`"]
 
-ChessState::usage  = "ChessState[Association] returns a chess object.";
-ChessPlot::usage   = "ChessPlot[ChessState] returns the graphical representation of chess state";
-ChessEvolve::usage = "ChessEvolve[ChessState, Move] returns an updated ChessState according to Move (e.g. {\"b1\" -> \[EmptySquare], \"a3\" -> \[WhiteKnight]})";
-KnightMoves::usage = "KnightMoves[ChessState] returns a list of all possible moves. Each move is a list of actions/rules.";
-InitializedChessState::usage = "Starting position.";
-randomGame::usage = "randomGame[data,dimensioneData] returns informations of a random game in data (chessHistory, pgnMovesArray, pgnmoves)";
-selectedGame::usage = "selectedGame[selectedIndex,dimensioneData] do the same as random game but for the game with the given index";
 plotGui::usage = "plotGui[] plot the gui";
-i::usage ="the index of the manipulate";
+i::usage ="the index of the manipulate"; (*The variable 'i' used in 'manipulate' represents the index of the move being displayed. It must be exported unless you want to see the package name next to the variable 'i' in 'manipulate'. Since the package is private, Mathematica specifies it. By removing this line of code, everything will work correctly, but you will see the package name next to the 'manipulate' variable.*)
 
 
-Begin["`Public`"]
+Begin["`Private`"]
 (* Decomment to print the list of imported functions on main*)
 (*Print["List of Functions"];
-Print["\tChessState"];
-Print["\tChessPlot"];
-Print["\tChessEvolve"];
-Print["\tKnightMoves"];
-Print["\tInitializedChessState"];
-Print["\trandomGame"];
-Print["\tselectedGame"]*)
+Print["\tplotGui"];*)
 
 
 (* Define the package directory based on the full path of the file *)
 packageDir = $InputFileName; 
 
+
+(*FROM HERE UNTIL THE NEXT COMMENT IN UPPERCASE THAT SPECIFIES IT, THE CODE IS FROM THE CHESS LIBRARY. WE ALSO MADE A FEW SMALL CHANGES IN THE FOLLOWING PART OF THE LIBRARY, BUT IT IS ONLY A FEW LINES OF CODE.*)
 
 (* Declare an array of chess piece names (short versions) *)
 pieceNamesShort = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
@@ -636,6 +625,8 @@ ChessPlay[chessHistory_, ChessMoves:{__ChessMove}] :=
 		history (* Return the updated game history *)
 	]
 
+
+(*FROM HERE ONWARDS, THE CODE IS ALL OURS, WHILE BEFORE THIS POINT, IT BELONGS TO THE LIBRARY, TO WHICH WE STILL HAD TO MAKE SOME CHANGES.*)
 
 cs0 = InitializedChessState;
 (* Method for random game selection *)
