@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     16231,        347]
-NotebookOptionsPosition[     15712,        329]
-NotebookOutlinePosition[     16147,        346]
-CellTagsIndexPosition[     16104,        343]
+NotebookDataLength[     16375,        350]
+NotebookOptionsPosition[     15856,        332]
+NotebookOutlinePosition[     16291,        349]
+CellTagsIndexPosition[     16248,        346]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -142,41 +142,41 @@ Cell[BoxData[
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
-         If[ChessPackage`Public`gamemode == False, 
+         If[ChessPackage`Private`gamemode == False, 
           Column[{
             Row[{
               Text[
                Style[
                "Opening: ", Bold, 20, Green, FontFamily -> "Helvetica Neue"]], 
               PopupMenu[
-               Dynamic[ChessPackage`Public`openingSelectedValue], 
-               ChessPackage`Public`openings], 
+               Dynamic[ChessPackage`Private`openingSelectedValue], 
+               ChessPackage`Private`openings], 
               Spacer[100], 
               Text[
                Style[
                "Type of win: ", Bold, 20, Green, FontFamily -> 
                 "Helvetica Neue"]], 
               PopupMenu[
-               Dynamic[ChessPackage`Public`victorySelectedValue], 
-               ChessPackage`Public`winTypes], 
+               Dynamic[ChessPackage`Private`victorySelectedValue], 
+               ChessPackage`Private`winTypes], 
               Spacer[100], 
               Button["Filter", 
-               ChessPackage`Public`getIndicesWithNamesNormalized[
-               ChessPackage`Public`openingSelectedValue, 
-                ChessPackage`Public`victorySelectedValue]]}], 
+               ChessPackage`Private`getIndicesWithNamesNormalized[
+               ChessPackage`Private`openingSelectedValue, 
+                ChessPackage`Private`victorySelectedValue]]}], 
             Row[{
               InputField[
-               Dynamic[ChessPackage`Public`indexOfSelectedGame], Number, 
+               Dynamic[ChessPackage`Private`indexOfSelectedGame], Number, 
                FieldHint -> "Type the game index here"], 
               Button[
               "Play", {
-                ChessPackage`Public`chessHistory, 
-                 ChessPackage`Public`pgnMovesArray, 
-                 ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
-                 ChessPackage`Public`selectedId, 
-                 ChessPackage`Public`typeofwin} = 
-               ChessPackage`selectedGame[ChessPackage`Public`data, 
-                 ToExpression[ChessPackage`Public`indexOfSelectedGame]]]}]}, 
+                ChessPackage`Private`chessHistory, 
+                 ChessPackage`Private`pgnMovesArray, 
+                 ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
+                 ChessPackage`Private`selectedId, 
+                 ChessPackage`Private`typeofwin} = 
+               ChessPackage`selectedGame[ChessPackage`Private`data, 
+                 ToExpression[ChessPackage`Private`indexOfSelectedGame]]]}]}, 
            Alignment -> Center], ""], StandardForm],
         ImageSizeCache->{
          492.835567763634, {17.875429736766602`, 20.768398388232672`}}]},
@@ -186,11 +186,11 @@ Cell[BoxData[
           GridBox[{{
              DynamicBox[
               ToBoxes[
-               ChessPackage`Public`chessAnimate[
-               ChessPackage`Public`chessHistory, 
-                ChessPackage`Public`pgnMovesArray], StandardForm], 
+               ChessPackage`Private`chessAnimate[
+               ChessPackage`Private`chessHistory, 
+                ChessPackage`Private`pgnMovesArray], StandardForm], 
               ImageSizeCache -> {
-               473., {198.05351567426698`, 200.94648432573302`}}]}}, 
+               470., {198.05351567426698`, 200.94648432573302`}}]}}, 
            DefaultBaseStyle -> "Column", 
            GridBoxAlignment -> {"Columns" -> {{Left}}}, 
            GridBoxItemSize -> {
@@ -198,55 +198,56 @@ Cell[BoxData[
          TemplateBox[{1}, "Spacer1"], 
          DynamicBox[
           ToBoxes[
-           If[ChessPackage`Public`gamemode == False, 
+           If[ChessPackage`Private`gamemode == False, 
             Grid[
              MapThread[{#, 
                Button[
                "\[FilledRightTriangle]", {{
-                  ChessPackage`Public`chessHistory, 
-                   ChessPackage`Public`pgnMovesArray, 
-                   ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
-                   ChessPackage`Public`selectedId, 
-                   ChessPackage`Public`typeofwin} = 
-                 ChessPackage`selectedGame[ChessPackage`Public`data, 
+                  ChessPackage`Private`chessHistory, 
+                   ChessPackage`Private`pgnMovesArray, 
+                   ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
+                   ChessPackage`Private`selectedId, 
+                   ChessPackage`Private`typeofwin} = 
+                 ChessPackage`selectedGame[ChessPackage`Private`data, 
                    ToExpression[
                     First[
                     StringSplit[#, " "]]]]}]}& , {
-              ChessPackage`Public`indicesWithNamesNormalized}], Frame -> All],
-             ""], StandardForm]], 
+              ChessPackage`Private`indicesWithNamesNormalized}], Frame -> 
+             All], ""], StandardForm]], 
          DynamicBox[
           ToBoxes[
-           If[ChessPackage`Public`gamemode == False, 
+           If[ChessPackage`Private`gamemode == False, 
             Button[
             "RANDOM", {
-              ChessPackage`Public`chessHistory, 
-               ChessPackage`Public`pgnMovesArray, 
-               ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
-               ChessPackage`Public`selectedId, ChessPackage`Public`typeofwin} = 
+              ChessPackage`Private`chessHistory, 
+               ChessPackage`Private`pgnMovesArray, 
+               ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
+               ChessPackage`Private`selectedId, 
+               ChessPackage`Private`typeofwin} = 
              ChessPackage`randomGame[
-              ChessPackage`Public`data, ChessPackage`Public`dimensioneData]], 
-            ""], StandardForm]]},
+              ChessPackage`Private`data, 
+               ChessPackage`Private`dimensioneData]], ""], StandardForm]]},
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
          If[
           Or[
-          ChessPackage`Public`gamemode == False, ChessPackage`Public`reveal == 
+          ChessPackage`Private`gamemode == False, ChessPackage`Private`reveal == 
            True], 
           Row[{
             Dynamic[
              Text[
-              Style[ChessPackage`Public`selectedId, Bold, 15, 
+              Style[ChessPackage`Private`selectedId, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
             Spacer[3], 
             Dynamic[
              Text[
-              Style[ChessPackage`Public`name, Bold, 15, 
+              Style[ChessPackage`Private`name, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]], 
             Spacer[3], 
             Dynamic[
              Text[
-              Style[ChessPackage`Public`typeofwin, Bold, 15, 
+              Style[ChessPackage`Private`typeofwin, Bold, 15, 
                Darker[Gray], FontFamily -> "Helvetica Neue"]]]}], 
           Text[
            Style["?", Bold, 15, 
@@ -259,61 +260,63 @@ Cell[BoxData[
           ToBoxes[
            Text[
             Style[
-            ChessPackage`Public`pgnmoves, Bold, 10, Gray, FontFamily -> 
+            ChessPackage`Private`pgnmoves, Bold, 10, Gray, FontFamily -> 
              "Helvetica Neue"]], StandardForm]]},
         "RowDefault"]},
       {
        DynamicBox[ToBoxes[
-         If[ChessPackage`Public`gamemode == True, 
+         If[ChessPackage`Private`gamemode == True, 
           Column[{
             Text[
              Style["What's the opening?", Bold, 15, 
               Darker[Gray], FontFamily -> "Helvetica Neue"]], 
             InputField[
-             Dynamic[ChessPackage`Public`answer], String, FieldHint -> 
+             Dynamic[ChessPackage`Private`answer], String, FieldHint -> 
              "Type your answer here"], 
             Button["Submit", 
              If[
-             ChessPackage`Public`answer == ChessPackage`Public`name, 
-              ChessPackage`Public`answerResult = "Correct answer!", 
-              ChessPackage`Public`answerResult = "Wrong answer!"]], 
+             ChessPackage`Private`answer == ChessPackage`Private`name, 
+              ChessPackage`Private`answerResult = "Correct answer!", 
+              ChessPackage`Private`answerResult = "Wrong answer!"]], 
             Text[
              Style[
-              Dynamic[ChessPackage`Public`answerResult], Bold, 15, 
+              Dynamic[ChessPackage`Private`answerResult], Bold, 15, 
               Darker[Gray], FontFamily -> "Helvetica Neue"]], 
             Button[
             "Next question \[RightArrow]", {{
-               ChessPackage`Public`chessHistory, 
-                ChessPackage`Public`pgnMovesArray, 
-                ChessPackage`Public`pgnmoves, ChessPackage`Public`name, 
-                ChessPackage`Public`selectedId, 
-                ChessPackage`Public`typeofwin} = 
+               ChessPackage`Private`chessHistory, 
+                ChessPackage`Private`pgnMovesArray, 
+                ChessPackage`Private`pgnmoves, ChessPackage`Private`name, 
+                ChessPackage`Private`selectedId, 
+                ChessPackage`Private`typeofwin} = 
               ChessPackage`randomGame[
-               ChessPackage`Public`data, ChessPackage`Public`dimensioneData], 
-              ChessPackage`Public`reveal = False, 
-              ChessPackage`Public`answerResult = ""}], 
+               ChessPackage`Private`data, 
+                ChessPackage`Private`dimensioneData], 
+              ChessPackage`Private`reveal = False, 
+              ChessPackage`Private`answerResult = ""}], 
             Button[
-            "Reveal the opening", ChessPackage`Public`reveal = 
-             Not[ChessPackage`Public`reveal]]}, Alignment -> Center], ""], 
+            "Reveal the opening", ChessPackage`Private`reveal = 
+             Not[ChessPackage`Private`reveal]]}, Alignment -> Center], ""], 
          StandardForm],
         ImageSizeCache->{0., {0., 3.15}}]},
       {
        ButtonBox[
         DynamicBox[ToBoxes[
-         "Gamemode: " <> ToString[ChessPackage`Public`gamemode], StandardForm],
+         "Gamemode: " <> ToString[ChessPackage`Private`gamemode], 
+          StandardForm],
          ImageSizeCache->{
           49.237207031249994`, {0.07382812500000036, 4.6634765625}}],
         Appearance->Automatic,
         ButtonFunction:>{{
-           ChessPackage`Public`chessHistory, 
-            ChessPackage`Public`pgnMovesArray, ChessPackage`Public`pgnmoves, 
-            ChessPackage`Public`name, ChessPackage`Public`selectedId, 
-            ChessPackage`Public`typeofwin} = 
+           ChessPackage`Private`chessHistory, 
+            ChessPackage`Private`pgnMovesArray, ChessPackage`Private`pgnmoves,
+             ChessPackage`Private`name, ChessPackage`Private`selectedId, 
+            ChessPackage`Private`typeofwin} = 
           ChessPackage`randomGame[
-           ChessPackage`Public`data, ChessPackage`Public`dimensioneData], 
-          ChessPackage`Public`gamemode = Not[ChessPackage`Public`gamemode], 
-          ChessPackage`Public`reveal = False, 
-          ChessPackage`Public`answerResult = ""},
+           ChessPackage`Private`data, ChessPackage`Private`dimensioneData], 
+          ChessPackage`Private`gamemode = Not[ChessPackage`Private`gamemode], 
+          ChessPackage`Private`reveal = False, 
+          ChessPackage`Private`answerResult = ""},
         Evaluator->Automatic,
         Method->"Preemptive"]}
      },
@@ -323,8 +326,8 @@ Cell[BoxData[
     "Column"]],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{3.925462864384016*^9, 3.9254633753511314`*^9, 
-  3.9254636208605022`*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"9a52cbe6-1d89-5a44-b8b7-f8f9f277c37f"]
+  3.925463620860502*^9, 3.926660759881237*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"cae68d94-a4ad-3842-83ee-53f5542e3f98"]
 }, Open  ]]
 },
 WindowSize->{1141.2, 568.8},
@@ -347,7 +350,7 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 6805, 101, 60, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[7388, 125, 8308, 201, 558, "Output",ExpressionUUID->"9a52cbe6-1d89-5a44-b8b7-f8f9f277c37f"]
+Cell[7388, 125, 8452, 204, 558, "Output",ExpressionUUID->"cae68d94-a4ad-3842-83ee-53f5542e3f98"]
 }, Open  ]]
 }
 ]
