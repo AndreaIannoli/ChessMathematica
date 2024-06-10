@@ -101,6 +101,10 @@ If[
 
     (* Export the imported piece images to a .mx file for future use *)
     Export[packageDir <> "pieceImages.mx", pieceImages];
+    
+    (*Note on the mx format and why we use it:
+    The MX Mathematica format is a proprietary binary file format used by Wolfram Mathematica for efficiently storing and exchanging data between Mathematica sessions.
+    In summary, the MX Mathematica format is used for caching images due to its efficient, fast, and compact nature, making it ideal for preserving and quickly accessing (with a built-in function) complex graphical data within the Mathematica environment.*)
 
     (* Print a message indicating that the piece images have been downloaded *)
     Print["Chess piece images were downloaded."]
