@@ -727,17 +727,13 @@ victorySelectedValue = "resign"; (* Default victory status *)
 (* Get indices of games with specified opening and victory status *)
 indicesWithNamesNormalized = getIndicesWithNamesNormalized[data, openingSelectedValue, victorySelectedValue]; (* Get game indices *)
 
-(* Dynamic variables for game mode and answer result *)
-gamemode = False; (* Initial game mode *)
-Dynamic[gamemode]; (* Make gamemode dynamic *)
-answerResult = ""; (* Initial answer result *)
-Dynamic[answerResult]; (* Make answerResult dynamic *)
-reveal = False; (* Initial reveal state *)
-Dynamic[reveal]; (* Make reveal state dynamic *)
-
 
 (* We initialize a dynamic module for the interface rapresentation. *)
-plotGui[] := DynamicModule[{}, 
+plotGui[] := DynamicModule[{
+	gamemode = False, (* Initial game mode *)
+	answerResult = "", (* Initial answer result *)
+	reveal = False (* Initial reveal state *)
+	}, 
   (* Define the main GUI panel *)
   gui = Panel[
     Column[{
@@ -793,46 +789,58 @@ plotGui[] := DynamicModule[{},
       }],
       
       (* Row for displaying current game's moves in PGN format *)
-      Dynamic[If[gamemode == False || reveal == True,
+      Dynamic[If[gamemode == False || reveal == True, (* Display game information if gamemode is off or reveal is true *)
         Row[{
+        (* Display selected game ID *)
           Dynamic[Text[Style[selectedId, Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]]], 
           Spacer[3], 
+          (* Display name of the opening *)
           Dynamic[Text[Style[name, Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]]], 
           Spacer[3], 
+          (* Display type of win *)
           Dynamic[Text[Style[typeofwin, Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]]]
         }], 
         Text[Style["?", Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]]
       ]],
       
+      (* Display a question mark if gamemode is on and reveal is false *)
       Row[{Dynamic[Text[Style[pgnmoves, Bold, 10, Gray, FontFamily -> "Helvetica Neue"]]]}],
       
       (* Section for gamemode interaction *)
       Dynamic[If[gamemode == True,
+      (* If gamemode is true, display the quiz interface *)
         Column[{
+        (* Display question about the opening *)
           Text[Style["What's the opening?", Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]],
+          (* Input field for user to type their answer *)
           InputField[Dynamic[answer], String, FieldHint -> "Type your answer here"], 
+          (* Button to submit the answer *)
           Button["Submit", 
             If[answer == name, 
               answerResult = "Correct answer!", 
               answerResult = "Wrong answer!"
             ]
           ],
+          (* Display result of the submitted answer *)
           Text[Style[Dynamic[answerResult], Bold, 15, Darker@Gray, FontFamily -> "Helvetica Neue"]],
+          (* Button to load the next question *)
           Button["Next question \[RightArrow]", 
             {chessHistory, pgnMovesArray, pgnmoves, name, selectedId, typeofwin} = randomGame[data, dimensioneData]; 
             reveal = False; 
             answerResult = ""
           ],
+          (* Button to reveal the opening *)
           Button["Reveal the opening", reveal = !reveal]
         }, Alignment -> Center], 
-        "" (* Else condition for the dynamic part when gamemode is False *)
+        (* Else condition for the dynamic part when gamemode is False *)
+        "" (* Display nothing if gamemode is false *)
       ]],
       
       (* Button to toggle gamemode *)
       Button[Dynamic["Gamemode: " <> ToString[gamemode]], 
         {chessHistory, pgnMovesArray, pgnmoves, name, selectedId, typeofwin} = randomGame[data, dimensioneData]; 
         gamemode = !gamemode; 
-        reveal = False; 
+        reveal = False; (* Default value for reveal is false *)
         answerResult = ""
       ]
     }, Alignment -> Center (* Align the GUI components to the center *)

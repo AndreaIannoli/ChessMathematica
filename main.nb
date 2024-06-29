@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10042,        196]
-NotebookOptionsPosition[      9531,        178]
-NotebookOutlinePosition[      9960,        195]
-CellTagsIndexPosition[      9917,        192]
+NotebookDataLength[     10808,        210]
+NotebookOptionsPosition[     10256,        191]
+NotebookOutlinePosition[     10726,        209]
+CellTagsIndexPosition[     10683,        206]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -35,8 +35,7 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"NotebookDirectory", "[", "]"}], ",", 
-         "\"\<ChessPackage.m\>\""}], "}"}], "]"}]}], "]"}], ";"}], 
-   "\[IndentingNewLine]", "\n", 
+         "\"\<ChessPackage.m\>\""}], "}"}], "]"}]}], "]"}], ";"}], "\n", 
    RowBox[{"DynamicModule", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -46,13 +45,21 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"startBtn", "=", 
        RowBox[{"Button", "[", 
-        RowBox[{"\"\<Start\>\"", ",", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Start\>\"", ",", 
+           RowBox[{"FontSize", "->", "20"}]}], "]"}], ",", 
          RowBox[{"{", 
           RowBox[{
            RowBox[{"plot", "=", 
             RowBox[{"plotGui", "[", "]"}]}], ",", 
-           RowBox[{"startBtn", "=", "\"\<\>\""}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
+           RowBox[{"startBtn", "=", "\"\<\>\""}]}], "}"}], ",", 
+         RowBox[{"ImageSize", "->", 
+          RowBox[{"{", 
+           RowBox[{"200", ",", "50"}], "}"}]}]}], " ", 
+        RowBox[{"(*", 
+         RowBox[{"Set", " ", "the", " ", "button", " ", "size"}], "*)"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"Column", "[", 
        RowBox[{"{", 
         RowBox[{
@@ -143,27 +150,31 @@ Cell[BoxData[
    3.925311889167094*^9, 3.925311895619164*^9}, {3.925312491082549*^9, 
    3.925312503449362*^9}, {3.9254020578451576`*^9, 3.925402061783287*^9}, {
    3.928570858610202*^9, 3.928570923681185*^9}, {3.928570961303864*^9, 
-   3.928571004766135*^9}, {3.928571054933489*^9, 3.9285710660313387`*^9}, {
+   3.928571004766135*^9}, {3.928571054933489*^9, 3.92857106603134*^9}, {
    3.928571155934086*^9, 3.928571179632285*^9}, {3.928571244216392*^9, 
    3.928571274309097*^9}, 3.928571401989938*^9, {3.928571664280529*^9, 
-   3.928571691927641*^9}, {3.9285717520900106`*^9, 3.928571986496529*^9}, {
+   3.928571691927641*^9}, {3.928571752090012*^9, 3.928571986496529*^9}, {
    3.9285720654155607`*^9, 3.928572072084048*^9}, {3.92857216288377*^9, 
-   3.928572166200671*^9}, 3.92857248933066*^9},
+   3.928572166200671*^9}, 3.92857248933066*^9, {3.928660985913662*^9, 
+   3.928660992218401*^9}, {3.928661155891978*^9, 3.928661157136671*^9}, 
+   3.928662684796974*^9, {3.9286627721962643`*^9, 3.9286627836530533`*^9}},
  NumberMarks->False,
- CellLabel->"In[3]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+ CellLabel->"In[5]:=",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`plot$$ = 
   "Click start to begin", $CellContext`startBtn$$ = Button[
-  "Start", {$CellContext`plot$$ = 
-    ChessPackage`plotGui[], $CellContext`startBtn$$ = ""}]}, 
+   Style["Start", FontSize -> 20], {$CellContext`plot$$ = 
+    ChessPackage`plotGui[], $CellContext`startBtn$$ = ""}, 
+   ImageSize -> {200, 50}]}, 
   TagBox[GridBox[{
      {
       DynamicBox[ToBoxes[$CellContext`startBtn$$, StandardForm],
-       ImageSizeCache->{70., {9., 16.}}]},
+       ImageSizeCache->{140., {16.053515674266965`, 18.94648432573304}}]},
      {
       DynamicBox[ToBoxes[$CellContext`plot$$, StandardForm],
-       ImageSizeCache->{137., {2.548, 8.110375}}]}
+       ImageSizeCache->{
+        100.06446075439453`, {1.8662109766155481`, 6.331787242088468}}]}
     },
     DefaultBaseStyle->"Column",
     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -172,14 +183,17 @@ Cell[BoxData[
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.928572073960284*^9, {3.928572168186183*^9, 3.928572188165852*^9}, {
-   3.928572491679818*^9, 3.9285724960766983`*^9}},
- CellLabel->"Out[4]=",ExpressionUUID->"3f673df1-6110-4c53-8b21-02d708956959"]
+   3.928572491679818*^9, 3.9285724960766983`*^9}, 3.9286616188627357`*^9, 
+   3.92866172755534*^9, 3.928662702411083*^9, 3.9286627892767143`*^9, 
+   3.9286628212026386`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"16891786-23e9-4a4e-9a54-d576558df24a"]
 }, Open  ]]
 },
-WindowSize->{Full, Full},
-WindowMargins->{{16, Automatic}, {Automatic, 16}},
+WindowSize->{1152, 579.6},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
 Magnification:>0.7 Inherited,
-FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"cb06454f-b928-46f3-badb-3b5bdbc51b01"
 ]
@@ -195,8 +209,8 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 8030, 130, 135, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
-Cell[8613, 154, 902, 21, 83, "Output",ExpressionUUID->"3f673df1-6110-4c53-8b21-02d708956959"]
+Cell[580, 22, 8501, 139, 87, "Input",ExpressionUUID->"cba7eb3c-68f1-4163-87e4-1a407070ef8d"],
+Cell[9084, 163, 1156, 25, 60, "Output",ExpressionUUID->"16891786-23e9-4a4e-9a54-d576558df24a"]
 }, Open  ]]
 }
 ]
